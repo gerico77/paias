@@ -51,5 +51,11 @@
             <span>User Actions</span></a>
         </a>
     </li>
+    <li class="nav-item" class="{{ $request->segment(1) == 'professors' ? 'active active-sub' : '' }}">
+        <a class="nav-link" href="{{ route('professors.index') }}">
+            <i class="fa fa-user"></i>
+            <span>Professors</span></a>
+        </a>
+    </li>
     @endif
   </ul>
