@@ -3,28 +3,59 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Hash;
+use Mail;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use SoftDeletes, Notifiable;
+
+    protected $fillable = ['name', 'email', 'password', 'remember_token', 'role_id'];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        User::observe(new \App\Observers\UserActionsObserver);
+    }
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * Hash password
+     * @param $input
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    public function setPasswordAttribute($input)
+    {
+        if ($input) {
+            $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
+        }
+    }
+
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
+     * Set to null if empty
+     * @param $input
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function setRoleIdAttribute($input)
+    {
+        $this->attributes['role_id'] = $input ? $input : null;
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id')->withTrashed();
+    }
+
+    public function isAdmin()
+    {
+        foreach ($this->role()->get() as $role) {
+            if ($role->id == 1) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
