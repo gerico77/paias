@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
+        $this->call(ProfessorSeed::class);
         $this->call(RoleSeed::class);
         $this->call(UserSeed::class);
 

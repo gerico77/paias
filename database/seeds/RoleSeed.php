@@ -10,19 +10,35 @@ class RoleSeed extends Seeder
      *
      * @return void
      */
+
+    // public function run()
+    // {
+    //     DB::table((new Role)->getTable())->truncate();
+
+    //     Role::insert([
+    //         [
+    //             'id' => 1,
+    //             'title' => 'Administrator (can create other users)',
+    //         ],
+    //         [
+    //             'id' => 2,
+    //             'title' => 'Simple user',
+    //         ],
+    //     ]);
+    // }
+
     public function run()
     {
-        DB::table((new Role)->getTable())->truncate();
+        $items = [
 
-        Role::insert([
-            [
-                'id' => 1,
-                'title' => 'Administrator (can create other users)',
-            ],
-            [
-                'id' => 2,
-                'title' => 'Simple user',
-            ],
-        ]);
+            ['id' => 1, 'title' => 'Administrator', ],
+            ['id' => 2, 'title' => 'Professor', ],
+            ['id' => 3, 'title' => 'Student', ],
+
+        ];
+
+        foreach ($items as $item) {
+            \App\Role::create($item);
+        }
     }
 }

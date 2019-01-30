@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Professor;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreUsersRequest;
-use App\Http\Requests\UpdateUsersRequest;
+use App\Http\Requests\StoreProfessorsRequest;
+use App\Http\Requests\UpdateProfessorsRequest;
 
 class ProfessorController extends Controller
 {
@@ -43,10 +43,10 @@ class ProfessorController extends Controller
     /**
      * Store a newly created Professor in storage.
      *
-     * @param  \App\Http\Requests\StoreUsersRequest  $request
+     * @param  \App\Http\Requests\StoreProfessorsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUsersRequest $request)
+    public function store(StoreProfessorsRequest $request)
     {
         Professor::create($request->all());
 
@@ -74,11 +74,11 @@ class ProfessorController extends Controller
     /**
      * Update Professor in storage.
      *
-     * @param  \App\Http\Requests\UpdateUsersRequest  $request
+     * @param  \App\Http\Requests\UpdateProfessorsRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUsersRequest $request, $id)
+    public function update(UpdateProfessorsRequest $request, $id)
     {
         $professor = Professor::findOrFail($id);
         $professor->update($request->all());
