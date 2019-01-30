@@ -3,8 +3,8 @@
 @section('content')
     <br>
     <div class="container">
-    <h3 class="page-title">@lang('Users')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['users.store']]) !!}
+    <h3 class="page-title">@lang('Professors')</h3>
+    {!! Form::open(['method' => 'POST', 'route' => ['professors.store']]) !!}
     <div class="panel panel-default">
         <div class="panel-heading">
             @lang('Create')

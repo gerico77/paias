@@ -11,21 +11,12 @@ class ProfessorSeed extends Seeder
      */
     public function run()
     {
-        DB::table((new Professor)->getTable())->truncate();
+        $items = [
 
-        Professor::insert([
-            [
-                // 'id' => '',
-                // 'name' => '',
-                // 'email' => '',
-                // 'joining_date' => '',
-                // 'password' => '',
-                // 'designation' => '',
-                // 'department' => '',
-                // 'gender' => '',
-                // 'role_id' => ,
-                // 'remember_token' => '',
-            ],
-        ]);
+        ];
+
+        foreach ($items as $item) {
+            \App\Professor::create($item);
+        }
     }
 }

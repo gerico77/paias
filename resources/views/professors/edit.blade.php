@@ -3,8 +3,8 @@
 @section('content')
     <br>
     <div class="container">
-    <h3 class="page-title">@lang('Users')</h3>
-    {!! Form::model($user, ['method' => 'PUT', 'route' => ['users.update', $user->id]]) !!}
+    <h3 class="page-title">@lang('Professors')</h3>
+    {!! Form::model($user, ['method' => 'PUT', 'route' => ['professors.update', $professor->id]]) !!}
     <div class="panel panel-default">
         <div class="panel-heading">
             @lang('Edit')
