@@ -28,9 +28,9 @@
         <span>Charts</span></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="tables.html">
+      <a class="nav-link" href="{{ route('students.index')}}">
         <i class="fas fa-fw fa-table"></i>
-        <span>Tables</span></a>
+        <span>Students</span></a>
     </li>
     @if(Auth::user()->isAdmin())
     <li class="nav-item" class="{{ $request->segment(1) == 'topics' ? 'active' : '' }}">
