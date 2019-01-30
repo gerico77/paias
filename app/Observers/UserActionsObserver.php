@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use Auth;
 use App\UserAction;
 
 class UserActionsObserver
