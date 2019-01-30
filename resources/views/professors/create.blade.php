@@ -34,7 +34,7 @@
                     @endif
                 </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('joining_date', 'Joining Date', ['class' => 'control-label']) !!}
                     {!! Form::joining_date('joining_date', ['class' => 'form-control', 'placeholder' => '']) !!}
@@ -45,7 +45,7 @@
                         </p>
                     @endif
                 </div>
-            </div>
+            </div> --}}
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('password', 'Password', ['class' => 'control-label']) !!}
@@ -58,7 +58,7 @@
                     @endif
                 </div>
             </div>
-             <div class="row">
+             {{-- <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('designation', 'Designation*', ['class' => 'control-label']) !!}
                     {!! Form::designation('designation', old('designation'), ['class' => 'form-control', 'placeholder' => '']) !!}
@@ -105,7 +105,7 @@
                         </p>
                     @endif
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     {!! Form::submit(trans('Save'), ['class' => 'btn btn-danger']) !!}
