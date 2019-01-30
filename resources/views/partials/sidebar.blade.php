@@ -33,23 +33,23 @@
         <span>Tables</span></a>
     </li>
     @if(Auth::user()->isAdmin())
-      <li class="nav-item" class="{{ $request->segment(1) == 'topics' ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('roles.index') }}">
-            <i class="fa fa-briefcase"></i>
-            <span>Roles</span></a>
+    <li class="nav-item" class="{{ $request->segment(1) == 'topics' ? 'active' : '' }}">
+      <a class="nav-link" href="{{ route('roles.index') }}">
+          <i class="fa fa-briefcase"></i>
+          <span>Roles</span></a>
+      </a>
+    </li>
+    <li class="nav-item" class="{{ $request->segment(1) == 'users' ? 'active active-sub' : '' }}">
+        <a class="nav-link" href="{{ route('users.index') }}">
+            <i class="fa fa-user"></i>
+            <span>Users</span></a>
         </a>
-      </li>
-      <li class="nav-item" class="{{ $request->segment(1) == 'users' ? 'active active-sub' : '' }}">
-          <a class="nav-link" href="{{ route('users.index') }}">
-              <i class="fa fa-user"></i>
-              <span>Users</span></a>
-          </a>
-      </li>
-      <li class="nav-item" class="{{ $request->segment(1) == 'user_actions' ? 'active active-sub' : '' }}">
-          <a class="nav-link" href="{{ route('user_actions.index') }}">
-              <i class="fa fa-th-list"></i>
-              <span>User Actions</span></a>
-          </a>
-      </li>
+    </li>
+    <li class="nav-item" class="{{ $request->segment(1) == 'user_actions' ? 'active active-sub' : '' }}">
+        <a class="nav-link" href="{{ route('user_actions.index') }}">
+            <i class="fa fa-th-list"></i>
+            <span>User Actions</span></a>
+        </a>
+    </li>
     @endif
   </ul>
