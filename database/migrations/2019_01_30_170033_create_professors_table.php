@@ -17,7 +17,7 @@ class ProfessorsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email');
-            $table->timestamps('joing_date');
+            $table->timestamps('joining_date');
             $table->string('password')->nullable();
             $table->string('designation');
             $table->string('department_id');

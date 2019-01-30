@@ -9,11 +9,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Hash;
 use Mail;
 
-class Professor extends Model
+class Professor extends Authenticatable
 {
     use SoftDeletes, Notifiable;
 
-    protected $fillable = ['name', 'email', 'joining_date', 'password', 'designation', 'department', 'gender'];
+    protected $fillable = ['name', 'email', 'joining_date', 'password', 'designation', 'department', 'gender', 'remember_token', 'role_id'];
 
     public static function boot()
     {

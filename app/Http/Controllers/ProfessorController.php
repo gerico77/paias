@@ -11,7 +11,7 @@ class ProfessorController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('professors');
+        $this->middleware('admin');
     }
 
     /**
