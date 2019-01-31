@@ -53,7 +53,7 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('Save'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit(trans('Save'), ['class' => 'btn btn-primary']) !!}
     {!! Form::close() !!}
     </div>
 @stop

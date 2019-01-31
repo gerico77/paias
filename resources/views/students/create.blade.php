@@ -42,7 +42,7 @@
                             <button type="submit" class="btn btn-primary"></button>
                         </div>
                     </div> --}}
-                    {!! Form::submit(trans('Save'), ['class' => 'btn btn-danger']) !!}
+                    {!! Form::submit(trans('Save'), ['class' => 'btn btn-primary']) !!}
                     {!! Form::close() !!}
                 </fieldset>
             </div>

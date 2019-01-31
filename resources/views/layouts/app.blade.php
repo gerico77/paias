@@ -4,6 +4,7 @@
     @include('partials.head')
 </head>
 <body id="page-top">
+
     @include('partials.navbar')
 
     <div id="wrapper">
@@ -25,7 +26,6 @@
                         </ul>
                     </div>
                 @endif
-
                 @yield('content')
             </div>
         </div>

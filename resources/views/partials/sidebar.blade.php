@@ -6,6 +6,18 @@
           <span>Dashboard</span>
       </a>
     </li>
+    <li class="nav-item" class="{{ $request->segment(1) == 'tests' ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('tests.index') }}">
+            <i class="fas fa-file-alt"></i>
+            <span>Exam</span>
+        </a>
+    </li>
+    <li class="nav-item" class="{{ $request->segment(1) == 'results' ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('results.index') }}">
+            <i class="fas fa-poll"></i>
+            <span>Results</span></a>
+        </a>
+    </li>
 
     @if(Auth::user()->isAdmin())
 
