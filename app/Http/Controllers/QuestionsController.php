@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Question;
+use App\QuestionsOption;
+use App\Http\Requests\StoreQuestionsRequest;
+use App\Http\Requests\UpdateQuestionsRequest;
 
 class QuestionsController extends Controller
 {
@@ -53,9 +56,21 @@ class QuestionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreQuestionsRequest $request)
     {
-        //
+        $question = Question::create($request->all());
+        foreach ($request->input() as $key => $value) {
+            if(strpos($key, 'option') !== false && $value != '') {
+                $status = $request->input('correct') == $key ? 1 : 0;
+                QuestionsOption::create([
+                    'question_id' => $question->id,
+                    'option'      => $value,
+                    'correct'     => $status
+                ]);
+            }
+        }
+
+        return redirect()->route('questions.index');
     }
 
     /**
@@ -100,6 +115,9 @@ class QuestionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $question = Question::findOrFail($id);
+        $question->delete();
+
+        return redirect()->route('questions.index');
     }
 }

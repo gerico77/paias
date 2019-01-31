@@ -10,7 +10,24 @@
         @include('partials.sidebar')
 
         <div id="content-wrapper">
-            @yield('content')
+            <div class="container-fluid">
+                @if (Session::has('message'))
+                    <div class="alert alert-info" role="alert">
+                        <p>{{ Session::get('message') }}</p>
+                    </div>
+                @endif
+                @if ($errors->count() > 0)
+                    <div class="alert alert-danger" role="alert">
+                        <ul class="list-unstyled">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                @yield('content')
+            </div>
         </div>
         
         @include('partials.footer')
