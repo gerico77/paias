@@ -14,7 +14,10 @@
     <h3 class="page-title">Questions</h3>
 
     <p>
-        <a href="{{ route('questions.create') }}" class="btn btn-success btn-sm">Add new</a>
+        <a href="{{ route('questions.create') }}" class="btn btn-success btn-sm">
+            <i class="fas fa-plus"></i>
+            Add new
+        </a>
     </p>
 
     <div class="card mb-3">
@@ -38,14 +41,20 @@
                                     <td>{{ $question->subject->title}}</td>
                                     <td>{!! $question->question_text !!}</td>
                                     <td>
-                                        <a href="{{ route('questions.show',[$question->id]) }}" class="btn btn-sm btn-primary">View</a>
-                                        <a href="{{ route('questions.edit',[$question->id]) }}" class="btn btn-sm btn-info">Edit</a>
+                                        <a href="{{ route('questions.show',[$question->id]) }}" class="btn btn-sm btn-primary">
+                                            <i class="fas fa-eye"></i>
+                                            View
+                                        </a>
+                                        <a href="{{ route('questions.edit',[$question->id]) }}" class="btn btn-sm btn-info">
+                                            <i class="fas fa-edit"></i>
+                                            Edit
+                                        </a>
                                         {!! Form::open(array(
                                             'style' => 'display: inline-block;',
                                             'method' => 'DELETE',
                                             'onsubmit' => "return confirm('Are you sure?');",
                                             'route' => ['questions.destroy', $question->id])) !!}
-                                        {!! Form::submit('Delete', array('class' => 'btn btn-sm btn-danger')) !!}
+                                        {!! Form::button('<i class="fas fa-trash-alt"></i> Delete', array('type' => 'submit', 'class' => 'btn btn-sm btn-danger')) !!}
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>

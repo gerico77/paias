@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnsToQuestionsOptionsTable extends Migration
+class CreateQuestionsOptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class AddColumnsToQuestionsOptionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('questions_options', function (Blueprint $table) {
+        Schema::create('questions_options', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('question_id')->unsigned()->nullable();
-            $table->foreign('question_id', 'fk_257_question_question_id_questions_option')->references('id')->on('questions');
+            $table->foreign('question_id', 'fk_257_question_question_id_questions_option')->references('id')->on('questions')->onDelete('cascade');
             $table->string('option')->nullable();
             $table->tinyInteger('correct')->nullable()->default(0);
             
+            $table->timestamps();
             $table->softDeletes();
 
             $table->index(['deleted_at']);
@@ -32,8 +34,6 @@ class AddColumnsToQuestionsOptionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('questions_options', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('questions_options');
     }
 }
