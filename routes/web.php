@@ -15,6 +15,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('user_actions', 'UserActionsController');
     Route::resource('professors', 'ProfessorController');
     Route::post('professors_mass_destroy', ['uses' => 'ProfessorController@massDestroy', 'as' => 'professors.mass_destroy']);
+    Route::resource('questions', 'QuestionsController');
+    Route::post('questions_mass_destroy', ['uses' => 'QuestionsController@massDestroy', 'as' => 'questions.mass_destroy']);
+    Route::resource('questions_options', 'QuestionsOptionsController');
+    Route::post('questions_options_mass_destroy', ['uses' => 'QuestionsOptionsController@massDestroy', 'as' => 'questions_options.mass_destroy']);
 });
 
 // Auth

@@ -45,6 +45,18 @@
                 <span>Professors</span></a>
             </a>
         </li>
+        <li class="nav-item" class="{{ $request->segment(1) == 'questions' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('questions.index') }}">
+                    <i class="fa fa-gears"></i>
+                    <span>Questions</span></a>
+                </a>
+            </li>
+            <li class="nav-item" class="{{ $request->segment(1) == 'questions_options' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('questions_options.index') }}">
+                    <i class="fa fa-gears"></i>
+                    <span>Question Options</span></a>
+                </a>
+            </li>
     </ul>
     </li>
     @endif
