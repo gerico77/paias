@@ -8,7 +8,7 @@ use App\Subject;
 
 class Question extends Model
 {
-    protected $fillable = ['question_text', 'code_snippet', 'answer_explanation', 'more_info_link', 'subject_id'];
+    protected $fillable = ['question_text', 'answer_explanation', 'subject_id'];
 
     public static function boot()
     {

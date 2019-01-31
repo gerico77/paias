@@ -53,7 +53,7 @@ class QuestionsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreQuestionsRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreQuestionsRequest $request)
@@ -81,7 +81,13 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
-        //
+        $relations = [
+            'subjects' => \App\Subject::get()->pluck('title', 'id')->prepend('Please seplect', ''),
+        ];
+
+        $question = Question::findOrFail($id);
+
+        return view('questions.show', compact('question') + $relations);
     }
 
     /**
@@ -92,19 +98,28 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $relations = [
+            'subjects' => \App\Subject::get()->pluck('title', 'id')->prepend('Please select', ''),
+        ];
+
+        $question = Question::findOrFail($id);
+
+        return view('questions.edit', compact('question') + $relations);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdateQuestionsRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateQuestionsRequest $request, $id)
     {
-        //
+        $question = Question::findOrFail($id);
+        $question->update($request->all());
+
+        return redirect()->route('questions.index');
     }
 
     /**
