@@ -13,10 +13,10 @@
             <table class="table table-bordered table-striped {{ count($user_actions) > 0 ? 'datatable' : '' }} ">
                 <thead>
                     <tr>
-                        <th>@lang('User-actions User')</th>
-                        <th>@lang('User-actions Action')</th>
-                        <th>@lang('User-actions Action-model')</th>
-                        <th>@lang('User-actions Action-id')</th>
+                        <th>@lang('User')</th>
+                        <th>@lang('Action')</th>
+                        <th>@lang('Action model')</th>
+                        <th>@lang('Action id')</th>
                     </tr>
                 </thead>
                 <tbody>

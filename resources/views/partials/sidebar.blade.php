@@ -29,7 +29,7 @@
     </li>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-fw fa-table"></i>
+        <i class="fa fa-user"></i>
         <span>Student</span>
       </a>
       <div class="dropdown-menu" aria-labelledby="pagesDropdown">
@@ -39,7 +39,7 @@
     @if(Auth::user()->isAdmin())
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-fw fa-folder"></i>
+        <i class="fa fa-users"></i>
         <span>User Management</span>
       </a>
       <div class="dropdown-menu" aria-labelledby="pagesDropdown">
