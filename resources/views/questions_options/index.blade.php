@@ -6,7 +6,7 @@
     <h3 class="page-title">Question Option</h3>
 
     <p>
-        <a href="{{ route('questions_options.create') }}" class="btn btn-success">Add New</a>
+        <a href="{{ route('questions_options.create') }}" class="btn btn-primary">Add New</a>
     </p>
 
     <div class="panel panel-default">
@@ -35,7 +35,7 @@
                                 <td>{{ $questions_option->option }}</td>
                                 <td>{{ $questions_option->correct == 1 ? 'Yes' : 'No' }}</td>
                                 <td>
-                                    <a href="{{ route('questions_options.show',[$questions_option->id]) }}" class="btn btn-xs btn-primary">View</a>
+                                    <a href="{{ route('questions_options.show',[$questions_option->id]) }}" class="btn btn-xs btn-success">View</a>
                                     <a href="{{ route('questions_options.edit',[$questions_option->id]) }}" class="btn btn-xs btn-info">Edit</a>
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',

@@ -108,7 +108,7 @@
             </div>
         </div>
     </div>
-    {!! Form::submit(trans('Update'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit(trans('Update'), ['class' => 'btn btn-success']) !!}
     {!! Form::close() !!}
     </div>
 @stop

@@ -6,7 +6,7 @@
    <h3 class="page-title">Questions</h3>
 
     <p>
-        <a href="{{ route('questions.create') }}" class="btn btn-success">Add New</a>
+        <a href="{{ route('questions.create') }}" class="btn btn-primary">Add New</a>
     </p>
 
     <div class="panel panel-default">
@@ -33,7 +33,7 @@
                                 <td>{{ $question->subject->title or '' }}</td>
                                 <td>{!! $question->question_text !!}</td>
                                 <td>
-                                    <a href="{{ route('questions.show',[$question->id]) }}" class="btn btn-xs btn-primary">View</a>
+                                    <a href="{{ route('questions.show',[$question->id]) }}" class="btn btn-xs btn-success">View</a>
                                     <a href="{{ route('questions.edit',[$question->id]) }}" class="btn btn-xs btn-info">Edit</a>
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',

@@ -8,7 +8,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            Quiz
+            Multiple Choice
         </div>
         <?php //dd($questions) ?>
     @if(count($questions) > 0)

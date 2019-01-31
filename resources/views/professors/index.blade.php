@@ -5,7 +5,7 @@
     <div class="container">
     <h3 class="page-title">@lang('Professors')</h3>
     <p>
-        <a href="{{ route('professors.create') }}" class="btn btn-success">@lang('Add New')</a>
+        <a href="{{ route('professors.create') }}" class="btn btn-primary">@lang('Add New')</a>
     </p>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -38,7 +38,7 @@
                                 <td>{{ $professor->gender}}</td>
                                 <td>{{ $user->role->title or '' }}</td>
                                 <td>
-                                    <a href="{{ route('professors.show',[$professor->id]) }}" class="btn btn-xs btn-primary">@lang('View')</a>
+                                    <a href="{{ route('professors.show',[$professor->id]) }}" class="btn btn-xs btn-success">@lang('View')</a>
                                     <a href="{{ route('professors.edit',[$professor->id]) }}" class="btn btn-xs btn-info">@lang('Edit')</a>
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
