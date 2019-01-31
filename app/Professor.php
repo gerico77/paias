@@ -9,17 +9,17 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Hash;
 use Mail;
 
-class User extends Authenticatable
+class Professor extends Authenticatable
 {
     use SoftDeletes, Notifiable;
 
-    protected $fillable = ['name', 'email', 'password', 'remember_token', 'role_id'];
+    protected $fillable = ['name', 'email', 'joining_date', 'password', 'designation', 'department', 'gender', 'remember_token', 'role_id'];
 
     public static function boot()
     {
         parent::boot();
 
-        User::observe(new \App\Observers\UserActionsObserver);
+        Professor::observe(new \App\Observers\UserActionsObserver);
     }
 
     /**

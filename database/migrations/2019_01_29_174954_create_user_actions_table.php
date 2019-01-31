@@ -20,7 +20,7 @@ class CreateUserActionsTable extends Migration
             $table->string('action');
             $table->string('action_model')->nullable();
             $table->integer('action_id')->nullable();
-            
+
             $table->timestamps();
             $table->softDeletes();
 

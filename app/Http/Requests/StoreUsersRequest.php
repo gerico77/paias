@@ -28,4 +28,8 @@ class StoreUsersRequest extends FormRequest
             'role_id' => 'required',
         ];
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 090e796d1cdc19c55cafe785be19a3f8ef20afc3
