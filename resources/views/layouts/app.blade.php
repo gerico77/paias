@@ -29,8 +29,10 @@
                 @yield('content')
             </div>
         </div>
-        
         @include('partials.footer')
+    </div>
+    <div class="scroll-to-top" style="display: none;">
+        <i class="fa fa-arrow-up"></i>
     </div>
 </body>
 </html>

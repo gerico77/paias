@@ -18,7 +18,7 @@
                 </div>
             </div>
             <p>&nbsp;</p>
-            <a href="{{ route('roles.index') }}" class="btn btn-default">@lang('Back to list')</a>
+            <a href="{{ route('roles.index') }}" class="btn btn-default">Back to list</a>
         </div>
     </div>
     </div>
