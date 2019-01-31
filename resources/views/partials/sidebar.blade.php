@@ -27,35 +27,53 @@
         <i class="fas fa-fw fa-chart-area"></i>
         <span>Charts</span></a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ route('students.index')}}">
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-fw fa-table"></i>
-        <span>Students</span></a>
+        <span>Student</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <a class="dropdown-item" href="{{ route('students.create')}}">Add</a>
+      </div>
     </li>
     @if(Auth::user()->isAdmin())
-    <li class="nav-item" class="{{ $request->segment(1) == 'topics' ? 'active' : '' }}">
-      <a class="nav-link" href="{{ route('roles.index') }}">
-          <i class="fa fa-briefcase"></i>
-          <span>Roles</span></a>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>User Management</span>
       </a>
+      <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <a class="dropdown-item" href="{{ route('roles.index') }}">Roles</a>
+            <a class="dropdown-item" href="{{ route('users.index') }}">Users</a>
+            <a class="dropdown-item" href="{{ route('user_actions.index') }}">User Actions</a>
+       </div>
     </li>
-    <li class="nav-item" class="{{ $request->segment(1) == 'users' ? 'active active-sub' : '' }}">
-        <a class="nav-link" href="{{ route('users.index') }}">
-            <i class="fa fa-user"></i>
-            <span>Users</span></a>
+        {{-- <li class="nav-item" class="{{ $request->segment(1) == 'topics' ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('roles.index') }}">
+            <i class="fa fa-briefcase"></i>
+            <span>Roles</span></a>
         </a>
-    </li>
-    <li class="nav-item" class="{{ $request->segment(1) == 'user_actions' ? 'active active-sub' : '' }}">
-        <a class="nav-link" href="{{ route('user_actions.index') }}">
-            <i class="fa fa-th-list"></i>
-            <span>User Actions</span></a>
-        </a>
-    </li>
-    <li class="nav-item" class="{{ $request->segment(1) == 'professors' ? 'active active-sub' : '' }}">
-        <a class="nav-link" href="{{ route('professors.index') }}">
-            <i class="fa fa-user"></i>
-            <span>Professors</span></a>
-        </a>
+        </li>
+        <li class="nav-item" class="{{ $request->segment(1) == 'users' ? 'active active-sub' : '' }}">
+            <a class="nav-link" href="{{ route('users.index') }}">
+                <i class="fa fa-user"></i>
+                <span>Users</span></a>
+            </a>
+        </li>
+        <li class="nav-item" class="{{ $request->segment(1) == 'user_actions' ? 'active active-sub' : '' }}">
+            <a class="nav-link" href="{{ route('user_actions.index') }}">
+                <i class="fa fa-th-list"></i>
+                <span>User Actions</span></a>
+            </a>
+        </li> --}}
+        
+        <li class="nav-item" class="{{ $request->segment(1) == 'professors' ? 'active active-sub' : '' }}">
+            <a class="nav-link" href="{{ route('professors.index') }}">
+                <i class="fa fa-user"></i>
+                <span>Professors</span></a>
+            </a>
+        </li>
+    </ul>
     </li>
     @endif
   </ul>

@@ -4,7 +4,7 @@ namespace App\Observers;
 
 use Auth;
 use App\UserAction;
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 
 class UserActionsObserver
 {

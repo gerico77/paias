@@ -45,8 +45,6 @@
                     {!! Form::submit(trans('Save'), ['class' => 'btn btn-danger']) !!}
                     {!! Form::close() !!}
                 </fieldset>
-                <p>&nbsp;</p>
-            <a href="{{ route('students.index') }}" class="btn btn-default">@lang('Back to list')</a>
             </div>
         </div>
     </div>
