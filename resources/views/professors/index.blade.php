@@ -38,13 +38,13 @@
                                 <td>{{ $professor->gender}}</td>
                                 <td>{{ $user->role->title or '' }}</td>
                                 <td>
-                                    <a href="{{ route('professors.show',[$user->id]) }}" class="btn btn-xs btn-primary">@lang('View')</a>
-                                    <a href="{{ route('professors.edit',[$user->id]) }}" class="btn btn-xs btn-info">@lang('Edit')</a>
+                                    <a href="{{ route('professors.show',[$professor->id]) }}" class="btn btn-xs btn-primary">@lang('View')</a>
+                                    <a href="{{ route('professors.edit',[$professor->id]) }}" class="btn btn-xs btn-info">@lang('Edit')</a>
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("Are you sure?")."');",
-                                        'route' => ['professors.destroy', $user->id])) !!}
+                                        'route' => ['professors.destroy', $professor->id])) !!}
                                     {!! Form::submit(trans('Delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
                                 </td>

@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class UpdateProfessorsRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determine if the professor is authorized to make this request.
      *
      * @return bool
      */
@@ -24,7 +24,7 @@ class UpdateProfessorsRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $this->route('user'),
+            'email' => 'required|email|unique:professors,email,' . $this->route('professor'),
             'joining_date' => 'required',
             'designation' => 'required',
             'department' => 'required',
