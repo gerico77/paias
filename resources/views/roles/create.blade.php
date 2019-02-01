@@ -26,7 +26,7 @@
         </div>
     </div>
     
-    {!! Form::submit(trans('Save'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit(trans('Save'), ['class' => 'btn btn-success']) !!}
     {!! Form::close() !!}
     </div>
 @stop

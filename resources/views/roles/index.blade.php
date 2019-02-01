@@ -5,7 +5,7 @@
     <div class="container">
     <h3 class="page-title">@lang('Roles')</h3>
     <p>
-        <a href="{{ route('roles.create') }}" class="btn btn-success">@lang('Add New')</a>
+        <a href="{{ route('roles.create') }}" class="btn btn-primary">@lang('Add New')</a>
     </p>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -27,7 +27,7 @@
                                 <td></td>
                                 <td>{{ $role->title }}</td>
                                 <td>
-                                    <a href="{{ route('roles.show',[$role->id]) }}" class="btn btn-xs btn-primary">@lang('View')</a>
+                                    <a href="{{ route('roles.show',[$role->id]) }}" class="btn btn-xs btn-success">@lang('View')</a>
                                     <a href="{{ route('roles.edit',[$role->id]) }}" class="btn btn-xs btn-info">@lang('Edit')</a>
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
@@ -50,6 +50,7 @@
     </div>
     </div>
 @stop
+
 @section('javascript')
     <script>
         window.route_mass_crud_entries_destroy = '{{ route('roles.mass_destroy') }}';

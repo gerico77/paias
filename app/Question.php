@@ -8,7 +8,9 @@ use App\Subject;
 
 class Question extends Model
 {
-    protected $fillable = ['question_text', 'answer_explanation', 'subject_id'];
+    use SoftDeletes;
+
+    protected $fillable = ['question_text', 'code_snippet', 'answer_explanation', 'more_info_link', 'subject_id'];
 
     public static function boot()
     {
@@ -17,6 +19,10 @@ class Question extends Model
         Question::observe(new \App\Observers\UserActionsObserver);
     }
 
+    /**
+     * Set to null if empty
+     * @param $input
+     */
     public function setSubjectIdAttribute($input)
     {
         $this->attributes['subject_id'] = $input ? $input : null;

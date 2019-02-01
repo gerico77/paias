@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Question;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -25,11 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $questions = Question::count();
+        $questions = Question::count();
         $users = User::whereNull('role_id')->count();
         // $quizzes = Test::count();
         // $average = Test::avg('result');
-        return view('home');
-        // return view('home', compact('questions', 'users', 'quizzes', 'average'));
+        // return view('home', compact);
+        return view('home', compact('questions', 'users', 'quizzes', 'average'));
     }
 }
