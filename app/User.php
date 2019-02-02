@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Hash;
@@ -11,7 +10,7 @@ use Mail;
 
 class User extends Authenticatable
 {
-    use SoftDeletes, Notifiable;
+    use Notifiable;
 
     protected $fillable = ['name', 'email', 'password', 'remember_token', 'role_id'];
 
