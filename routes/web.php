@@ -2,7 +2,7 @@
 Route::get('/', 'HomeController@index');
 Route::resource('students', 'StudentController');
 Route::post('create', 'StudentController@store')->name('store');
-//Route::get('/create', 'StudentController@store')->name('store');
+Route::get('/create', 'StudentController@store')->name('store');
 
 // Group
 Route::group(['middleware' => 'auth'], function () {
