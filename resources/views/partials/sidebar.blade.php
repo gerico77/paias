@@ -45,6 +45,12 @@
                 <span>Subjects</span></a>
         </a>
     </li>
+    <li class="nav-item" class="{{ $request->segment(1) == 'departments' ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('departments.index') }}">
+                <i class="fas fa-fw fa-book"></i>
+                <span>Departments</span></a>
+        </a>
+    </li>
     <li class="nav-item" class="{{ $request->segment(1) == 'questions' ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('questions.index') }}">
             <i class="fas fa-fw fa-question-circle"></i>

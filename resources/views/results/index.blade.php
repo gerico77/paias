@@ -33,7 +33,7 @@
                                 <td>{{ $result->created_at or '' }}</td>
                                 <td>{{ $result->result }}/10</td>
                                 <td>
-                                    <a href="{{ route('results.show',[$result->id]) }}" class="btn btn-xs btn-primary">View</a>
+                                    <a href="{{ route('results.show',[$result->id]) }}" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> View</a>
                                 </td>
                             </tr>
                         @endforeach

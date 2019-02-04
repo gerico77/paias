@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Course;
-use App\Http\Requests\StoreCoursesRequest;
-use App\Http\Requests\UpdateCoursesRequest;
+use App\Department;
+use App\Http\Requests\StoreDepartmentsRequest;
+use App\Http\Requests\UpdateDepartmentsRequest;
 
-class CoursesController extends Controller
+class DepartmentsController extends Controller
 {
     public function __construct()
     {
@@ -20,9 +20,9 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        $courses =  Course::all();
+        $departments = Department::all();
 
-        return view('courses.index', compact('courses'));
+        return view('departments.index', compact('departments'));
     }
 
     /**
@@ -32,11 +32,7 @@ class CoursesController extends Controller
      */
     public function create()
     {
-        $relations = [
-            'departments' => \App\Department::get()->pluck('departmentName', 'id')->prepend('Please select', ''),
-        ];
-
-        return view('courses.create', $relations);
+        return view('departments.create');
     }
 
     /**
@@ -45,11 +41,11 @@ class CoursesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCoursesRequest $request)
+    public function store(StoreDepartmentsRequest $request)
     {
-        Course::create($request->all());
+        Department::create($request->all());
 
-        return redirect()->route('courses.index')->with('message', 'Course successfully created');
+        return redirect()->route('departments.index')->with('message', 'Department successfully created');
     }
 
     /**
@@ -59,10 +55,10 @@ class CoursesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
-        $course = Course::findOrFail($id);
+    {
+        $department = Department::findOrFail($id);
 
-        return view('courses.show', compact('course'));
+        return view('departments.show', compact('department'));
     }
 
     /**
@@ -73,9 +69,9 @@ class CoursesController extends Controller
      */
     public function edit($id)
     {
-        $course = Course::findOrFail($id);
+        $department = Department::findOrFail($id);
 
-        return view('courses.edit', compact('course'))->with('message', 'Course successfully updated');
+        return view('departments.edit', compact('department'));
     }
 
     /**
@@ -85,12 +81,12 @@ class CoursesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCoursesRequest $request, $id)
+    public function update(UpdateDepartmentsRequest $request, $id)
     {
-        $course = Course::findOrFail($id);
-        $course->update($request->all());
-        
-        return redirect()->route('courses.index');
+        $department = Department::findOrFail($id);
+        $department->update($request->all());
+
+        return redirect()->route('departments.index')->with('message', 'Department successfully updated');
     }
 
     /**
@@ -101,10 +97,10 @@ class CoursesController extends Controller
      */
     public function destroy($id)
     {
-        $course = Course::findOrFail($id);
-        $course->delete();
+        $department = Department::findOrFail($id);
+        $department->delete();
 
-        return redirect()->route('courses.index')->with('message', 'Course successfully deleted');
+        return redirect()->route('departments.index')->with('message', 'Department successfully deleted');
     }
 
     /**
@@ -115,7 +111,7 @@ class CoursesController extends Controller
     public function massDestroy(Request $request)
     {
         if ($request->input('ids')) {
-            $entries = Courses::whereIn('id', $request->input('ids'))->get();
+            $entries = departments::whereIn('id', $request->input('ids'))->get();
 
             foreach ($entries as $entry) {
                 $entry->delete();
@@ -123,3 +119,4 @@ class CoursesController extends Controller
         }
     }
 }
+

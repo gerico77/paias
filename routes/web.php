@@ -22,6 +22,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('courses_mass_destroy', ['uses' => 'CoursesController@massDestroy', 'as' => 'courses.mass_destroy']);
     Route::resource('results', 'ResultsController');
     Route::post('results_mass_destroy', ['uses' => 'ResultsController@massDestroy', 'as' => 'results.mass_destroy']);
+    Route::resource('departments', 'DepartmentsController');
+    Route::post('departments_mass_destroy', ['uses' => 'DepartmentsController@massDestroy', 'as' => 'departments.mass_destroy']);
+    Route::resource('results', 'ResultsController');
 
     // Questions
     Route::resource('questions', 'QuestionsController')->except([

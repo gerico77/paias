@@ -5,7 +5,7 @@
     <div class="container">
     <h3 class="page-title">@lang('Users')</h3>
     <p>
-        <a href="{{ route('users.create') }}" class="btn btn-primary">@lang('Add New')</a>
+        <a href="{{ route('users.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> @lang('Add New')</a>
     </p>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -33,8 +33,8 @@
                                 <td>{{ $user->lname }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
-                                    <a href="{{ route('users.show',[$user->id]) }}" class="btn btn-xs btn-success">@lang('View')</a>
-                                    <a href="{{ route('users.edit',[$user->id]) }}" class="btn btn-xs btn-info">@lang('Edit')</a>
+                                    <a href="{{ route('users.show',[$user->id]) }}" class="btn btn-xs btn-success"><i class="fas fa-eye"></i> @lang('View')</a>
+                                    <a href="{{ route('users.edit',[$user->id]) }}" class="btn btn-xs btn-info"><i class="fas fa-edit"></i> @lang('Edit')</a>
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
