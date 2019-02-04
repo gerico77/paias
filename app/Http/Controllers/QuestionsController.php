@@ -32,21 +32,27 @@ class QuestionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($question_type)
     {
         $relations = [
             'subjects' => \App\Subject::get()->pluck('title', 'id')->prepend('Please select', ''),
         ];
 
-        $correct_options = [
-            'option1' => 'Option #1',
-            'option2' => 'Option #2',
-            'option3' => 'Option #3',
-            'option4' => 'Option #4',
-            'option5' => 'Option #5'
-        ];
-
-        return view('questions.create', compact('correct_options') + $relations);
+        switch ($question_type) {
+            case "multichoice":
+                $correct_options = [
+                    'option1' => 'Option #1',
+                    'option2' => 'Option #2',
+                    'option3' => 'Option #3',
+                    'option4' => 'Option #4',
+                    'option5' => 'Option #5'
+                ];
+        
+                return view('questions.multichoice.create', compact('correct_options') + $relations);
+                break;
+            default:
+                echo('error');
+        }
     }
 
     /**
@@ -71,7 +77,7 @@ class QuestionsController extends Controller
             }
         }
 
-        return redirect()->route('questions.index');
+        return redirect()->route('questions.index')->with('message', 'Question successfully created');
     }
 
 
@@ -88,8 +94,6 @@ class QuestionsController extends Controller
         ];
 
         $question = Question::findOrFail($id);
-
-        return view('questions.edit', compact('question') + $relations);
     }
 
     /**
@@ -104,7 +108,7 @@ class QuestionsController extends Controller
         $question = Question::findOrFail($id);
         $question->update($request->all());
 
-        return redirect()->route('questions.index');
+        return redirect()->route('questions.index')->with('message', 'Question successfully updated');
     }
 
 
@@ -114,15 +118,19 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($question_type, $id)
     {
         $relations = [
-            'subjects' => \App\Subject::get()->pluck('title', 'id')->prepend('Please select', ''),
+            'subjects' => \App\Subject::get()->pluck('title', 'id'),
         ];
 
         $question = Question::findOrFail($id);
-
-        return view('questions.show', compact('question') + $relations);
+        // dd(compact('question') + $relations);
+        switch ($question_type) {
+            case "multichoice":
+                return view('questions.multichoice.show', compact('question') + $relations);
+                break;
+        }        
     }
 
 
@@ -137,7 +145,7 @@ class QuestionsController extends Controller
         $question = Question::findOrFail($id);
         $question->delete();
 
-        return redirect()->route('questions.index');
+        return redirect()->route('questions.index')->with('message', 'Question successfully deleted');
     }
 
     /**

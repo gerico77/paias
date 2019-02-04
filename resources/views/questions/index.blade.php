@@ -2,23 +2,13 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
-            </div>
-        </div>
-    
         <h3 class="page-title">Questions</h3>
     
         <p>
-            <a href="{{ route('questions.create') }}" class="btn btn-success btn-sm">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#selectQuestionType">
                 <i class="fas fa-plus"></i>
-                Add new
-            </a>
+                Add New
+            </button>              
         </p>
     
         <div class="card mb-3">
@@ -28,21 +18,23 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-striped {{ count($questions) > 0 ? 'datatable' : '' }} dt-select">
                         <thead>
+                            <th style="text-align:center; width:5%"><input type="checkbox" id="select-all" /></th>
                             <th>Subject</th>
                             <th>Question Text</th>
-                            <th style="width:30%">&nbsp;</th>
+                            <th style="width:20%">&nbsp;</th>
                         </thead>
                         
                         <tbody>
                             @if (count($questions) > 0)
                                 @foreach ($questions as $question)
                                     <tr data-entry-id="{{ $question->id }}">
+                                        <td></td>
                                         <td>{{ $question->subject->title}}</td>
                                         <td>{!! $question->question_text !!}</td>
                                         <td>
-                                            <a href="{{ route('questions.show',[$question->id]) }}" class="btn btn-sm btn-primary">
+                                            <a href="{{ route('questions.show', ['question_type' => $question->qtype, 'id' =>$question->id]) }}" class="btn btn-sm btn-success">
                                                 <i class="fas fa-eye"></i>
                                                 View
                                             </a>
@@ -62,10 +54,40 @@
                                     
                                 @endforeach
                             @else
-                                
+                                <tr>
+                                    <td colspan="5">No entries in table</td>
+                                </tr>
                             @endif
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="selectQuestionType" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Question Types</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-check">
+                        {!! Form::radio('questionTypes', 'multichoice', true, array('class' => 'form-check-input', 'id' => 'multichoice')); !!}
+                        {!! Form::label('multichoice', 'Multiple Choice', ['class' => 'form-check-label']) !!}
+                    </div>
+                    <div class="form-check">
+                        {!! Form::radio('questionTypes', 'identification', false, array('class' => 'form-check-input', 'id' => 'identification')); !!}
+                        {!! Form::label('identification', 'Identification', ['class' => 'form-check-label']) !!}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="btnProceed" class="btn btn-primary">Proceed</button>
                 </div>
             </div>
         </div>
@@ -75,5 +97,22 @@
 @section('javascript')
     <script>
         window.route_mass_crud_entries_destroy = '{{ route('questions.mass_destroy') }}';
+
+        $(document).ready(function(){
+            $("#btnProceed").click(function(){
+                var question_types = $('input[name="questionTypes"]:checked').val();
+
+                switch(question_types) {
+                    case "multichoice":
+                        document.location.href = "{{ route('questions.create', 'multichoice') }}";
+                        
+                        break;
+                    case "identification":
+                        document.location.href = "{{ route('questions.create', 'identification') }}";
+
+                        break;
+                }
+            });
+        });
     </script>
 @endsection

@@ -50,7 +50,7 @@ class SubjectsController extends Controller
         
         Subject::create($request->all());
 
-        return redirect()->route('subjects.index');
+        return redirect()->route('subjects.index')->with('message', 'User successfully created');
     }
 
     /**
@@ -76,7 +76,7 @@ class SubjectsController extends Controller
     {
         $subject = Subject::findOrFail($id);
 
-        return view('subjects.edit', compact('subject'));
+        return view('subjects.edit', compact('subject'))->with('message', 'User successfully updated');
     }
 
     /**
@@ -105,7 +105,7 @@ class SubjectsController extends Controller
         $subject = Subject::findOrFail($id);
         $subject->delete();
 
-        return redirect()->route('subjects.index');
+        return redirect()->route('subjects.index')->with('message', 'User successfully deleted');
     }
 
     /**
