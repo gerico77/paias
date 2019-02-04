@@ -23,7 +23,7 @@
                     @if (count($user_actions) > 0)
                         @foreach ($user_actions as $user_action)
                             <tr data-entry-id="{{ $user_action->id }}">
-                                <td>{{ $user_action->user->name or '' }}</td>
+                                <td>{{ $user_action->user_id }}</td>
                                 <td>{{ $user_action->action }}</td>
                                 <td>{{ $user_action->action_model }}</td>
                                 <td>{{ $user_action->action_id }}</td>

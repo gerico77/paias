@@ -35,7 +35,7 @@
     </li>
     <li class="nav-item" class="{{ $request->segment(1) == 'courses' ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('courses.index') }}">
-                <i class="fas fa-fw fa-book"></i>
+                <i class="fas fa-book-open"></i>
                 <span>Courses</span></a>
         </a>
     </li>
@@ -47,7 +47,7 @@
     </li>
     <li class="nav-item" class="{{ $request->segment(1) == 'departments' ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('departments.index') }}">
-                <i class="fas fa-fw fa-book"></i>
+                <i class="fas fa-building"></i>
                 <span>Departments</span></a>
         </a>
     </li>
