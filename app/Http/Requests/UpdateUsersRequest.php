@@ -24,11 +24,10 @@ class UpdateUsersRequest extends FormRequest
     {
         return [
 
-            'name' => 'required',
+            'username' => 'required',
+            'fname' => 'required',
+            'lname' => 'required',
             'email' => 'required|email|unique:users,email,' . $this->route('user'),
-
-            'role_id' => 'required',
-            'role_id' => 'required',
         ];
     }
 }

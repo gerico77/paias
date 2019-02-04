@@ -12,12 +12,36 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('name', 'Name*', ['class' => 'control-label']) !!}
-                    {!! Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    {!! Form::label('username', 'Username*', ['class' => 'control-label']) !!}
+                    {!! Form::text('username', old('username'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
-                    @if($errors->has('name'))
+                    @if($errors->has('username'))
                         <p class="help-block">
-                            {{ $errors->first('name') }}
+                            {{ $errors->first('username') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('fname', 'First Name*', ['class' => 'control-label']) !!}
+                    {!! Form::text('fname', old('fname'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('fname'))
+                        <p class="help-block">
+                            {{ $errors->first('fname') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('lname', 'Last Name*', ['class' => 'control-label']) !!}
+                    {!! Form::text('lname', old('lname'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('lname'))
+                        <p class="help-block">
+                            {{ $errors->first('lname') }}
                         </p>
                     @endif
                 </div>
@@ -42,18 +66,6 @@
                     @if($errors->has('password'))
                         <p class="help-block">
                             {{ $errors->first('password') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('role_id', 'Role*', ['class' => 'control-label']) !!}
-                    {!! Form::select('role_id', $roles, old('role_id'), ['class' => 'form-control']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('role_id'))
-                        <p class="help-block">
-                            {{ $errors->first('role_id') }}
                         </p>
                     @endif
                 </div>

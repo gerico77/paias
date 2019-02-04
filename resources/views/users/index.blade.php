@@ -16,9 +16,10 @@
                 <thead>
                     <tr>
                         <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
-                        <th>@lang('Users Name')</th>
+                        <th>@lang('Usersname')</th>
+                        <th>@lang('First Name')</th>
+                        <th>@lang('LastName')</th>
                         <th>@lang('Users Email')</th>
-                        <th>@lang('Users Role')</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -27,9 +28,10 @@
                         @foreach ($users as $user)
                             <tr data-entry-id="{{ $user->id }}">
                                 <td></td>
-                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->username }}</td>
+                                <td>{{ $user->fname }}</td>
+                                <td>{{ $user->lname }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->role->title or '' }}</td>
                                 <td>
                                     <a href="{{ route('users.show',[$user->id]) }}" class="btn btn-xs btn-success">@lang('View')</a>
                                     <a href="{{ route('users.edit',[$user->id]) }}" class="btn btn-xs btn-info">@lang('Edit')</a>

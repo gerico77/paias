@@ -12,10 +12,11 @@
             <div class="row">
                 <div class="col-md-6">
                     <table class="table table-bordered table-striped">
-                        <tr><th>@lang('User Name')</th>
-                    <td>{{ $user->name }}</td></tr><tr><th>@lang('User Email')</th>
-                    <td>{{ $user->email }}</td></tr><tr><th>@lang('User Password')</th>
-                    <td>---</td></tr><tr><th>@lang('Users Role')</th>
+                        <tr><th>@lang('Username')</th>
+                    <td>{{ $user->fname }}</td></tr><tr><th>@lang('First Name')</th>
+                    <td>{{ $user->lname }}</td></tr><tr><th>@lang('Last Name')</th>
+                    <td>{{ $user->email }}</td></tr><tr><th>@lang('User Email')</th>
+                    <td>{{ $user->password }}</td></tr><tr><th>@lang('User Password')</th>
                     <td>{{ $user->role->title or '' }}</td></tr><tr><th>@lang('User Remember Token')</th>
                     <td>{{ $user->remember_token }}</td></tr>
                     </table>
