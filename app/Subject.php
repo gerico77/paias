@@ -10,13 +10,23 @@ class Subject extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['title'];
+    protected $fillable = ['title','course_id'];
 
     public static function boot()
     {
         parent::boot();
 
         Subject::observe(new \App\Observers\UserActionsObserver);
+    }
+
+    public function setCourseIdAttribute($input)
+    {
+        $this->attributes['course_id'] = $input ? $input : null;
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class, 'course_id')->withTrashed();
     }
 
     public function questions()

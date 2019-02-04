@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="container-fluid">
-        <h3 class="page-title">Subjects</h3>
+        <h3 class="page-title">Courses</h3>
     
         <p>
-            <a href="{{ route('subjects.create') }}" class="btn btn-primary">
+            <a href="{{ route('courses.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus"></i>
                 Add new
             </a>
@@ -18,7 +18,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped {{ count($subjects) > 0 ? 'datatable' : '' }} dt-select">
+                    <table class="table table-bordered table-striped {{ count($courses) > 0 ? 'datatable' : '' }} dt-select">
                         <thead>
                             <th style="text-align:center; width:5%"><input type="checkbox" id="select-all" /></th>
                             <th>Title</th>
@@ -26,17 +26,17 @@
                         </thead>
                         
                         <tbody>
-                            @if (count($subjects) > 0)
-                                @foreach ($subjects as $subject)
-                                    <tr data-entry-id="{{ $subject->id }}">
+                            @if (count($courses) > 0)
+                                @foreach ($courses as $course)
+                                    <tr data-entry-id="{{ $course->id }}">
                                         <td></td>
-                                        <td>{{ $subject->title}}</td>
+                                        <td>{{ $course->title}}</td>
                                         <td>
-                                            <a href="{{ route('subjects.show',[$subject->id]) }}" class="btn btn-sm btn-success">
+                                            <a href="{{ route('courses.show',[$course->id]) }}" class="btn btn-sm btn-success">
                                                 <i class="fas fa-eye"></i>
                                                 View
                                             </a>
-                                            <a href="{{ route('subjects.edit',[$subject->id]) }}" class="btn btn-sm btn-info">
+                                            <a href="{{ route('courses.edit',[$course->id]) }}" class="btn btn-sm btn-info">
                                                 <i class="fas fa-edit"></i>
                                                 Edit
                                             </a>
@@ -44,7 +44,7 @@
                                                 'style' => 'display: inline-block;',
                                                 'method' => 'DELETE',
                                                 'onsubmit' => "return confirm('Are you sure?');",
-                                                'route' => ['subjects.destroy', $subject->id])) !!}
+                                                'route' => ['courses.destroy', $course->id])) !!}
                                             {!! Form::button('<i class="fas fa-trash-alt"></i> Delete', array('type' => 'submit', 'class' => 'btn btn-sm btn-danger')) !!}
                                             {!! Form::close() !!}
                                         </td>

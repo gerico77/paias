@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreSubjectsRequest;
-use App\Http\Requests\UpdateSubjectsRequest;
-use App\Subject;
+use App\Course;
+use App\Http\Requests\StoreCoursesRequest;
+use App\Http\Requests\UpdateCoursesRequest;
 
-class SubjectsController extends Controller
+class CoursesController extends Controller
 {
     public function __construct()
     {
@@ -20,9 +20,9 @@ class SubjectsController extends Controller
      */
     public function index()
     {
-        $subjects = Subject::all();
+        $courses =  Course::all();
 
-        return view('subjects.index', compact('subjects'));
+        return view('courses.index', compact('courses'));
     }
 
     /**
@@ -32,25 +32,20 @@ class SubjectsController extends Controller
      */
     public function create()
     {
-        $relations = [
-            'courses' => \App\Course::get()->pluck('title', 'id')->prepend('Please select', ''),
-        ];
-
-        return view('subjects.create', $relations);
+        return view('courses.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreSubjectsRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSubjectsRequest $request)
+    public function store(StoreCoursesRequest $request)
     {
-        
-        Subject::create($request->all());
+        Course::create($request->all());
 
-        return redirect()->route('subjects.index')->with('message', 'Subject successfully created');
+        return redirect()->route('courses.index')->with('message', 'Course successfully created');
     }
 
     /**
@@ -60,10 +55,10 @@ class SubjectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $subject = Subject::findOrFail($id);
+    {   
+        $course = Course::findOrFail($id);
 
-        return view('subjects.show', compact('subject'));
+        return view('courses.show', compact('course'));
     }
 
     /**
@@ -74,24 +69,24 @@ class SubjectsController extends Controller
      */
     public function edit($id)
     {
-        $subject = Subject::findOrFail($id);
+        $course = Course::findOrFail($id);
 
-        return view('subjects.edit', compact('subject'))->with('message', 'Subject successfully updated');
+        return view('courses.edit', compact('course'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateSubjectsRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSubjectsRequest $request, $id)
+    public function update(UpdateCoursesRequest $request, $id)
     {
-        $subject = Subject::findOrFail($id);
-        $subject->update($request->all());
-
-        return redirect()->route('subjects.index');
+        $course = Course::findOrFail($id);
+        $course->update($request->all());
+        
+        return redirect()->route('courses.index')->with('message', 'Course successfully updated');
     }
 
     /**
@@ -102,10 +97,10 @@ class SubjectsController extends Controller
      */
     public function destroy($id)
     {
-        $subject = Subject::findOrFail($id);
-        $subject->delete();
+        $course = Course::findOrFail($id);
+        $course->delete();
 
-        return redirect()->route('subjects.index')->with('message', 'Subject successfully deleted');
+        return redirect()->route('courses.index')->with('message', 'Course successfully deleted');
     }
 
     /**
@@ -116,7 +111,7 @@ class SubjectsController extends Controller
     public function massDestroy(Request $request)
     {
         if ($request->input('ids')) {
-            $entries = Subjects::whereIn('id', $request->input('ids'))->get();
+            $entries = Courses::whereIn('id', $request->input('ids'))->get();
 
             foreach ($entries as $entry) {
                 $entry->delete();
