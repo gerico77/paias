@@ -17,7 +17,7 @@
                         @if(Auth::user()->isAdmin())
                         <tr>
                             <th>User</th>
-                            <td>{{ $test->user->name or '' }} ({{ $test->user->email or '' }})</td>
+                            <td>{{ $test->user->name }} ({{ $test->user->email }})</td>
                         </tr>
                         @endif
                         <tr>
