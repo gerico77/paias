@@ -8,6 +8,7 @@
 require('./bootstrap');
 require('./sb-admin');
 require('./jquery.easing.js');
+require('./jquery.dataTables.js');
 
 window.Vue = require('vue');
 

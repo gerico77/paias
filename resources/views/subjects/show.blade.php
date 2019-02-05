@@ -19,8 +19,8 @@
                 </div>
             </div>
     
-                <br />
-                <a href="{{ route('subjects.index') }}" class="btn btn-info btn-sm">Back to list</a>
+            <br />
+            <a href="{{ route('subjects.index') }}" class="btn btn-info btn-sm">Back to list</a>
             </div>
         </div>  
     </div>

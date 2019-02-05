@@ -4,8 +4,8 @@
     @include('partials.head')
 </head>
 <body class="bg-dark">
-    <div class="container">
-        @yield('content')
-    </div>
+    @yield('content')
+
+    @include('partials.javascripts')
 </body>
 </html>
