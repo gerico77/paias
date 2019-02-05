@@ -24,7 +24,12 @@ class UpdateCoursesRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'courseName' => 'required',
+            'courseCode' => 'required',
+            'courseDetails' => 'required',
+            // 'courseStartFrom' => 'required',
+            // 'courseTimeLength' => 'required',
+            // 'courseProfessorName' => 'required',
         ];
     }
 }

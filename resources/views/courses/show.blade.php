@@ -14,7 +14,12 @@
             <div class="row">
                 <div class="col-md-6">
                     <table class="table table-bordered table-striped">
-                        <tr><th>Title</th><td>{{ $course->title }}</td></tr>
+                        <tr><th>Course Name</th><td>{{ $course->courseName }}</td></tr>
+                        <tr><th>Course Code</th><td>{{ $course->courseCode }}</td></tr>
+                        <tr><th>Course Details</th><td>{{ $course->courseDetails }}</td></tr>
+                        {{-- <tr><th>Start From</th><td>{{ $course->courseStartFrom }}</td></tr>
+                        <tr><th>Course Time Length</th><td>{{ $course->courseTimeLength }}</td></tr>
+                        <tr><th>Professor Name</th><td>{{ $course->courseProfessorName }}</td></tr> --}}
                     </table>
                 </div>
             </div>

@@ -33,7 +33,7 @@ class SubjectsController extends Controller
     public function create()
     {
         $relations = [
-            'courses' => \App\Course::get()->pluck('title', 'id')->prepend('Please select', ''),
+            'courses' => \App\Course::get()->pluck('courseName', 'id')->prepend('Please select', ''),
         ];
 
         return view('subjects.create', $relations);

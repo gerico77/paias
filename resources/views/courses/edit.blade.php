@@ -13,12 +13,32 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    {!! Form::label('title', 'Title*', ['class' => 'control-label']) !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                    {!! Form::label('courseName', 'Course Name*', ['class' => 'control-label']) !!}
+                    {!! Form::text('courseName', old('courseName'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                     <small class="form-text text-muted"></small>
-                    @if($errors->has('title'))
+                    @if($errors->has('courseName'))
                         <small class="form-text text-muted">
-                            {{ $errors->first('title') }}
+                            {{ $errors->first('courseName') }}
+                        </small>
+                    @endif
+                </div>
+                <div class="form-group">
+                    {!! Form::label('courseCode', 'Course Code*', ['class' => 'control-label']) !!}
+                    {!! Form::text('courseCode', old('courseCode'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                    <small class="form-text text-muted"></small>
+                    @if($errors->has('courseCode'))
+                        <small class="form-text text-muted">
+                            {{ $errors->first('courseCode') }}
+                        </small>
+                    @endif
+                </div>
+                <div class="form-group">
+                    {!! Form::label('courseDetails', 'Course Details*', ['class' => 'control-label']) !!}
+                    {!! Form::text('courseDetails', old('courseDetails'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                    <small class="form-text text-muted"></small>
+                    @if($errors->has('courseDetails'))
+                        <small class="form-text text-muted">
+                            {{ $errors->first('courseDetails') }}
                         </small>
                     @endif
                 </div>
