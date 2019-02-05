@@ -2,14 +2,8 @@
 
 @section('content')
     <div class="container-fluid">
-<<<<<<< HEAD
-        <h3 class="page-title">Users</h3>
-        {!! Form::model($user, ['method' => 'PUT', 'route' => ['users.update', $user->id]]) !!}
-=======
         <h3 class="page-title">@lang('Users')</h3>
         {!! Form::model($user, ['method' => 'PUT', 'route' => ['users.update', $user->id]]) !!}
-        
->>>>>>> e6f8b52a137632657c9ec77d9b24c846f9a0c5a5
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fas fa-edit"></i>
@@ -66,20 +60,10 @@
                         </p>
                     @endif
                 </div>
-<<<<<<< HEAD
-                
-                {!! Form::submit(trans('Update'), ['class' => 'btn btn-success']) !!}
-            </div>
-        </div>
-
-    {!! Form::close() !!}
-    </div>
-=======
 
                 {!! Form::submit('Update', ['class' => 'btn btn-success']) !!}
             </div>
         </div>
         {!! Form::close() !!}
-    </div>    
->>>>>>> e6f8b52a137632657c9ec77d9b24c846f9a0c5a5
+    </div>
 @stop
