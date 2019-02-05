@@ -7,5 +7,7 @@
     <div class="container">
         @yield('content')
     </div>
+
+    @include('partials.javascripts')
 </body>
 </html>

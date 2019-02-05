@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.7.0",
+        "datatables": "^1.10.18",
         "jquery.easing": "^1.4.1"
     }
 }
