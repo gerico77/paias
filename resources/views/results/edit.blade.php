@@ -1,20 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <br>
-    <div class="container">
-    <h3 class="page-title">Results</h3>
-    
-    {!! Form::model($result, ['method' => 'PUT', 'route' => ['results.update', $result->id]]) !!}
+    <div class="container-fluid">
+        <h3 class="page-title">Results</h3>
+        {!! Form::model($result, ['method' => 'PUT', 'route' => ['results.update', $result->id]]) !!}
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            Edit
-        </div>
-
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-xs-12 form-group">
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fas fa-edit"></i>
+                Edit
+            </div>
+            <div class="card-body">
+                <div class="form-group">
                     {!! Form::label('user_id', 'User*', ['class' => 'control-label']) !!}
                     {!! Form::select('user_id', $users, old('user_id'), ['class' => 'form-control']) !!}
                     <p class="help-block"></p>
@@ -24,33 +21,29 @@
                         </p>
                     @endif
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('question_id', 'Question*', ['class' => 'control-label']) !!}
-                    {!! Form::select('question_id', $questions, old('question_id'), ['class' => 'form-control']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('question_id'))
-                        <p class="help-block">
-                            {{ $errors->first('question_id') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('correct', 'Correct*', ['class' => 'control-label']) !!}
-                    {!! Form::text('correct', old('correct'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('correct'))
-                        <p class="help-block">
-                            {{ $errors->first('correct') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
+                <div class="form-group">
+                    <div class="col-xs-12 form-group">
+                        {!! Form::label('question_id', 'Question*', ['class' => 'control-label']) !!}
+                        {!! Form::select('question_id', $questions, old('question_id'), ['class' => 'form-control']) !!}
+                        <p class="help-block"></p>
+                        @if($errors->has('question_id'))
+                            <p class="help-block">
+                                {{ $errors->first('question_id') }}
+                            </p>
+                        @endif
+                    </div>
+                <div class="form-group">
+                    <div class="col-xs-12 form-group">
+                        {!! Form::label('correct', 'Correct*', ['class' => 'control-label']) !!}
+                        {!! Form::text('correct', old('correct'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                        <p class="help-block"></p>
+                        @if($errors->has('correct'))
+                            <p class="help-block">
+                                {{ $errors->first('correct') }}
+                            </p>
+                        @endif
+                    </div>
+                <div class="form-group">
                     {!! Form::label('date', 'Date*', ['class' => 'control-label']) !!}
                     {!! Form::text('date', old('date'), ['class' => 'form-control datetime', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
@@ -60,12 +53,12 @@
                         </p>
                     @endif
                 </div>
+                
+                {!! Form::submit(trans('Update'), ['class' => 'btn btn-success']) !!}
             </div>
-            
         </div>
     </div>
 
-    {!! Form::submit(trans('Update'), ['class' => 'btn btn-success']) !!}
     {!! Form::close() !!}
 @stop
 

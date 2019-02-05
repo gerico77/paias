@@ -1,34 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
-    <br>
-    <div class="container">
-    <h3 class="page-title">Quiz</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['tests.store']]) !!}
+    <div class="container-fluid">
+        <h3 class="page-title">Quiz</h3>
+        {!! Form::open(['method' => 'POST', 'route' => ['tests.store']]) !!}
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            Multiple Choice
-        </div>
-        <?php //dd($questions) ?>
-    @if(count($questions) > 0)
-        <div class="panel-body">
-        <?php $i = 1; ?>
-        @foreach($questions as $question)
-            @if ($i > 1) <hr /> @endif
-            <div class="row">
-                <div class="col-xs-12 form-group">
+        <div class="card mb-3">
+            <div class="card-header">
+                Multiple Choice
+            </div>
+            <?php //dd($questions) ?>
+        @if(count($questions) > 0)
+            <div class="card-body">
+            <?php $i = 1; ?>
+            @foreach($questions as $question)
+                @if ($i > 1) <hr /> @endif
+                <div class="form-group">
                     <div class="form-group">
-                        <strong>Question {{ $i }}.<br />{!! nl2br($question->question_text) !!}</strong>
+                    <strong>Question {{ $i }}.<br />{!! nl2br($question->question_text) !!}</strong>
 
-                        @if ($question->code_snippet != '')
-                            <div class="code_snippet">{!! $question->code_snippet !!}</div>
-                        @endif
+                    @if ($question->code_snippet != '')
+                        <div class="code_snippet">{!! $question->code_snippet !!}</div>
+                    @endif
 
-                        <input
-                            type="hidden"
-                            name="questions[{{ $i }}]"
-                            value="{{ $question->id }}">
+                    <input
+                        type="hidden"
+                        name="questions[{{ $i }}]"
+                        value="{{ $question->id }}">
                     @foreach($question->options as $option)
                         <br>
                         <label class="radio-inline">
@@ -39,17 +37,18 @@
                             {{ $option->option }}
                         </label>
                     @endforeach
-                    </div>
                 </div>
-            </div>
-        <?php $i++; ?>
-        @endforeach
-        </div>
-    @endif
-    </div>
+                </div>
+            <?php $i++; ?>
+            @endforeach
+            {!! Form::submit(trans('Submit Quiz'), ['class' => 'btn btn-success']) !!}
 
-    {!! Form::submit(trans('Submit Quiz'), ['class' => 'btn btn-success']) !!}
+            </div>
+        @endif
+
+    
     {!! Form::close() !!}
+    </div>
 @stop
 
 @section('javascript')
