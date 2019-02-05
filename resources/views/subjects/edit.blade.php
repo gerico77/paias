@@ -3,7 +3,6 @@
 @section('content')
     <div class="container-fluid">
         <h3 class="page-title">Subjects</h3>
-
         {!! Form::model($subject, ['method' => 'PUT', 'route' => ['subjects.update', $subject->id]]) !!}
     
         <div class="card mb-3">
