@@ -73,9 +73,13 @@ class CoursesController extends Controller
      */
     public function edit($id)
     {
+        $relations = [
+            'departments' => \App\Department::get()->pluck('departmentName', 'id'),
+        ];
+
         $course = Course::findOrFail($id);
 
-        return view('courses.edit', compact('course'))->with('message', 'Course successfully updated');
+        return view('courses.edit', compact('course') + $relations);
     }
 
     /**
@@ -90,7 +94,7 @@ class CoursesController extends Controller
         $course = Course::findOrFail($id);
         $course->update($request->all());
         
-        return redirect()->route('courses.index');
+        return redirect()->route('courses.index')->with('message', 'Course successfully updated');
     }
 
     /**
