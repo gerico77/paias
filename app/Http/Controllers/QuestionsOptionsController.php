@@ -33,11 +33,7 @@ class QuestionsOptionsController extends Controller
      */
     public function create()
     {
-        $relations = [
-            'questions' => \App\Question::get()->pluck('question_text', 'id')->prepend('Please select', ''),
-        ];
 
-        return view('questions_options.create', $relations);
     }
 
     /**
@@ -48,9 +44,7 @@ class QuestionsOptionsController extends Controller
      */
     public function store(StoreQuestionsOptionsRequest $request)
     {
-        QuestionsOption::create($request->all());
 
-        return redirect()->route('questions_options.index');
     }
 
 
@@ -62,13 +56,7 @@ class QuestionsOptionsController extends Controller
      */
     public function edit($id)
     {
-        $relations = [
-            'questions' => \App\Question::get()->pluck('question_text', 'id')->prepend('Please select', ''),
-        ];
 
-        $questions_option = QuestionsOption::findOrFail($id);
-
-        return view('questions_options.edit', compact('questions_option') + $relations);
     }
 
     /**
@@ -80,10 +68,7 @@ class QuestionsOptionsController extends Controller
      */
     public function update(UpdateQuestionsOptionsRequest $request, $id)
     {
-        $questionsoption = QuestionsOption::findOrFail($id);
-        $questionsoption->update($request->all());
-
-        return redirect()->route('questions_options.index');
+        
     }
 
 
@@ -113,25 +98,6 @@ class QuestionsOptionsController extends Controller
      */
     public function destroy($id)
     {
-        $questionsoption = QuestionsOption::findOrFail($id);
-        $questionsoption->delete();
 
-        return redirect()->route('questions_options.index');
-    }
-
-    /**
-     * Delete all selected QuestionsOption at once.
-     *
-     * @param Request $request
-     */
-    public function massDestroy(Request $request)
-    {
-        if ($request->input('ids')) {
-            $entries = QuestionsOption::whereIn('id', $request->input('ids'))->get();
-
-            foreach ($entries as $entry) {
-                $entry->delete();
-            }
-        }
     }
 }
