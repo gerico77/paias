@@ -23,7 +23,7 @@ class UpdateSubjectsRequest extends FormRequest
     public function rules()
     {
         return [
-            
+            'course_id' => 'required',
             'title' => 'required',
         ];
     }

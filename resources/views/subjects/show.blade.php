@@ -14,6 +14,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <table class="table table-bordered table-striped">
+                        <tr><th>Course</th><td>{{ $subject->course->title }}</td></tr>
                         <tr><th>Title</th><td>{{ $subject->title }}</td></tr>
                     </table>
                 </div>
