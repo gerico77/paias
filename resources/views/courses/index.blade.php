@@ -24,9 +24,6 @@
                             <th>Department</th>
                             <th>Name</th>
                             <th>Code</th>
-                            {{-- <th>Start From</th>
-                            <th>Course Time Length</th>
-                            <th>Professor Name</th> --}}
                             <th style="width:20%">&nbsp;</th>
                         </thead>
                         
@@ -35,12 +32,9 @@
                                 @foreach ($courses as $course)
                                     <tr data-entry-id="{{ $course->id }}">
                                         <td></td>
-                                        <td>{{ $course->department->departmentName}}</td>
+                                        <td>{{ $course->department->name}}</td>
                                         <td>{{ $course->title}}</td>
                                         <td>{{ $course->code}}</td>
-                                        {{-- <td>{{ $course->courseStartFrom}}</td>
-                                        <td>{{ $course->courseTimeLength}}</td>
-                                        <td>{{ $course->courseProfessorName}}</td> --}}
                                         <td>
                                             <a href="{{ route('courses.show',[$course->id]) }}" class="btn btn-sm btn-success">
                                                 <i class="fas fa-eye"></i>

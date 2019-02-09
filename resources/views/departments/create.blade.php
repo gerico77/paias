@@ -13,52 +13,32 @@
 
         <div class="card-body">
             <div class="form-group">
-                {!! Form::label('departmentName', 'Department Name*', ['class' => 'control-label']) !!}
-                {!! Form::text('departmentName', old('departmentName'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                {!! Form::label('name', 'Name*', ['class' => 'control-label']) !!}
+                {!! Form::text('name', old('name'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                 <small class="form-text text-muted"></small>
-                @if($errors->has('departmentName'))
+                @if($errors->has('name'))
                     <small class="form-text text-muted">
-                        {{ $errors->first('departmentName') }}
+                        {{ $errors->first('name') }}
                     </small>
                 @endif
             </div>
             <div class="form-group">
-                {!! Form::label('departmentHead', 'Department Head*', ['class' => 'control-label']) !!}
-                {!! Form::text('departmentHead', old('departmentHead'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                {!! Form::label('head', 'Department Head*', ['class' => 'control-label']) !!}
+                {!! Form::text('head', old('head'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                 <small class="form-text text-muted"></small>
-                @if($errors->has('departmentHead'))
+                @if($errors->has('head'))
                     <small class="form-text text-muted">
-                        {{ $errors->first('departmentHead') }}
-                    </small>
-                @endif
-            </div>
-            {{-- <div class="form-group">
-                {!! Form::label('departmentStartDate', 'Department Start Date*', ['class' => 'control-label']) !!}
-                {!! Form::timestamps('departmentStartDate', old('departmentStartDate'), ['class' => 'form-control ', 'placeholder' => '']) !!}
-                <small class="form-timestamps timestamps-muted"></small>
-                @if($errors->has('departmentStartDate'))
-                    <small class="form-timestamps timestamps-muted">
-                        {{ $errors->first('departmentStartDate') }}
+                        {{ $errors->first('head') }}
                     </small>
                 @endif
             </div>
             <div class="form-group">
-                {!! Form::label('departmentEndtDate', 'Department End Date*', ['class' => 'control-label']) !!}
-                {!! Form::timestamps('departmentEndtDate', old('departmentEndtDate'), ['class' => 'form-control ', 'placeholder' => '']) !!}
-                <small class="form-timestamps timestamps-muted"></small>
-                @if($errors->has('departmentEndtDate'))
-                    <small class="form-timestamps timestamps-muted">
-                        {{ $errors->first('departmentEndtDate') }}
-                    </small>
-                @endif
-            </div> --}}
-            <div class="form-group">
-                {!! Form::label('departmentDetails', 'Department Details*', ['class' => 'control-label']) !!}
-                {!! Form::text('departmentDetails', old('departmentDetails'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                {!! Form::label('details', 'Details', ['class' => 'control-label']) !!}
+                {!! Form::text('details', old('details'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                 <small class="form-text text-muted"></small>
-                @if($errors->has('departmentDetails'))
+                @if($errors->has('details'))
                     <small class="form-text text-muted">
-                        {{ $errors->first('departmentDetails') }}
+                        {{ $errors->first('details') }}
                     </small>
                 @endif
             </div>

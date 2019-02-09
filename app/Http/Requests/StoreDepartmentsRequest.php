@@ -24,11 +24,8 @@ class StoreDepartmentsRequest extends FormRequest
     public function rules()
     {
         return [
-            'departmentName' => 'required',
-            'departmentHead' => 'required',
-            // 'departmentStartDate' => 'required',
-            // 'departmentEndDate' => 'required',
-            'departmentDetails' => 'required',
+            'name' => 'required',
+            'head' => 'required',
         ];
     }
 }

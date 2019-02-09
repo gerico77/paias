@@ -33,7 +33,7 @@ class CoursesController extends Controller
     public function create()
     {
         $relations = [
-            'departments' => \App\Department::get()->pluck('departmentName', 'id')->prepend('Please select', ''),
+            'departments' => \App\Department::get()->pluck('name', 'id')->prepend('Please select', ''),
         ];
 
         return view('courses.create', $relations);
@@ -74,7 +74,7 @@ class CoursesController extends Controller
     public function edit($id)
     {
         $relations = [
-            'departments' => \App\Department::get()->pluck('departmentName', 'id'),
+            'departments' => \App\Department::get()->pluck('name', 'id'),
         ];
 
         $course = Course::findOrFail($id);
