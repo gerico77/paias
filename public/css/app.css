@@ -16969,8 +16969,21 @@ a.text-dark:focus {
   }
 }
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+.test-option-true {
+  background-color: green !important;
+  color: white;
+}
+
+.test-option-true-mini {
+  color: green !important;
+}
+
+.test-option-false {
+  background-color: red !important;
+  color: white;
+}
+
+.test-option-false-mini {
+  color: red !important;
 }
 
