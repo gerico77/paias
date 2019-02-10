@@ -34,11 +34,11 @@
                                         <td>{{ $question->subject->title}}</td>
                                         <td>{!! $question->question_text !!}</td>
                                         <td>
-                                            <a href="{{ route('questions.show', ['question_type' => $question->qtype, 'id' =>$question->id]) }}" class="btn btn-sm btn-success">
+                                            <a href="{{ route('questions.show', ['qtype' => $question->qtype, 'id' =>$question->id]) }}" class="btn btn-sm btn-success">
                                                 <i class="fas fa-eye"></i>
                                                 View
                                             </a>
-                                            <a href="{{ route('questions.edit',[$question->id]) }}" class="btn btn-sm btn-info">
+                                            <a href="{{ route('questions.edit', ['qtype' => $question->qtype, 'id' =>$question->id]) }}" class="btn btn-sm btn-info">
                                                 <i class="fas fa-edit"></i>
                                                 Edit
                                             </a>
