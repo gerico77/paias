@@ -11,14 +11,14 @@
 
                 <div class="form-group">
                     <div class="form-label-group">
-                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                        <input id="username" type="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
 
-                        @if ($errors->has('email'))
+                        @if ($errors->has('username'))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('email') }}</strong>
+                                <strong>{{ $errors->first('username') }}</strong>
                             </span>
                         @endif
-                        <label for="email">{{ __('E-Mail Address') }}</label>
+                        <label for="username">{{ __('Username') }}</label>
                     </div>
                 </div>
 
