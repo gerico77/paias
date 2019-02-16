@@ -48,7 +48,7 @@ class QuestionsController extends Controller
                     'option5' => 'Option #5'
                 ];
         
-                return view('questions.multichoice.create', compact('correct_options') + $relations);
+                return view('questions.create', compact('correct_options') + $relations);
                 break;
         }
     }
@@ -133,7 +133,7 @@ class QuestionsController extends Controller
         // dd(compact('question') + $relations);
         switch ($qtype) {
             case "multichoice":
-                return view('questions.multichoice.show', compact('question') + $relations);
+                return view('questions.show', compact('question') + $relations);
                 break;
         }        
     }
