@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <h3 class="page-title">Roles</h3>
             <p>
-                <a href="{{ route('roles.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
+                {{-- <a href="{{ route('roles.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a> --}}
             </p>
         <div class="card mb-3">
             <div class="card-header">
@@ -28,13 +28,13 @@
                                     <td>{{ $role->title }}</td>
                                     <td>
                                         <a href="{{ route('roles.show',[$role->id]) }}" class="btn btn-xs btn-success"><i class="fas fa-eye"></i> View</a>
-                                        <a href="{{ route('roles.edit',[$role->id]) }}" class="btn btn-xs btn-info"><i class="fas fa-edit"></i> Edit</a>
+                                        {{-- <a href="{{ route('roles.edit',[$role->id]) }}" class="btn btn-xs btn-info"><i class="fas fa-edit"></i> Edit</a>
                                         {!! Form::open(array(
                                             'style' => 'display: inline-block;',
                                             'method' => 'DELETE',
                                             'onsubmit' => "return confirm('".trans("Are you sure?")."');",
                                             'route' => ['roles.destroy', $role->id])) !!}
-                                        {!! Form::submit(trans('Delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                        {!! Form::submit(trans('Delete'), array('class' => 'btn btn-xs btn-danger')) !!} --}}
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>
