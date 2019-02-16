@@ -12,7 +12,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $fillable = ['username', 'fname', 'lname', 'email', 'password', 'remember_token'];
+    protected $fillable = ['username', 'fname', 'lname', 'email', 'password', 'remember_token', 'role_id'];
 
     public static function boot()
     {
