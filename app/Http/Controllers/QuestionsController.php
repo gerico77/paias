@@ -48,7 +48,7 @@ class QuestionsController extends Controller
                     'option5' => 'Option #5'
                 ];
         
-                return view('questions.multichoice.create', compact('correct_options') + $relations);
+                return view('questions.create', compact('correct_options') + $relations);
                 break;
             default:
                 echo('error');
@@ -128,7 +128,7 @@ class QuestionsController extends Controller
         // dd(compact('question') + $relations);
         switch ($question_type) {
             case "multichoice":
-                return view('questions.multichoice.show', compact('question') + $relations);
+                return view('questions.show', compact('question') + $relations);
                 break;
         }        
     }
