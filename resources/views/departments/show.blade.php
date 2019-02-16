@@ -14,11 +14,9 @@
             <div class="row">
                 <div class="col-md-6">
                     <table class="table table-bordered table-striped">
-                        <tr><th>Department Name</th><td>{{ $department->departmentName }}</td></tr>
-                        <tr><th>Department Head</th><td>{{ $department->departmentHead }}</td></tr>
-                        {{-- <tr><th>Department Start Date</th><td>{{ $department->departmentStartDate }}</td></tr>
-                        <tr><th>Department End Date</th><td>{{ $department->departmentEndtDate }}</td></tr> --}}
-                        <tr><th>Department Details</th><td>{{ $department->departmentDetails }}</td></tr>
+                        <tr><th>Name</th><td>{{ $department->name }}</td></tr>
+                        <tr><th>Dept. Head</th><td>{{ $department->head }}</td></tr>
+                        <tr><th>Details</th><td>{{ $department->details }}</td></tr>
                     </table>
                 </div>
             </div>

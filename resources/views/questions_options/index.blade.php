@@ -42,17 +42,6 @@
                                                 <i class="fas fa-eye"></i>
                                                 View
                                             </a>
-                                            <a href="{{ route('questions_options.edit',[$questions_option->id]) }}" class="btn btn-sm btn-info">
-                                                <i class="fas fa-edit"></i>
-                                                Edit
-                                            </a>
-                                            {!! Form::open(array(
-                                                'style' => 'display: inline-block;',
-                                                'method' => 'DELETE',
-                                                'onsubmit' => "return confirm('".trans("Are you sure?")."');",
-                                                'route' => ['questions_options.destroy', $questions_option->id])) !!}
-                                            {!! Form::button(trans('<i class="fas fa-trash-alt"></i> Delete'), array('type' => 'submit', 'class' => 'btn btn-sm btn-danger')) !!}
-                                            {!! Form::close() !!}
                                         </td>
                                     </tr>
                                 @endforeach

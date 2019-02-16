@@ -9,13 +9,23 @@ class Course extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['courseName', 'courseCode', 'courseDetails'];
+    protected $fillable = ['department_id', 'title', 'code', 'details'];
 
     public static function boot()
     {
         parent::boot();
 
         Course::observe(new \App\Observers\UserActionsObserver);
+    }
+
+    public function setDepartmentIdAttribute($input)
+    {
+        $this->attributes['department_id'] = $input ? $input : null;
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id')->withTrashed();
     }
 
     public function subjects()

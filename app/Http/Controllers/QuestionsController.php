@@ -32,13 +32,13 @@ class QuestionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($question_type)
+    public function create($qtype)
     {
         $relations = [
             'subjects' => \App\Subject::get()->pluck('title', 'id')->prepend('Please select', ''),
         ];
 
-        switch ($question_type) {
+        switch ($qtype) {
             case "multichoice":
                 $correct_options = [
                     'option1' => 'Option #1',
@@ -50,8 +50,6 @@ class QuestionsController extends Controller
         
                 return view('questions.create', compact('correct_options') + $relations);
                 break;
-            default:
-                echo('error');
         }
     }
 
@@ -87,13 +85,20 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($qtype, $id)
     {
+        
         $relations = [
-            'subjects' => \App\Subject::get()->pluck('title', 'id')->prepend('Please select', ''),
+            'subjects' => \App\Subject::get()->pluck('title', 'id'),
         ];
 
         $question = Question::findOrFail($id);
+
+        switch ($qtype) {
+            case "multichoice":
+                return view('questions.multichoice.edit', compact('question') + $relations);
+                break;
+        }
     }
 
     /**
@@ -108,7 +113,7 @@ class QuestionsController extends Controller
         $question = Question::findOrFail($id);
         $question->update($request->all());
 
-        return redirect()->route('questions.index')->with('message', 'Question successfully updated');
+        return redirect()->route('questions.index')->with('message', 'Question successfully updated')->prepend('Please select', '');
     }
 
 
@@ -118,7 +123,7 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($question_type, $id)
+    public function show($qtype, $id)
     {
         $relations = [
             'subjects' => \App\Subject::get()->pluck('title', 'id'),
@@ -126,7 +131,7 @@ class QuestionsController extends Controller
 
         $question = Question::findOrFail($id);
         // dd(compact('question') + $relations);
-        switch ($question_type) {
+        switch ($qtype) {
             case "multichoice":
                 return view('questions.show', compact('question') + $relations);
                 break;

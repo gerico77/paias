@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.webview')
 
 @section('content')
     <div class="container-fluid">
@@ -7,7 +7,7 @@
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fas fa-eye"></i>
-                Result
+                View
             </div>
             <div class="card-body">
 
@@ -17,12 +17,12 @@
                         @if(Auth::user()->isAdmin())
                         <tr>
                             <th>User</th>
-                            <td>{{ $test->user->name }} ({{ $test->user->email }})</td>
+                            <td>{{ $test->user->fname }} {{ $test->user->lname }} ({{ $test->user->email }})</td>
                         </tr>
                         @endif
                         <tr>
                             <th>Date</th>
-                            <td>{{ $test->created_at or '' }}</td>
+                            <td>{{ $test->created_at }}</td>
                         </tr>
                         <tr>
                             <th>Result</th>
@@ -34,7 +34,7 @@
                         <table class="table table-bordered table-striped">
                             <tr class="test-option{{ $result->correct ? '-true' : '-false' }}">
                                 <th style="width: 10%">Question #{{ $i }}</th>
-                                <th>{{ $result->question->question_text or '' }}</th>
+                                <th>{{ $result->question->question_text }}</th>
                             </tr>
                             @if ($result->question->code_snippet != '')
                                 <tr>

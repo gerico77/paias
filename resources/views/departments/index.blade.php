@@ -21,11 +21,8 @@
                     <table class="table table-bordered table-striped {{ count($departments) > 0 ? 'datatable' : '' }} dt-select">
                         <thead>
                             <th style="text-align:center; width:5%"><input type="checkbox" id="select-all" /></th>
-                            <th>Department Name</th>
-                            <th>Department Head</th>
-                            {{-- <th>Department Start Date</th>
-                            <th>Department End Date</th> --}}
-                            <th>Department Details</th>
+                            <th>Name</th>
+                            <th>Dept. Head</th>
                             <th style="width:20%">&nbsp;</th>
                         </thead>
                         
@@ -34,11 +31,8 @@
                                 @foreach ($departments as $department)
                                     <tr data-entry-id="{{ $department->id }}">
                                         <td></td>
-                                        <td>{{ $department->departmentName}}</td>
-                                        <td>{{ $department->departmentHead}}</td>
-                                        {{-- <td>{{ $department->departmentStartDate}}</td>
-                                        <td>{{ $department->departmentEndtDate}}</td> --}}
-                                        <td>{{ $department->departmentDetails}}</td>
+                                        <td>{{ $department->name}}</td>
+                                        <td>{{ $department->head}}</td>
                                         <td>
                                             <a href="{{ route('departments.show',[$department->id]) }}" class="btn btn-sm btn-success">
                                                 <i class="fas fa-eye"></i>

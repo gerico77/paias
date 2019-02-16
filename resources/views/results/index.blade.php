@@ -18,7 +18,7 @@
                         @endif
                             <th>Date</th>
                             <th>Result</th>
-                            <th>&nbsp;</th>
+                            <th style="width: 8%">&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,12 +26,12 @@
                             @foreach ($results as $result)
                                 <tr>
                                 @if(Auth::user()->isAdmin())
-                                    <td>{{ $result->user->name or '' }} ({{ $result->user->email or '' }})</td>
+                                    <td>{{ $result->user->fname }} {{ $result->user->lname }} ({{ $result->user->email }})</td>
                                 @endif
-                                    <td>{{ $result->created_at or '' }}</td>
+                                    <td>{{ $result->created_at }}</td>
                                     <td>{{ $result->result }}/10</td>
                                     <td>
-                                        <a href="{{ route('results.show',[$result->id]) }}" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> View</a>
+                                        <a href="{{ route('results.show',[$result->id]) }}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i> View</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -9,7 +9,7 @@ class Department extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['departmentName', 'departmentHead', 'departmentDetails'];
+    protected $fillable = ['name', 'head', 'details'];
     
     public static function boot()
     {

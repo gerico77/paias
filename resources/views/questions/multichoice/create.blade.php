@@ -4,7 +4,7 @@
     <div class="container-fluid">
     <h3 class="page-title">Questions</h3>
     {!! Form::open(['method' => 'POST', 'route' => ['questions.store']]) !!}
-
+    {!! Form::hidden('qtype', 'multichoice') !!}
     <div class="card mb-3">
         <div class="card-header">
             <i class="fas fa-plus"></i>
@@ -123,9 +123,9 @@
                 @endif
             </div>
 
+            {!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
         </div>
     </div>
-    {!! Form::submit(trans('Save'), ['class' => 'btn btn-success']) !!}
     {!! Form::close() !!}
     </div>
 @stop

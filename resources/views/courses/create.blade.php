@@ -23,32 +23,32 @@
                 @endif
             </div>
             <div class="form-group">
-                {!! Form::label('courseName', 'Course Name*', ['class' => 'control-label']) !!}
-                {!! Form::text('courseName', old('courseName'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                {!! Form::label('title', 'Name*', ['class' => 'control-label']) !!}
+                {!! Form::text('title', old('title'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                 <small class="form-text text-muted"></small>
-                @if($errors->has('courseName'))
+                @if($errors->has('title'))
                     <small class="form-text text-muted">
-                        {{ $errors->first('courseName') }}
+                        {{ $errors->first('title') }}
                     </small>
                 @endif
             </div>
             <div class="form-group">
-                {!! Form::label('courseCode', 'Course Code*', ['class' => 'control-label']) !!}
-                {!! Form::text('courseCode', old('courseCode'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                {!! Form::label('code', 'Code*', ['class' => 'control-label']) !!}
+                {!! Form::text('code', old('code'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                 <small class="form-text text-muted"></small>
-                @if($errors->has('courseCode'))
+                @if($errors->has('code'))
                     <small class="form-text text-muted">
-                        {{ $errors->first('courseCode') }}
+                        {{ $errors->first('code') }}
                     </small>
                 @endif
             </div>
             <div class="form-group">
-                {!! Form::label('courseDetails', 'Course Details*', ['class' => 'control-label']) !!}
-                {!! Form::text('courseDetails', old('courseDetails'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                {!! Form::label('details', 'Details', ['class' => 'control-label']) !!}
+                {!! Form::text('details', old('details'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                 <small class="form-text text-muted"></small>
-                @if($errors->has('courseDetails'))
+                @if($errors->has('details'))
                     <small class="form-text text-muted">
-                        {{ $errors->first('courseDetails') }}
+                        {{ $errors->first('details') }}
                     </small>
                 @endif
             </div>

@@ -33,7 +33,7 @@ class SubjectsController extends Controller
     public function create()
     {
         $relations = [
-            'courses' => \App\Course::get()->pluck('courseName', 'id')->prepend('Please select', ''),
+            'courses' => \App\Course::get()->pluck('title', 'id')->prepend('Please select', ''),
         ];
 
         return view('subjects.create', $relations);
@@ -74,9 +74,13 @@ class SubjectsController extends Controller
      */
     public function edit($id)
     {
+        $relations = [
+            'courses' => \App\Course::get()->pluck('title', 'id')->prepend('Please select', ''),
+        ];
+
         $subject = Subject::findOrFail($id);
 
-        return view('subjects.edit', compact('subject'))->with('message', 'Subject successfully updated');
+        return view('subjects.edit', compact('subject') + $relations);
     }
 
     /**
@@ -91,7 +95,7 @@ class SubjectsController extends Controller
         $subject = Subject::findOrFail($id);
         $subject->update($request->all());
 
-        return redirect()->route('subjects.index');
+        return redirect()->route('subjects.index')->with('message', 'Subject successfully updated');
     }
 
     /**

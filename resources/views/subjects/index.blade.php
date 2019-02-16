@@ -21,6 +21,7 @@
                     <table class="table table-bordered table-striped {{ count($subjects) > 0 ? 'datatable' : '' }} dt-select">
                         <thead>
                             <th style="text-align:center; width:5%"><input type="checkbox" id="select-all" /></th>
+                            <th>Course</th>
                             <th>Title</th>
                             <th style="width:20%">&nbsp;</th>
                         </thead>
@@ -30,6 +31,7 @@
                                 @foreach ($subjects as $subject)
                                     <tr data-entry-id="{{ $subject->id }}">
                                         <td></td>
+                                        <td>{{ $subject->course->code }}</td>
                                         <td>{{ $subject->title}}</td>
                                         <td>
                                             <a href="{{ route('subjects.show',[$subject->id]) }}" class="btn btn-sm btn-success">

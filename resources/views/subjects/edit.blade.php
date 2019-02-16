@@ -12,6 +12,16 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
+                    {!! Form::label('course_id', 'Course*') !!}
+                    {!! Form::select('course_id', $courses, old('course_id'), ['class' => 'form-control']) !!}
+                    <small class="form-text text-muted"></small>
+                    @if($errors->has('course_id'))
+                        <small class="form-text text-muted">
+                            {{ $errors->first('course_id') }}
+                        </small>
+                    @endif
+                </div>
+                <div class="form-group">
                     {!! Form::label('title', 'Title*', ['class' => 'control-label']) !!}
                     {!! Form::text('title', old('title'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                     <small class="form-text text-muted"></small>

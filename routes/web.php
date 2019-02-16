@@ -28,10 +28,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Questions
     Route::resource('questions', 'QuestionsController')->except([
-        'create','show'
+        'create','show','edit'
     ]);
-    Route::get('/questions/create/{question_type}', 'QuestionsController@create')->name('questions.create');
-    Route::get('/questions/show/{question_type}/{id}', 'QuestionsController@show')->name('questions.show');
+    Route::get('/questions/create/{qtype}', 'QuestionsController@create')->name('questions.create');
+    Route::get('/questions/show/{qtype}/{id}', 'QuestionsController@show')->name('questions.show');
+    Route::get('/questions/{qtype}/{id}/edit', 'QuestionsController@edit')->name('questions.edit');
 
     Route::post('questions_mass_destroy', ['uses' => 'QuestionsController@massDestroy', 'as' => 'questions.mass_destroy']);
 });
