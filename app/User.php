@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,9 +11,14 @@ use Mail;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
 
     protected $fillable = ['username', 'fname', 'lname', 'email', 'password', 'remember_token', 'role_id'];
+
+    public function findForPassport($username)
+    {
+        return $this->where('username', $username)->first();
+    }
 
     public static function boot()
     {
