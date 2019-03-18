@@ -33,4 +33,9 @@ class Subject extends Model
     {
         return $this->hasMany(Question::class, 'subject_id')->withTrashed();
     }
+
+    public function tests()
+    {
+        return $this->hasMany(Test::class, 'subject_id')->withTrashed();
+    }
 }

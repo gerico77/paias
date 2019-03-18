@@ -1,3 +1,4 @@
+@inject('request', 'Illuminate\Http\Request')
 @extends('layouts.app')
 
 @section('content')
@@ -16,6 +17,14 @@
                 List
             </div>
             <div class="card-body">
+                <form action="{{ url('import') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="import_file"/>
+                    <input type="submit" value="Import" class="btn btn-info" /> &nbsp; &nbsp;
+                    <a href="{{ url('export') }}" class="btn btn-primary">Export</a>
+                </form>
+
+                <hr />
                 <table class="table table-bordered table-striped {{ count($users) > 0 ? 'datatable' : '' }} dt-select">
                     <thead>
                         <tr>
@@ -51,7 +60,7 @@
                             @endforeach
                         @else
                             <tr>
-                                <td colspan="6">No entries in table')</td>
+                                <td colspan="6">No entries in table</td>
                             </tr>
                         @endif
                     </tbody>

@@ -21,7 +21,16 @@ class TestsController extends Controller
      */
     public function index()
     {
+        $tests = Test::all();
+
+        return view('tests.index', compact('tests'));
+    }
+
+    public function create() {
         // $subjects = Subject::inRandomOrder()->limit(10)->get();
+        $relations = [
+            'subjects' => \App\Subject::get()->pluck('title', 'id')->prepend('Please select', ''),
+        ];
 
         $questions = Question::inRandomOrder()->limit(10)->get();
         foreach ($questions as &$question) {
@@ -38,7 +47,7 @@ class TestsController extends Controller
         }
          */
 
-        return view('tests.create', compact('questions'));
+        return view('tests.create', compact('questions'), $relations);
     }
 
     /**
@@ -76,5 +85,35 @@ class TestsController extends Controller
         $test->update(['result' => $result]);
 
         return redirect()->route('results.show', [$test->id]);
+    }
+
+    /**
+     * Remove Test from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $test = Test::findOrFail($id);
+        $test->delete();
+
+        return redirect()->route('tests.index');
+    }
+
+    /**
+     * Delete all selected Test at once.
+     *
+     * @param Request $request
+     */
+    public function massDestroy(Request $request)
+    {
+        if ($request->input('ids')) {
+            $entries = Test::whereIn('id', $request->input('ids'))->get();
+
+            foreach ($entries as $entry) {
+                $entry->delete();
+            }
+        }
     }
 }
