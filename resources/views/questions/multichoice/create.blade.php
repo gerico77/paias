@@ -93,32 +93,12 @@
                     @endif
             </div>
             <div class="form-group">
-                {!! Form::label('code_snippet', 'Code snippet', ['class' => 'control-label']) !!}
-                {!! Form::textarea('code_snippet', old('code_snippet'), ['class' => 'form-control ', 'placeholder' => '']) !!}
-                <small class="form-text text-muted"></small>
-                @if($errors->has('code_snippet'))
-                    <small class="form-text text-muted">
-                        {{ $errors->first('code_snippet') }}
-                    </small>
-                @endif
-            </div>
-            <div class="form-group">
                 {!! Form::label('answer_explanation', 'Answer explanation*', ['class' => 'control-label']) !!}
                 {!! Form::textarea('answer_explanation', old('answer_explanation'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                 <small class="form-text text-muted"></small>
                 @if($errors->has('answer_explanation'))
                     <small class="form-text text-muted">
                         {{ $errors->first('answer_explanation') }}
-                    </small>
-                @endif
-            </div>
-            <div class="form-group">
-                {!! Form::label('more_info_link', 'More info link', ['class' => 'control-label']) !!}
-                {!! Form::text('more_info_link', old('more_info_link'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                <small class="form-text text-muted"></small>
-                @if($errors->has('more_info_link'))
-                    <small class="form-text text-muted">
-                        {{ $errors->first('more_info_link') }}
                     </small>
                 @endif
             </div>
