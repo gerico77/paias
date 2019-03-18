@@ -10,13 +10,17 @@
                 Add new
             </a>
         </p>
-    
+
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fas fa-table"></i>
                 List
             </div>
             <div class="card-body">
+                <a href="{{ url('export') }}" class="btn btn-primary">Export</a>
+                <br /> <br />
+
+                <hr />
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped {{ count($courses) > 0 ? 'datatable' : '' }} dt-select">
                         <thead>
