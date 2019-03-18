@@ -38,6 +38,20 @@ class QuestionsController extends Controller
             'subjects' => \App\Subject::get()->pluck('title', 'id')->prepend('Please select', ''),
         ];
 
+        // switch ($qtype) {
+        //     case "multichoice":
+        //         $correct_options = [
+        //             'option1' => 'Option #1',
+        //             'option2' => 'Option #2',
+        //             'option3' => 'Option #3',
+        //             'option4' => 'Option #4',
+        //             'option5' => 'Option #5'
+        //         ];
+        
+        //         return view('questions.create', compact('correct_options') + $relations);
+        //         break;
+        // }
+
         switch ($qtype) {
             case "multichoice":
                 $correct_options = [
@@ -48,7 +62,32 @@ class QuestionsController extends Controller
                     'option5' => 'Option #5'
                 ];
         
-                return view('questions.create', compact('correct_options') + $relations);
+                return view( 'questions.multichoice.create', compact('correct_options') + $relations);
+                break;
+
+            case "identification":
+                // $correct_text = [
+                //     'answerhere' => 'Answer here'
+                // ];
+
+                return view( 'questions.identification.create', $relations);
+                break;
+
+            case "enumeration":
+                // $correct_text = [
+                //     'answerhere' => 'Answer here'
+                // ];
+
+                return view( 'questions.enumeration.create', $relations);
+                break;
+                
+            case "truefalse":
+                $correct_options = [
+                    'true' => 'True',
+                    'false' => 'False'
+                ];
+
+                return view( 'questions.truefalse.create', compact('correct_options') + $relations);
                 break;
         }
     }
@@ -94,9 +133,27 @@ class QuestionsController extends Controller
 
         $question = Question::findOrFail($id);
 
+        // switch ($qtype) {
+        //     case "multichoice":
+        //         return view('questions.multichoice.edit', compact('question') + $relations);
+        //         break;
+        // }
+
         switch ($qtype) {
             case "multichoice":
                 return view('questions.multichoice.edit', compact('question') + $relations);
+                break;
+
+            case "identification":
+                return view( 'questions.identification.edit', compact('question') + $relations);
+                break;
+
+            case "enumeration":
+                return view( 'questions.enumeration.edit', compact('question') + $relations);
+                break;
+
+            case "truefalse":
+                return view( 'questions.truefalse.edit', compact('question') + $relations);
                 break;
         }
     }
@@ -131,11 +188,29 @@ class QuestionsController extends Controller
 
         $question = Question::findOrFail($id);
         // dd(compact('question') + $relations);
+
+        // switch ($qtype) {
+        //     case "multichoice":
+        //         return view('questions.show', compact('question') + $relations);
+        //         break;
+        // }      
         switch ($qtype) {
             case "multichoice":
-                return view('questions.show', compact('question') + $relations);
+                return view( 'questions.multichoice.show', compact('question') + $relations);
                 break;
-        }        
+
+            case "identification":
+                return view( 'questions.identification.show', compact('question') + $relations);
+                break;
+
+            case "enumeration":
+                return view( 'questions.enumeration.show', compact('question') + $relations);
+                break;
+
+            case "truefalse":
+                return view( 'questions.truefalse.show', compact('question') + $relations);
+                break;
+        }     
     }
 
 

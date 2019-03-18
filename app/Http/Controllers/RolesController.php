@@ -48,7 +48,6 @@ class RolesController extends Controller
         return redirect()->route('roles.index')->with('message', 'Role successfully created');
     }
 
-
     /**
      * Show the form for editing Role.
      *

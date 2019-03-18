@@ -7,11 +7,16 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreUsersRequest;
 use App\Http\Requests\UpdateUsersRequest;
 
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UsersExport;
+use App\Imports\UsersImport;
+
 class UsersController extends Controller
 {
     public function __construct()
     {
         $this->middleware('admin');
+        $this->middleware('professor');
     }
 
     /**
@@ -26,6 +31,25 @@ class UsersController extends Controller
         return view('users.index', compact('users'));
     }
 
+    public function export()
+    {
+        return Excel::download(new UsersExport(), 'users.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $users = Excel::toCollection(new UsersImport(), $request->file('import_file'));
+        foreach ($users[0] as $user) {
+            User::where('id', $user[0])->update([
+                'username' => $user[1],
+                'fname' => $user[2],
+                'lname' => $user[3],
+                'email' => $user[4],
+            ]);
+        }
+        return redirect()->route('users.index');
+    }
+
     /**
      * Show the form for creating new User.
      *
@@ -33,11 +57,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $relations = [
-            'roles' => \App\Role::get()->pluck('title', 'id')->prepend('Please select', ''),
-        ];
-
-        return view('users.create', $relations);
+        return view('users.create');
     }
 
     /**
@@ -62,13 +82,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $relations = [
-            'roles' => \App\Role::get()->pluck('title', 'id')->prepend('Please select', ''),
-        ];
-
         $user = User::findOrFail($id);
 
-        return view('users.edit', compact('user') + $relations);
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -95,13 +111,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $relations = [
-            'roles' => \App\Role::get()->pluck('title', 'id')->prepend('Please select', ''),
-        ];
-
         $user = User::findOrFail($id);
 
-        return view('users.show', compact('user') + $relations);
+        return view('users.show', compact('user'));
     }
 
 
