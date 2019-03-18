@@ -12,7 +12,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $fillable = ['username', 'fname', 'lname', 'email', 'password', 'remember_token', 'role_id'];
+    protected $fillable = ['username', 'fname', 'lname', 'email', 'password', 'remember_token'];
 
     public static function boot()
     {
@@ -42,15 +42,29 @@ class User extends Authenticatable
         $this->attributes['role_id'] = $input ? $input : null;
     }
 
+    public function getFullNameAttribute() {
+        return $this->fname . ' ' . $this->lname;
+    }
+
     public function role()
     {
-        return $this->belongsTo(Role::class, 'role_id')->withTrashed();
+        return $this->belongsTo(Role::class, 'role_id');
     }
 
     public function isAdmin()
     {
         foreach ($this->role()->get() as $role) {
             if ($role->id == 1) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    public function isProfessor()
+    {
+        foreach ($this->role()->get() as $role) {
+            if ($role->id == 2) {
                 return true;
             }
         }

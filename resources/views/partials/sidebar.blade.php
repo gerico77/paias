@@ -8,7 +8,7 @@
       </a>
     </li>
 
-    {{-- <li class="nav-item {{ $request->segment(1) == 'tests' ? 'active' : '' }}">
+    <li class="nav-item {{ $request->segment(1) == 'tests' ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('tests.index') }}">
             <i class="fas fa-file-alt"></i>
             <span>Exam</span>
@@ -19,9 +19,9 @@
             <i class="fas fa-poll"></i>
             <span>Results</span></a>
         </a>
-    </li> --}}
+    </li>
 
-    <li class="nav-item dropdown {{ $request->segment(1) == 'subject' ? 'active' : '' }}">
+    {{-- <li class="nav-item dropdown {{ $request->segment(1) == 'subject' ? 'active' : '' }}">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             <i class="fa fa-book"></i>
@@ -30,11 +30,11 @@
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             @if (count($subjects) > 0)
                 @foreach ($subjects as $subject)
-                    <a class="dropdown-item" href="{{ route('roles.index') }}">{{ $subject->title }}</a>
+                    <a class="dropdown-item" href="{{ route('subjects.show',[$subject->id]) }}">{{ $subject->title }}</a>
                 @endforeach
             @endif
         </div>
-    </li>
+    </li> --}}
 
     @if(Auth::user()->isAdmin())
         <li class="nav-item dropdown {{ $request->segment(1) == 'roles' || $request->segment(1) == 'users' || $request->segment(1) == 'user_actions' ? 'active' : '' }}">
@@ -55,6 +55,28 @@
                     <span>Departments</span></a>
             </a>
         </li>
+
+        @endif
+
+        @if(Auth::user()->isProfessor() || Auth::user()->isAdmin())
+        <li class="nav-item {{ $request->segment(1) == 'tasks' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('tasks.index') }}">
+                    <i class="fas fa-tasks"></i>
+                    <span>Tasks</span></a>
+            </a>
+        </li>
+        {{-- <li class="nav-item {{ $request->segment(1) == 'download' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('download.viewfile') }}">
+                    <i class="fas fa-tasks"></i>
+                    <span>Download Files</span></a>
+            </a>
+        </li> --}}
+        <li class="nav-item {{ $request->segment(1) == 'enrolls' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('enrolls.index') }}">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Enroll</span></a>
+            </a>
+        </li>
         <li class="nav-item {{ $request->segment(1) == 'courses' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('courses.index') }}">
                     <i class="fas fa-book-open"></i>
@@ -67,7 +89,7 @@
                     <span>Subjects</span></a>
             </a>
         </li>
-        {{-- <li class="nav-item {{ $request->segment(1) == 'questions' ? 'active' : '' }}">
+        <li class="nav-item {{ $request->segment(1) == 'questions' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('questions.index') }}">
                 <i class="fas fa-fw fa-question-circle"></i>
                 <span>Questions</span></a>
@@ -78,6 +100,6 @@
                 <i class="fas fa-question"></i>
                 <span>Questions Options</span></a>
             </a>
-        </li> --}}
-    @endif
+        </li>
+        @endif
 </ul>

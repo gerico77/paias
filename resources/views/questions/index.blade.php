@@ -84,6 +84,14 @@
                         {!! Form::radio('questionTypes', 'identification', false, array('class' => 'form-check-input', 'id' => 'identification')); !!}
                         {!! Form::label('identification', 'Identification', ['class' => 'form-check-label']) !!}
                     </div>
+                    <div class="form-check">
+                        {!! Form::radio('questionTypes', 'enumeration', false, array('class' => 'form-check-input', 'id' => 'enumeration')); !!}
+                        {!! Form::label('enumeration', 'Enumeration', ['class' => 'form-check-label']) !!}
+                    </div>
+                    <div class="form-check">
+                        {!! Form::radio('questionTypes', 'truefalse', false, array('class' => 'form-check-input', 'id' => 'truefalse')); !!}
+                        {!! Form::label('truefalse', 'True or False', ['class' => 'form-check-label']) !!}
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -109,6 +117,14 @@
                         break;
                     case "identification":
                         document.location.href = "{{ route('questions.create', 'identification') }}";
+
+                        break;
+                    case "enumeration":
+                        document.location.href = "{{ route('questions.create', 'enumeration') }}";
+
+                        break;
+                    case "truefalse":
+                        document.location.href = "{{ route('questions.create', 'truefalse') }}";
 
                         break;
                 }
