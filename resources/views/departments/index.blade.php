@@ -32,7 +32,7 @@
                                     <tr data-entry-id="{{ $department->id }}">
                                         <td></td>
                                         <td>{{ $department->name}}</td>
-                                        <td>{{ $department->head}}</td>
+                                        <td>{{ $department->user->fname . ' ' . $department->user->lname }}</td>
                                         <td>
                                             <a href="{{ route('departments.show',[$department->id]) }}" class="btn btn-sm btn-success">
                                                 <i class="fas fa-eye"></i>

@@ -32,7 +32,10 @@ class DepartmentsController extends Controller
      */
     public function create()
     {
-        return view('departments.create');
+        $relations = [
+            'users' => \App\User::get()->pluck('full_name', 'id')->prepend('Please select', ''),
+        ];
+        return view('departments.create', $relations);
     }
 
     /**
@@ -56,9 +59,13 @@ class DepartmentsController extends Controller
      */
     public function show($id)
     {
+        $relations = [
+            'users' => \App\User::get()->pluck('fname' . ' ' . 'lname', 'id')->prepend('Please select', ''),
+        ];
+
         $department = Department::findOrFail($id);
 
-        return view('departments.show', compact('department'));
+        return view('departments.show', compact('department') + $relations);
     }
 
     /**
@@ -69,9 +76,13 @@ class DepartmentsController extends Controller
      */
     public function edit($id)
     {
+        $relations = [
+            'users' => \App\User::get()->pluck('username', 'fname', 'lname', 'id')->prepend('Please select', ''),
+        ];
+
         $department = Department::findOrFail($id);
 
-        return view('departments.edit', compact('department'));
+        return view('departments.edit', compact('department') + $relations);
     }
 
     /**

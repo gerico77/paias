@@ -23,17 +23,17 @@
                 @endif
             </div>
             <div class="form-group">
-                {!! Form::label('head', 'Department Head*', ['class' => 'control-label']) !!}
-                {!! Form::text('head', old('head'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                {!! Form::label('user_id', 'Department Head*', ['class' => 'control-label']) !!}
+                {!! Form::select('user_id', $users, old('user_id'), ['class' => 'form-control']) !!}
                 <small class="form-text text-muted"></small>
-                @if($errors->has('head'))
+                @if($errors->has('user_id'))
                     <small class="form-text text-muted">
-                        {{ $errors->first('head') }}
+                        {{ $errors->first('user_id') }}
                     </small>
                 @endif
             </div>
             <div class="form-group">
-                {!! Form::label('details', 'Details', ['class' => 'control-label']) !!}
+                {!! Form::label('details', 'Details*', ['class' => 'control-label']) !!}
                 {!! Form::text('details', old('details'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                 <small class="form-text text-muted"></small>
                 @if($errors->has('details'))
@@ -44,6 +44,7 @@
             </div>
 
             {!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
+            <a href="{{ route('departments.index') }}" class="btn btn-info">Back to list</a>
         </div>
     </div>
 

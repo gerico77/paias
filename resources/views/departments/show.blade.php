@@ -15,7 +15,7 @@
                 <div class="col-md-6">
                     <table class="table table-bordered table-striped">
                         <tr><th>Name</th><td>{{ $department->name }}</td></tr>
-                        <tr><th>Dept. Head</th><td>{{ $department->head }}</td></tr>
+                        <tr><th>Dept. Head</th><td>{{ $department->user->fname . ' ' . $department->user->lname }}</td></tr>
                         <tr><th>Details</th><td>{{ $department->details }}</td></tr>
                     </table>
                 </div>
