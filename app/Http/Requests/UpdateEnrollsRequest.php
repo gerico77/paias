@@ -25,7 +25,7 @@ class UpdateEnrollsRequest extends FormRequest
         return [
 
             'user_id' => 'required',
-            'role_id' => 'required',
+            'subject_id' => 'required',
         ];
     }
 }

@@ -21,9 +21,9 @@
                                 <th>Subjects</th>
                                 <td>{{ $enroll->subject->title}}</td>
                             </tr>
-                            <tr>
-                                <th>Role</th>
-                                <td>{{ $enroll->role->title}}</td>
+                             <tr>
+                                <th>Roles</th>
+                                <td>{{ $enroll->user->role->title}}</td>
                             </tr>
                         </table>
                     </div>

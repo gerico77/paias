@@ -33,7 +33,7 @@
                                     <td></td>
                                     <td>{{ $enroll->user->fname . ' ' . $enroll->user->lname }}</td>
                                     <td>{{ $enroll->subject->title }}</td>
-                                    <td>{{ $enroll->role->title }}</td>
+                                    <td>{{ $enroll->user->role->title }}</td>
                                     <td>
                                         <a href="{{ route('enrolls.show',[$enroll->id]) }}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i> View</a>
                                         <a href="{{ route('enrolls.edit',[$enroll->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i> Edit</a>

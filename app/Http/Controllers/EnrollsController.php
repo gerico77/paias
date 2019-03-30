@@ -11,7 +11,7 @@ class EnrollsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin');
+        $this->middleware('admin' or 'professor');
     }
 
     /**
@@ -34,7 +34,6 @@ class EnrollsController extends Controller
     public function create()
     {
         $relations = [
-            'roles' => \App\Role::get()->pluck('title', 'id')->prepend('Please select', ''),
             'users' => \App\User::get()->pluck('full_name', 'id')->prepend('Please select', ''),
             'subjects' => \App\Subject::get()->pluck('title', 'id')->prepend('Please select', ''),
         ];
@@ -65,7 +64,6 @@ class EnrollsController extends Controller
     public function edit($id)
     {
         $relations = [
-            'roles' => \App\Role::get()->pluck('title', 'id')->prepend('Please select', ''),
             'users' => \App\User::get()->pluck('username', 'fname', 'lname', 'id')->prepend('Please select', ''),
             'subjects' => \App\Subject::get()->pluck('title', 'id')->prepend('Please select', ''),
         ];
@@ -100,7 +98,6 @@ class EnrollsController extends Controller
     public function show($id)
     {
         $relations = [
-            'roles' => \App\Role::get()->pluck('title', 'id')->prepend('Please select', ''),
             'users' => \App\User::get()->pluck('fname' . ' ' . 'lname', 'id')->prepend('Please select', ''),
             'subjects' => \App\Subject::get()->pluck('title', 'id')->prepend('Please select', ''),
         ];

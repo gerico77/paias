@@ -9,28 +9,13 @@ class Enroll extends Model
 {
     use Notifiable;
 
-    protected $fillable = ['role_id', 'user_id', 'subject_id'];
+    protected $fillable = ['user_id', 'subject_id'];
 
     public static function boot()
     {
         parent::boot();
 
         Enroll::observe(new \App\Observers\UserActionsObserver);
-    }
-
-    /**
-     * Set to null if empty
-     * @param $input
-     */
-    public function setRoleIdAttribute($input)
-    {
-        $this->attributes['role_id'] = $input ? $input : null;
-    }
-
-    public function role()
-    {
-        // return $this->belongsTo(Role::class, 'role_id')->withTrashed();
-        return $this->belongsTo(Role::class, 'role_id');
     }
 
     public function setUserIdAttribute($input)
