@@ -30,6 +30,6 @@ class Course extends Model
 
     public function subjects()
     {
-        return $this->hasMany(Subject::class, 'subject_id')->withTrashed();
+        return $this->hasMany(Subject::class, 'course_id')->withTrashed();
     }
 }

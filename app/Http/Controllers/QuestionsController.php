@@ -48,7 +48,7 @@ class QuestionsController extends Controller
                     'option5' => 'Option #5'
                 ];
         
-                return view('questions.create', compact('correct_options') + $relations);
+                return view('questions.multichoice.create', compact('correct_options') + $relations);
                 break;
         }
     }
@@ -90,6 +90,7 @@ class QuestionsController extends Controller
         
         $relations = [
             'subjects' => \App\Subject::get()->pluck('title', 'id'),
+            'questions_options' => \App\QuestionsOption::get()->where('question_id', $id),
         ];
 
         $question = Question::findOrFail($id);
@@ -133,7 +134,7 @@ class QuestionsController extends Controller
         // dd(compact('question') + $relations);
         switch ($qtype) {
             case "multichoice":
-                return view('questions.show', compact('question') + $relations);
+                return view('questions.multichoice.show', compact('question') + $relations);
                 break;
         }        
     }

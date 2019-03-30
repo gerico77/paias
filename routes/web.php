@@ -1,30 +1,29 @@
 <?php
-Route::get('/', 'HomeController@index');
 
-Route::resource('students', 'StudentController');
-Route::post('create', 'StudentController@store')->name('store');
-Route::get('/create', 'StudentController@store')->name('store');
+// Auth
+Auth::routes();
+
+// Home
+Route::get('/', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 
 // Group
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::resource('tests', 'TestsController');
-    Route::resource('roles', 'RolesController');
-    Route::post('roles_mass_destroy', ['uses' => 'RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
+    // Users
     Route::resource('users', 'UsersController');
     Route::post('users_mass_destroy', ['uses' => 'UsersController@massDestroy', 'as' => 'users.mass_destroy']);
-    Route::resource('user_actions', 'UserActionsController');
-    Route::resource('questions_options', 'QuestionsOptionsController');
-    Route::post('questions_options_mass_destroy', ['uses' => 'QuestionsOptionsController@massDestroy', 'as' => 'questions_options.mass_destroy']);
-    Route::resource('subjects', 'SubjectsController');
-    Route::post('subjects_mass_destroy', ['uses' => 'SubjectsController@massDestroy', 'as' => 'subjects.mass_destroy']);
-    Route::resource('courses', 'CoursesController');
-    Route::post('courses_mass_destroy', ['uses' => 'CoursesController@massDestroy', 'as' => 'courses.mass_destroy']);
-    Route::resource('results', 'ResultsController');
-    Route::post('results_mass_destroy', ['uses' => 'ResultsController@massDestroy', 'as' => 'results.mass_destroy']);
-    Route::resource('departments', 'DepartmentsController');
-    Route::post('departments_mass_destroy', ['uses' => 'DepartmentsController@massDestroy', 'as' => 'departments.mass_destroy']);
-    Route::resource('results', 'ResultsController');
+
+    // Roles
+    Route::resource('roles', 'RolesController');
+    Route::post('roles_mass_destroy', ['uses' => 'RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
+
+    // Exams
+    Route::resource('exams', 'ExamsController');
+    Route::post('exams_mass_destroy', ['uses' => 'ExamsController@massDestroy', 'as' => 'exams.mass_destroy']);
+
+    // Exam Questions
+    Route::resource('exam_questions', 'ExamQuestionsController');
+    Route::post('exams_mass_create', ['uses' => 'ExamQuestionsController@massCreate', 'as' => 'exam_questions.mass_create']);
 
     // Questions
     Route::resource('questions', 'QuestionsController')->except([
@@ -33,9 +32,34 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/questions/create/{qtype}', 'QuestionsController@create')->name('questions.create');
     Route::get('/questions/show/{qtype}/{id}', 'QuestionsController@show')->name('questions.show');
     Route::get('/questions/{qtype}/{id}/edit', 'QuestionsController@edit')->name('questions.edit');
-
     Route::post('questions_mass_destroy', ['uses' => 'QuestionsController@massDestroy', 'as' => 'questions.mass_destroy']);
+
+    // Question Options
+    Route::resource('questions_options', 'QuestionsOptionsController');
+    Route::post('questions_options_mass_destroy', ['uses' => 'QuestionsOptionsController@massDestroy', 'as' => 'questions_options.mass_destroy']);
+
+    // Departments
+    Route::resource('departments', 'DepartmentsController');
+    Route::post('departments_mass_destroy', ['uses' => 'DepartmentsController@massDestroy', 'as' => 'departments.mass_destroy']);
+
+    // Courses
+    Route::resource('courses', 'CoursesController');
+    Route::post('courses_mass_destroy', ['uses' => 'CoursesController@massDestroy', 'as' => 'courses.mass_destroy']);
+
+    // Subjects
+    Route::resource('subjects', 'SubjectsController');
+    Route::post('subjects_mass_destroy', ['uses' => 'SubjectsController@massDestroy', 'as' => 'subjects.mass_destroy']);
+    
+    // User Actions
+    Route::resource('user_actions', 'UserActionsController');
 });
 
-// Auth
-Auth::routes();
+Route::resource('results', 'ResultsController');
+Route::post('results_mass_destroy', ['uses' => 'ResultsController@massDestroy', 'as' => 'results.mass_destroy']);
+
+// Tests
+Route::resource('tests', 'TestsController')->except([
+    'index','show'
+]);
+Route::get('/tests/{exam_id}/{user_id}', 'TestsController@index')->name('tests.index');
+

@@ -16,7 +16,7 @@
                 List
             </div>
             <div class="card-body">
-                <table class="table table-bordered table-striped {{ count($users) > 0 ? 'datatable' : '' }} dt-select">
+                <table class="table table-bordered table-striped {{ count($users) > 0 ? 'datatable' : '' }} dt-select" id="list">
                     <thead>
                         <tr>
                             <th style="text-align:center; width:5%"><input type="checkbox" id="select-all" /></th>
@@ -36,7 +36,7 @@
                                     <td>{{ $user->fname }}</td>
                                     <td>{{ $user->lname }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>
+                                    <td style="text-align:center">
                                         <a href="{{ route('users.show',[$user->id]) }}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i> View</a>
                                         <a href="{{ route('users.edit',[$user->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i> Edit</a>
                                         {!! Form::open(array(

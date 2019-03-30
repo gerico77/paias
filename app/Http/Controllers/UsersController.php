@@ -50,7 +50,7 @@ class UsersController extends Controller
     {
         User::create($request->all());
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('message', 'User successfully created');
     }
 
 
@@ -83,7 +83,7 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         $user->update($request->all());
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('message', 'User successfully updated');
     }
 
 
@@ -116,7 +116,7 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('message', 'User successfully deleted');
     }
 
     /**

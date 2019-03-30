@@ -22,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
             $question->options()->delete();
         });
 
+
         $subjects =  Subject::all();
 
         View::share('subjects', $subjects);

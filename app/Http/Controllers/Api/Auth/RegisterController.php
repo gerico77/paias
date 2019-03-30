@@ -35,6 +35,7 @@ class RegisterController extends Controller
             'lname' => request('lname'),
             'email' => request('email'),
             'password' => Hash::make(request('password')),
+            'role_id' => request('role_id')
         ]);
 
         return $this->issueToken($request, 'password');

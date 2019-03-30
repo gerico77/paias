@@ -24,8 +24,24 @@ class LoginController extends Controller
             'username' => 'required',
             'password' => 'required'
         ]);
+
+        $credentials = $request->only(['username', 'password']);
+
+    	if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $isStudent = $user->isStudent();
+
+            if($isStudent) {
+                return $this->issueToken($request, 'password');
+
+            } else {
+                return response()->json(['message' => 'Students can only access the system', 'error' => 'Unauthorized'], 401);
+            }
+
+        } else {
+            return response()->json(['message' => 'Incorrect username or password','error' => 'Unauthorized'], 401);
+        }
         
-        return $this->issueToken($request, 'password');
     }
 
     public function refresh(Request $request) {

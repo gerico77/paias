@@ -14,7 +14,7 @@ class Test extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['user_id', 'result'];
+    protected $fillable = ['exam_id', 'user_id', 'result'];
 
     public static function boot()
     {
@@ -23,8 +23,18 @@ class Test extends Model
         Test::observe(new \App\Observers\UserActionsObserver);
     }
 
+    public function setExamIdAttribute($input)
+    {
+        $this->attributes['exam_id'] = $input ? $input : null;
+    }
+
+    public function exam()
+    {
+        return $this->belongsTo(Exam::class, 'exam_id')->withTrashed();
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
+    }    
 }

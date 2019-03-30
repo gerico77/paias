@@ -8,8 +8,8 @@
       </a>
     </li>
 
-    {{-- <li class="nav-item {{ $request->segment(1) == 'tests' ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('tests.index') }}">
+     <li class="nav-item {{ $request->segment(1) == 'tests' ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('exams.index') }}">
             <i class="fas fa-file-alt"></i>
             <span>Exam</span>
         </a>
@@ -19,9 +19,9 @@
             <i class="fas fa-poll"></i>
             <span>Results</span></a>
         </a>
-    </li> --}}
+    </li>
 
-    <li class="nav-item dropdown {{ $request->segment(1) == 'subject' ? 'active' : '' }}">
+    {{-- <li class="nav-item dropdown {{ $request->segment(1) == 'subject' ? 'active' : '' }}">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             <i class="fa fa-book"></i>
@@ -34,7 +34,7 @@
                 @endforeach
             @endif
         </div>
-    </li>
+    </li> --}}
 
     @if(Auth::user()->isAdmin())
         <li class="nav-item dropdown {{ $request->segment(1) == 'roles' || $request->segment(1) == 'users' || $request->segment(1) == 'user_actions' ? 'active' : '' }}">
@@ -67,13 +67,13 @@
                     <span>Subjects</span></a>
             </a>
         </li>
-        {{-- <li class="nav-item {{ $request->segment(1) == 'questions' ? 'active' : '' }}">
+        <li class="nav-item {{ $request->segment(1) == 'questions' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('questions.index') }}">
                 <i class="fas fa-fw fa-question-circle"></i>
-                <span>Questions</span></a>
+                <span>Question Bank</span></a>
             </a>
         </li>
-        <li class="nav-item {{ $request->segment(1) == 'questions_options' ? 'active' : '' }}">
+        {{-- <li class="nav-item {{ $request->segment(1) == 'questions_options' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('questions_options.index') }}">
                 <i class="fas fa-question"></i>
                 <span>Questions Options</span></a>

@@ -11,34 +11,24 @@ use App\Question;
 use App\QuestionsOption;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTestRequest;
+use App\Exam;
+use App\ExamQuestion;
 
 class TestsController extends Controller
-{
+{   
     /**
      * Display a new test.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($exam_id, $user_id)
     {
-        // $subjects = Subject::inRandomOrder()->limit(10)->get();
-
-        $questions = Question::inRandomOrder()->limit(10)->get();
-        foreach ($questions as &$question) {
-            $question->options = QuestionsOption::where('question_id', $question->id)->inRandomOrder()->get();
+        $exam_questions = ExamQuestion::inRandomOrder()->get()->where('exam_id', $exam_id);
+        foreach ($exam_questions as $exam_question) {
+            $exam_question->question->options = QuestionsOption::where('question_id', $exam_question->question->id)->inRandomOrder()->get();
         }
 
-        /*
-        foreach ($subjects as $subject) {
-            if ($subject->questions->count()) {
-                $questions[$subject->id]['subject'] = $subject->title;
-                $questions[$subject->id]['questions'] = $subject->questions()->inRandomOrder()->first()->load('options')->toArray();
-                shuffle($questions[$subject->id]['questions']['options']);
-            }
-        }
-         */
-
-        return view('tests.create', compact('questions'));
+        return view('tests.create', compact('exam_questions'));
     }
 
     /**
@@ -52,7 +42,8 @@ class TestsController extends Controller
         $result = 0;
 
         $test = Test::create([
-            'user_id' => Auth::id(),
+            'exam_id' => $request->input('exam_id'),
+            'user_id' => $request->input('user_id'),
             'result' => $result,
         ]);
 
@@ -65,7 +56,7 @@ class TestsController extends Controller
                 $result++;
             }
             TestAnswer::create([
-                'user_id' => Auth::id(),
+                'user_id' => $request->input('user_id'),
                 'test_id' => $test->id,
                 'question_id' => $question,
                 'option_id' => $request->input('answers.' . $question),
