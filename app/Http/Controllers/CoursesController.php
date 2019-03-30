@@ -14,7 +14,7 @@ class CoursesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin');
+        $this->middleware('admin' or 'professor');
     }
     /**
      * Display a listing of the resource.
@@ -31,6 +31,20 @@ class CoursesController extends Controller
     public function export()
     {
         return Excel::download(new CoursesExport(), 'courses.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $courses = Excel::toCollection(new CoursesImport(), $request->file('import_file'));
+        foreach ($courses[0] as $course) {
+            Course::where('id', $course[0])->update([
+                'title' => $course[1],
+                'code' => $course[2],
+                'detail' => $course[3],
+                'department_id' => $course->department->name[4],
+            ]);
+        }
+        return redirect()->route('courses.index');
     }
 
     /**

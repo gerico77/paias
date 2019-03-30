@@ -45,6 +45,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('departments', 'DepartmentsController');
     Route::post('departments_mass_destroy', ['uses' => 'DepartmentsController@massDestroy', 'as' => 'departments.mass_destroy']);
 
+    // Professor
+    Route::resource('professors', 'ProfessorsController');
+    Route::post('professors_mass_destroy', ['professors' => 'ProfessorsController@massDestroy', 'as' => 'professors.mass_destroy']);
+
+    // Student
+    Route::resource('students', 'StudentsController');
+    Route::post('students_mass_destroy', ['students' => 'StudentsController@massDestroy', 'as' => 'students.mass_destroy']);
+
     // Enroll
     Route::resource('enrolls', 'EnrollsController');
     Route::post('enrolls_mass_destroy', ['errolls' => 'EnrollsController@massDestroy', 'as' => 'enrolls.mass_destroy']);

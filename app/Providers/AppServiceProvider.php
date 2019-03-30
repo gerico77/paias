@@ -2,12 +2,15 @@
 
 namespace App\Providers;
 
+use DB;
+use Auth;
 use App\Question;
-use App\QuestionsOption;
-use App\Subject;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\View;
+use App\QuestionsOption;
+use App\Subject;
+use App\Enroll;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,9 +25,6 @@ class AppServiceProvider extends ServiceProvider
             $question->options()->delete();
         });
 
-        $subjects =  Subject::all();
-
-        View::share('subjects', $subjects);
     }
 
     /**

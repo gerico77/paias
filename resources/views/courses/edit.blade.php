@@ -54,6 +54,7 @@
                 </div>
                 
                 {!! Form::submit('Update', ['class' => 'btn btn-danger']) !!}
+                <a href="{{ route('courses.index') }}" class="btn btn-info">Back to list</a>
             </div>
         </div>  
         {!! Form::close() !!}
