@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <h3 class="page-title">Courses</h3>
+        <h3 class="page-title">Course</h3>
 
         {!! Form::model($course, ['method' => 'PUT', 'route' => ['courses.update', $course->id]]) !!}
     

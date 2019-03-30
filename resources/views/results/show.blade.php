@@ -14,12 +14,12 @@
             <div class="row">
                 <div class="col-md-6">
                     <table class="table table-bordered table-striped">
-                        @if(Auth::user()->isAdmin())
+                        {{-- @if(Auth::user()->isAdmin())
                         <tr>
                             <th>User</th>
                             <td>{{ $test->user->fname }} {{ $test->user->lname }} ({{ $test->user->email }})</td>
                         </tr>
-                        @endif
+                        @endif --}}
                         <tr>
                             <th>Date</th>
                             <td>{{ $test->created_at }}</td>
@@ -69,7 +69,7 @@
             </div>
 
             <br />
-            <a href="{{ route('tests.index') }}" class="btn btn-info btn-sm">Take another quiz</a>
+            {{-- <a href="{{ route('tests.index', $test->user_id) }}" class="btn btn-info btn-sm">Take another quiz</a> --}}
             <a href="{{ route('results.index') }}" class="btn btn-info btn-sm">See all my results</a>
             </div>
         </div>

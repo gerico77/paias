@@ -48,7 +48,7 @@ class QuestionsController extends Controller
                     'option5' => 'Option #5'
                 ];
         
-                return view( 'questions.multichoice.create', compact('correct_options') + $relations);
+                return view('questions.multichoice.create', compact('correct_options') + $relations);
                 break;
 
             case "identification":
@@ -127,6 +127,7 @@ class QuestionsController extends Controller
         
         $relations = [
             'subjects' => \App\Subject::get()->pluck('title', 'id'),
+            'questions_options' => \App\QuestionsOption::get()->where('question_id', $id),
         ];
 
         $question = Question::findOrFail($id);

@@ -1,54 +1,49 @@
 @extends('layouts.app')
 
 @section('content')
+@inject('request', 'Illuminate\Http\Request')
     <div class="container-fluid">
-        <h3 class="page-title">Quiz</h3>
+        <h3 class="page-title">{{ $exam_questions->first()->exam->subject->title . ' - ' . $exam_questions->first()->exam->title }}</h3>
         {!! Form::open(['method' => 'POST', 'route' => ['tests.store']]) !!}
+        {!! Form::hidden('exam_id', $request->segment(2)) !!}
+        {!! Form::hidden('user_id', $request->segment(3)) !!}
 
-        <div class="card mb-3">
-            <div class="card-header">
-                Multiple Choice
-            </div>
-            <?php //dd($questions) ?>
-        @if(count($questions) > 0)
-            <div class="card-body">
+        @if(count($exam_questions) > 0)
             <?php $i = 1; ?>
-            @foreach($questions as $question)
-                @if ($i > 1) <hr /> @endif
-                <div class="form-group">
+            @foreach($exam_questions as $exam_question)
+                <div class="card mb-3">
                     <div class="form-group">
-                    <strong>Question {{ $i }}.<br />{!! nl2br($question->question_text) !!}</strong>
-
-                    @if ($question->code_snippet != '')
-                        <div class="code_snippet">{!! $question->code_snippet !!}</div>
-                    @endif
-
-                    <input
-                        type="hidden"
-                        name="questions[{{ $i }}]"
-                        value="{{ $question->id }}">
-                    @foreach($question->options as $option)
-                        <br>
-                        <label class="radio-inline">
-                            <input
-                                type="radio"
-                                name="answers[{{ $question->id }}]"
-                                value="{{ $option->id }}">
-                            {{ $option->option }}
-                        </label>
-                    @endforeach
-                </div>
+                        <div class="form-group">
+                            <div class="card-header">
+                                <strong>Question {{ $i }}</strong>
+                            </div>
+                            <div class="card-body">       
+                                <strong>{!! nl2br($exam_question->question->question_text) !!}</strong>
+                            
+                                <input type="hidden" name="questions[{{ $i }}]" value="{{ $exam_question->question->id }}">
+                                
+                                @foreach($exam_question->question->options as $option)
+                                    <br>
+                                    <label class="radio-inline">
+                                        <input
+                                            type="radio"
+                                            name="answers[{{ $exam_question->question->id }}]"
+                                            value="{{ $option->id }}">
+                                        {{ $option->option }}
+                                    </label>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
                 </div>
             <?php $i++; ?>
             @endforeach
             {!! Form::submit(trans('Submit Quiz'), ['class' => 'btn btn-success']) !!}
 
-            </div>
         @endif
 
     
     {!! Form::close() !!}
-    </div>
 @stop
 
 @section('javascript')

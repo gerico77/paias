@@ -141,7 +141,7 @@ class CoursesController extends Controller
     public function massDestroy(Request $request)
     {
         if ($request->input('ids')) {
-            $entries = Courses::whereIn('id', $request->input('ids'))->get();
+            $entries = Course::whereIn('id', $request->input('ids'))->get();
 
             foreach ($entries as $entry) {
                 $entry->delete();

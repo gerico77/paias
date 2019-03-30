@@ -37,4 +37,9 @@ class Question extends Model
     {
         return $this->hasMany(QuestionsOption::class, 'question_id')->withTrashed();
     }
+
+    public function examQuestions()
+    {
+        return $this->hasMany(ExamQuestion::class, 'question_id')->withTrashed();
+    }
 }

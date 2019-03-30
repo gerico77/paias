@@ -10,7 +10,7 @@ class Subject extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['title','course_id'];
+    protected $fillable = ['title', 'course_id'];
 
     public static function boot()
     {
@@ -31,7 +31,7 @@ class Subject extends Model
 
     public function questions()
     {
-        return $this->hasMany(Question::class, 'subject_id')->withTrashed();
+        return $this->hasMany(Question::class, 'question_id')->withTrashed();
     }
 
     public function setUserIdAttribute($input)

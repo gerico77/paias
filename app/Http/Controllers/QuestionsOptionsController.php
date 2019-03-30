@@ -33,7 +33,7 @@ class QuestionsOptionsController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -44,7 +44,9 @@ class QuestionsOptionsController extends Controller
      */
     public function store(StoreQuestionsOptionsRequest $request)
     {
+        QuestionsOption::create($request->all());
 
+        return back();
     }
 
 
@@ -66,9 +68,13 @@ class QuestionsOptionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateQuestionsOptionsRequest $request, $id)
+    public function update(UpdateQuestionsOptionsRequest $request)
     {
-        
+        $questions_option = QuestionsOption::findOrFail($request->input('questions_option_id'));
+
+        $questions_option->update($request->all());
+       
+        return back();
     }
 
 
@@ -80,13 +86,13 @@ class QuestionsOptionsController extends Controller
      */
     public function show($id)
     {
-        $relations = [
-            'questions' => \App\Question::get()->pluck('question_text', 'id')->prepend('Please select', ''),
-        ];
+        // $relations = [
+        //     'questions' => \App\Question::get()->pluck('question_text', 'id')->prepend('Please select', ''),
+        // ];
 
         $questions_option = QuestionsOption::findOrFail($id);
 
-        return view('questions_options.show', compact('questions_option') + $relations);
+        return view('questions_options.show', compact('questions_option'));
     }
 
 
@@ -96,8 +102,11 @@ class QuestionsOptionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $questions_option = QuestionsOption::findOrFail($request->input('questions_option_id'));
+        $questions_option->delete();
 
+        return back();
     }
 }

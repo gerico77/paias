@@ -8,8 +8,8 @@
       </a>
     </li>
 
-    <li class="nav-item {{ $request->segment(1) == 'tests' ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('tests.index') }}">
+     <li class="nav-item {{ $request->segment(1) == 'tests' ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('exams.index') }}">
             <i class="fas fa-file-alt"></i>
             <span>Exam</span>
         </a>
@@ -106,10 +106,10 @@
         <li class="nav-item {{ $request->segment(1) == 'questions' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('questions.index') }}">
                 <i class="fas fa-fw fa-question-circle"></i>
-                <span>Questions</span></a>
+                <span>Question Bank</span></a>
             </a>
         </li>
-        <li class="nav-item {{ $request->segment(1) == 'questions_options' ? 'active' : '' }}">
+        {{-- <li class="nav-item {{ $request->segment(1) == 'questions_options' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('questions_options.index') }}">
                 <i class="fas fa-question"></i>
                 <span>Questions Options</span></a>

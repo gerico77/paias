@@ -30,6 +30,6 @@ class Department extends Model
 
     public function courses()
     {
-        return $this->hasMany(Course::class, 'course_id')->withTrashed();
+        return $this->hasMany(Course::class, 'department_id')->withTrashed();
     }
 }

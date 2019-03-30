@@ -2,17 +2,24 @@
 
 namespace App;
 
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Hash;
 use Mail;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use SoftDeletes, HasApiTokens, Notifiable;
 
     protected $fillable = ['username', 'fname', 'lname', 'email', 'password', 'remember_token', 'role_id'];
+
+    public function findForPassport($username)
+    {
+        return $this->where('username', $username)->first();
+    }
 
     public static function boot()
     {
@@ -47,6 +54,17 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    public function isStudent()
+    {
+        foreach ($this->role()->get() as $role) {
+            if ($role->id == 3) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function isAdmin()

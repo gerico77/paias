@@ -18,6 +18,7 @@
                         @if(Auth::user()->isAdmin())
                             <th>User</th>
                         @endif
+                            <th>Subject - Exam title</th>
                             <th>Date</th>
                             <th>Result</th>
                             <th style="width: 8%">&nbsp;</th>
@@ -30,6 +31,7 @@
                                 @if(Auth::user()->isAdmin())
                                     <td>{{ $result->user->fname }} {{ $result->user->lname }} ({{ $result->user->email }})</td>
                                 @endif
+                                    <td>{{ $result->exam->subject->title . ' - ' . $result->exam->title }}</td>
                                     <td>{{ $result->created_at }}</td>
                                     <td>{{ $result->result }}/10</td>
                                     <td>

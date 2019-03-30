@@ -7,8 +7,10 @@
 
 require('./bootstrap');
 require('./sb-admin');
-require('./jquery.easing.js');
-require('./jquery.dataTables.js');
+require('jquery.easing');
+require('datatables.net-bs4');
+require('datatables.net-select-bs4');
+require('./main');
 
 window.Vue = require('vue');
 
