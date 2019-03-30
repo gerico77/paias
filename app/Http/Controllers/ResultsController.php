@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreResultsRequest;
 use App\Http\Requests\UpdateResultsRequest;
 
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ResultsExport;
+
 class ResultsController extends Controller
 {
     public function __construct()
@@ -30,6 +33,11 @@ class ResultsController extends Controller
         }
 
         return view('results.index', compact('results'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new ResultsExport(), 'results.xlsx');
     }
 
     /**

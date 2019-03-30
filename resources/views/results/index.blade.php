@@ -10,6 +10,8 @@
                 List
             </div>
             <div class="card-body">
+                <a href="{{ route('results.export') }}" class="btn btn-primary"><i class="fas fa-file-download"></i> Export</a>
+                <hr />
                 <table class="table table-bordered table-striped {{ count($results) > 0 ? 'datatable' : '' }}">
                     <thead>
                         <tr>

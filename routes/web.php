@@ -19,8 +19,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     // User
     Route::resource('users', 'UsersController');
-    Route::get('/export', 'UsersController@export')->name('export');
-    Route::post('/import', 'UsersController@import')->name( 'import');
+    Route::get('users_export', ['uses' => 'UsersController@export', 'as' => 'users.export']);
+    // Route::get('/export', 'UsersController@export')->name('export');
+    Route::post('/import', 'UsersController@import')->name('import');
     Route::post('users_mass_destroy', ['uses' => 'UsersController@massDestroy', 'as' => 'users.mass_destroy']);
     Route::resource('user_actions', 'UserActionsController');
 
@@ -34,11 +35,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Course
     Route::resource('courses', 'CoursesController');
-    Route::get('/export', 'CoursesController@export')->name('export');
+    Route::get('courses_export', ['uses' => 'CoursesController@export', 'as' => 'courses.export']);
     Route::post('courses_mass_destroy', ['uses' => 'CoursesController@massDestroy', 'as' => 'courses.mass_destroy']);
 
     // Result
     Route::resource('results', 'ResultsController');
+    Route::get('results_export', ['uses' => 'ResultsController@export', 'as' => 'results.export']);
     Route::post('results_mass_destroy', ['uses' => 'ResultsController@massDestroy', 'as' => 'results.mass_destroy']);
 
     // Department
