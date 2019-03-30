@@ -66,13 +66,13 @@
         </li>
         <li class="nav-item {{ $request->segment(1) == 'professors' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('professors.index') }}">
-                    <i class="fa fa-users"></i>
+                    <i class="fas fa-user"></i>
                     <span>Professors</span></a>
             </a>
         </li>
         <li class="nav-item {{ $request->segment(1) == 'students' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('students.index') }}">
-                    <i class="fa fa-users"></i>
+                    <i class="fas fa-user"></i>
                     <span>Students</span></a>
             </a>
         </li>

@@ -93,6 +93,22 @@
                     @endif
             </div>
             <div class="form-group">
+                {!! Form::label('correct', 'Circle your confidence level', ['class' => 'control-label']) !!}
+                <br>
+                <button class="btn btn-default mr-3" type="submit" id="my-id">
+                    <i class="fa fa-3x fa-smile-wink" style="font-size:45px;color:#fff31e;text-shadow: 2px 2px 5px black;"></i>
+                </button>
+                <button class="btn btn-default mr-3" type="submit" id="my-id">
+                <i class="fa fa-3x fa-sad-tear" style="font-size:45px;color:#fff31e;text-shadow: 2px 2px 5px black;"></i>
+                </button>
+                <button class="btn btn-default mr-3" type="submit" id="my-id">
+                <i class="fa fa-3x fa-meh-rolling-eyes" style="font-size:45px;color:#fff31e;text-shadow: 2px 2px 5px black;"></i>
+                </button>
+                <button class="btn btn-default mr-3" type="submit" id="my-id">
+                <i class="fa fa-3x fa-grin-beam-sweat" style="font-size:45px;color:#fff31e;text-shadow: 2px 2px 5px black;"></i>
+                </button>
+            </div>
+            <div class="form-group">
                 {!! Form::label('answer_explanation', 'Answer explanation*', ['class' => 'control-label']) !!}
                 {!! Form::textarea('answer_explanation', old('answer_explanation'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                 <small class="form-text text-muted"></small>

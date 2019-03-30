@@ -22,7 +22,7 @@
                     <input type="file" name="import_file"/>
                     <input type="submit" value="Import" class="btn btn-info" /> &nbsp; &nbsp;
                     {{-- <i class="fas fa-file-upload"></i> --}}
-                    <a href="{{ url('export') }}" class="btn btn-primary"><i class="fas fa-file-download"></i> Export</a>
+                    <a href="{{ route('users.export') }}" class="btn btn-primary"><i class="fas fa-file-download"></i> Export</a>
                 </form>
 
                 <hr />

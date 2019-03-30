@@ -17,7 +17,7 @@
                 List
             </div>
             <div class="card-body">
-                <a href="{{ url('export') }}" class="btn btn-primary">Export</a>
+                <a href="{{ route('courses.export') }}" class="btn btn-primary"><i class="fas fa-file-download"></i> Export</a>
                 <br /> <br />
 
                 <hr />
