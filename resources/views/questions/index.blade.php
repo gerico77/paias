@@ -92,6 +92,10 @@
                         {!! Form::radio('questionTypes', 'truefalse', false, array('class' => 'form-check-input', 'id' => 'truefalse')); !!}
                         {!! Form::label('truefalse', 'True or False', ['class' => 'form-check-label']) !!}
                     </div>
+                    <div class="form-check">
+                        {!! Form::radio('questionTypes', 'tier', false, array('class' => 'form-check-input', 'id' => 'tier')); !!}
+                        {!! Form::label('tier', '3 Tier', ['class' => 'form-check-label']) !!}
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -125,6 +129,10 @@
                         break;
                     case "truefalse":
                         document.location.href = "{{ route('questions.create', 'truefalse') }}";
+
+                        break;
+                    case "tier":
+                        document.location.href = "{{ route('questions.create', 'tier') }}";
 
                         break;
                 }

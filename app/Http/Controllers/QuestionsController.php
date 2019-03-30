@@ -12,7 +12,7 @@ class QuestionsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin');
+        $this->middleware('admin' or 'professor');
     }
 
     /**
@@ -37,20 +37,6 @@ class QuestionsController extends Controller
         $relations = [
             'subjects' => \App\Subject::get()->pluck('title', 'id')->prepend('Please select', ''),
         ];
-
-        // switch ($qtype) {
-        //     case "multichoice":
-        //         $correct_options = [
-        //             'option1' => 'Option #1',
-        //             'option2' => 'Option #2',
-        //             'option3' => 'Option #3',
-        //             'option4' => 'Option #4',
-        //             'option5' => 'Option #5'
-        //         ];
-        
-        //         return view('questions.create', compact('correct_options') + $relations);
-        //         break;
-        // }
 
         switch ($qtype) {
             case "multichoice":
@@ -88,6 +74,18 @@ class QuestionsController extends Controller
                 ];
 
                 return view( 'questions.truefalse.create', compact('correct_options') + $relations);
+                break;
+
+            case "tier":
+                $correct_options = [
+                    'option1' => 'Option #1',
+                    'option2' => 'Option #2',
+                    'option3' => 'Option #3',
+                    'option4' => 'Option #4',
+                    'option5' => 'Option #5'
+                ];
+
+                return view( 'questions.tier.create', compact('correct_options') + $relations);
                 break;
         }
     }
@@ -133,12 +131,6 @@ class QuestionsController extends Controller
 
         $question = Question::findOrFail($id);
 
-        // switch ($qtype) {
-        //     case "multichoice":
-        //         return view('questions.multichoice.edit', compact('question') + $relations);
-        //         break;
-        // }
-
         switch ($qtype) {
             case "multichoice":
                 return view('questions.multichoice.edit', compact('question') + $relations);
@@ -154,6 +146,9 @@ class QuestionsController extends Controller
 
             case "truefalse":
                 return view( 'questions.truefalse.edit', compact('question') + $relations);
+                break;
+            case "tier":
+                return view( 'questions.tier.edit', compact('question') + $relations);
                 break;
         }
     }
@@ -187,13 +182,7 @@ class QuestionsController extends Controller
         ];
 
         $question = Question::findOrFail($id);
-        // dd(compact('question') + $relations);
-
-        // switch ($qtype) {
-        //     case "multichoice":
-        //         return view('questions.show', compact('question') + $relations);
-        //         break;
-        // }      
+         
         switch ($qtype) {
             case "multichoice":
                 return view( 'questions.multichoice.show', compact('question') + $relations);
@@ -209,6 +198,10 @@ class QuestionsController extends Controller
 
             case "truefalse":
                 return view( 'questions.truefalse.show', compact('question') + $relations);
+                break;
+
+            case "tier":
+                return view( 'questions.tier.show', compact('question') + $relations);
                 break;
         }     
     }
