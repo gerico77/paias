@@ -36,12 +36,6 @@
                                 <th style="width: 10%">Question #{{ $i }}</th>
                                 <th>{{ $result->question->question_text }}</th>
                             </tr>
-                            @if ($result->question->code_snippet != '')
-                                <tr>
-                                    <td>Code snippet</td>
-                                    <td><div class="code_snippet">{!! $result->question->code_snippet !!}</div></td>
-                                </tr>
-                            @endif
                             <tr>
                                 <td>Options</td>
                                 <td>
