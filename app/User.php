@@ -12,7 +12,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $fillable = ['username', 'fname', 'lname', 'email', 'password', 'remember_token'];
+    protected $fillable = ['username', 'fname', 'lname', 'email', 'password', 'remember_token', 'role_id'];
 
     public static function boot()
     {
@@ -31,8 +31,6 @@ class User extends Authenticatable
             $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
         }
     }
-
-
     /**
      * Set to null if empty
      * @param $input
@@ -61,10 +59,22 @@ class User extends Authenticatable
 
         return false;
     }
-    public function isProfessor()
+
+    public function isDepartmentHead()
     {
         foreach ($this->role()->get() as $role) {
             if ($role->id == 2) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function isProfessor()
+    {
+        foreach ($this->role()->get() as $role) {
+            if ($role->id == 3) {
                 return true;
             }
         }

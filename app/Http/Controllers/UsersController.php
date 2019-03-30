@@ -15,8 +15,7 @@ class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin');
-        $this->middleware('professor');
+        $this->middleware('admin' or 'professor');
     }
 
     /**
@@ -57,7 +56,11 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $relations = [
+            'roles' => \App\Role::get()->pluck('title', 'id')->prepend('Please select', ''),
+        ];
+
+        return view('users.create', $relations);
     }
 
     /**
@@ -82,9 +85,13 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
+        $relations = [
+            'roles' => \App\Role::get()->pluck('title', 'id')->prepend('Please select', ''),
+        ];
+
         $user = User::findOrFail($id);
 
-        return view('users.edit', compact('user'));
+        return view('users.edit', compact('user') + $relations);
     }
 
     /**
@@ -111,9 +118,13 @@ class UsersController extends Controller
      */
     public function show($id)
     {
+        $relations = [
+            'roles' => \App\Role::get()->pluck('title', 'id')->prepend('Please select', ''),
+        ];
+
         $user = User::findOrFail($id);
 
-        return view('users.show', compact('user'));
+        return view('users.show', compact('user') + $relations);
     }
 
 

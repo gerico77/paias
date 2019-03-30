@@ -21,7 +21,8 @@
                     @csrf
                     <input type="file" name="import_file"/>
                     <input type="submit" value="Import" class="btn btn-info" /> &nbsp; &nbsp;
-                    <a href="{{ url('export') }}" class="btn btn-primary">Export</a>
+                    {{-- <i class="fas fa-file-upload"></i> --}}
+                    <a href="{{ url('export') }}" class="btn btn-primary"><i class="fas fa-file-download"></i> Export</a>
                 </form>
 
                 <hr />
@@ -33,6 +34,7 @@
                             <th>First Name</th>
                             <th>LastName</th>
                             <th>Email</th>
+                            <th>Roles</th>
                             <th style="width:20%">&nbsp;</th>
                         </tr>
                     </thead>
@@ -45,6 +47,7 @@
                                     <td>{{ $user->fname }}</td>
                                     <td>{{ $user->lname }}</td>
                                     <td>{{ $user->email }}</td>
+                                    <td>{{ $user->role->title }}</td>
                                     <td>
                                         <a href="{{ route('users.show',[$user->id]) }}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i> View</a>
                                         <a href="{{ route('users.edit',[$user->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i> Edit</a>

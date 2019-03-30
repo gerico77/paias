@@ -33,6 +33,10 @@
                                 <th>User Remember Token</th>
                                 <td>{{ $user->remember_token }}</td>
                             </tr>
+                            <tr>
+                                <th>Role</th>
+                                <td>{{ $user->role->title}}</td>
+                            </tr>
                         </table>
                     </div>
                 </div>

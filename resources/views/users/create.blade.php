@@ -60,7 +60,18 @@
                         </small>
                     @endif
                 </div>
+                <div class="form-group">
+                    {!! Form::label('role_id', 'Role*', ['class' => 'control-label']) !!}
+                    {!! Form::select('role_id', $roles, old('role_id'), ['class' => 'form-control']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('role_id'))
+                        <p class="help-block">
+                            {{ $errors->first('role_id') }}
+                        </p>
+                    @endif
+                </div>
                 {!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
+                <a href="{{ route('users.index') }}" class="btn btn-info">Back to list</a>
             </div>
         </div>
         {!! Form::close() !!}
