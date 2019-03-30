@@ -33,11 +33,11 @@
                 @endif
             </div>
             <div class="form-group">
-                <form class="answerhere" id="answerhere">
+                <form class="add_answerhere" id="add_answerhere">
                     <table class="table table-bordered" id="dynamic_field">
                         <tr>
-                            <td><input type="text" name="answerhere[]" id="answerhere" placeholder="Enter Answer" class="form-control name_list"></td>
-                            <td><button name="add" id="add" class="btn btn-primary">Add More</button></td>
+                            <td><input type="text" name="answerhere[]" id="answerhere" placeholder="Enter Answer" class="form-control answerhere_list"></td>
+                            <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                         </tr>
                     </table>
                 </form>
@@ -54,25 +54,29 @@
             </div>
 
             {!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
+            <a href="{{ route('questions.index') }}" class="btn btn-info">Back to list</a>
         </div>
     </div>
     {!! Form::close() !!}
     </div>
-    <script>
-    $(document).ready(function() {
-        var i = 1;
-        $('#add').click(function() {
-            i++;
-            $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" id="name" placeholder="Enter Answer" class="form-control name_list"></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-
-        });
-
-        $(document).on('click', '.btn_remove', function() {
-            var button_id = $(this).attr("id");
-            $("#row"+button_id+"").remove();
-        });
-        });
-    });
-    </script>
+    
 @stop
+
+@section('javascript')
+    <script>
+        $(document).ready(function() {
+            
+            var i = 1;
+            $('#add').click(function() {
+                i++;
+                $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="answerhere[]" id="answerhere" placeholder="Enter Answer" class="form-control answerhere_list"></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+            });
+
+            $(document).on('click', '.btn_remove', function() {
+                var button_id = $(this).attr("id");
+                $("#row"+button_id+"").remove();
+            });
+        });
+    </script>
+@endsection
 

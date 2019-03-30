@@ -54,6 +54,7 @@
             </div>
 
             {!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
+            <a href="{{ route('questions.index') }}" class="btn btn-info">Back to list</a>
         </div>
     </div>
     {!! Form::close() !!}
