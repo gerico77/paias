@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
                         <i class="fas fa-plus"></i>
                         Add questions from Question Bank
                     </button>
@@ -68,7 +68,7 @@
                 @endif
     
                 <br />
-                <a href="{{ route('exams.index') }}" class="btn btn-default">Back to list</a>
+                <a href="{{ route('exams.index') }}" class="btn btn-default btn-sm">Back to list</a>
             </div>
         </div>  
     </div>

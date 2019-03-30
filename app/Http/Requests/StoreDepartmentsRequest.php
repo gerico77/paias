@@ -25,7 +25,7 @@ class StoreDepartmentsRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'head' => 'required',
+            'user_id' => 'required',
         ];
     }
 }

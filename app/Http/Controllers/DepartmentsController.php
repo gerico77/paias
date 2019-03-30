@@ -33,7 +33,7 @@ class DepartmentsController extends Controller
     public function create()
     {
         $relations = [
-            'users' => \App\User::get()->pluck('full_name', 'id')->prepend('Please select', ''),
+            'users' => \App\User::get()->where('role_id', 2)->pluck('full_name', 'id')->prepend('Please select', ''),
         ];
         return view('departments.create', $relations);
     }

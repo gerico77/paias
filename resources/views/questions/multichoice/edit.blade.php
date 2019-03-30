@@ -150,8 +150,8 @@
                     </div>
                 </div>
 
-                {!! Form::submit('Update', ['class' => 'btn btn-danger']) !!}
-                <a href="{{ route('questions.index') }}" class="btn btn-info">Back to list</a>
+                {!! Form::submit('Update', ['class' => 'btn btn-danger btn-sm']) !!}
+                <a href="{{ route('questions.index') }}" class="btn btn-default btn-sm">Back to list</a>
             </div>
         </div>  
         {!! Form::close() !!}

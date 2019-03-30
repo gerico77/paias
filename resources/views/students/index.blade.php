@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <h3 class="page-title">Students</h3>
             <p>
-                <a href="{{ route('students.create') }}" class="btn btn-primary">
+                <a href="{{ route('students.create') }}" class="btn btn-primary btn-sm">
                     <i class="fas fa-plus"></i>
                     Add New
                 </a>
@@ -24,8 +24,6 @@
                     {{-- <i class="fas fa-file-upload"></i> --}}
                     <a href="{{ url('export') }}" class="btn btn-primary"><i class="fas fa-file-download"></i> Export</a>
                 </form>
-
-                <hr />
                 <table class="table table-bordered table-striped {{ count($users) > 0 ? 'datatable' : '' }} dt-select">
                     <thead>
                         <tr>

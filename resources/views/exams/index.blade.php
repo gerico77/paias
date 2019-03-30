@@ -11,7 +11,7 @@
             </div>
             <div class="card-body">
                 <p>
-                    <a href="{{ route('exams.create') }}" class="btn btn-primary">
+                    <a href="{{ route('exams.create') }}" class="btn btn-primary btn-sm">
                         <i class="fas fa-plus"></i>
                         Add new
                     </a>

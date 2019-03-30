@@ -85,7 +85,7 @@
                 </div>
                 
 
-                {!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
+                {!! Form::submit('Save', ['class' => 'btn btn-success btn-sm']) !!}
             </div>
         </div>
 

@@ -53,8 +53,8 @@
                 @endif
             </div>
 
-            {!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
-            <a href="{{ route('questions.index') }}" class="btn btn-info">Back to list</a>
+            {!! Form::submit('Save', ['class' => 'btn btn-success btn-sm']) !!}
+            <a href="{{ route('questions.index') }}" class="btn btn-default btn-sm">Back to list</a>
         </div>
     </div>
     {!! Form::close() !!}
@@ -69,7 +69,7 @@
             var i = 1;
             $('#add').click(function() {
                 i++;
-                $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="answerhere[]" id="answerhere" placeholder="Enter Answer" class="form-control answerhere_list"></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+                $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="answerhere[]" id="answerhere" placeholder="Enter Answer" class="form-control answerhere_list"></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn-sm btn_remove">X</button></td></tr>');
             });
 
             $(document).on('click', '.btn_remove', function() {

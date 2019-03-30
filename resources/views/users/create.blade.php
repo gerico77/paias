@@ -16,7 +16,7 @@
                     <small class="form-text text-muted"></small>
                     @if($errors->has('username'))
                         <small class="form-text text-muted">
-                            {{ $errors->first('Username') }}
+                            {{ $errors->first('username') }}
                         </small>
                     @endif
                 </div>
@@ -63,15 +63,15 @@
                 <div class="form-group">
                     {!! Form::label('role_id', 'Role*', ['class' => 'control-label']) !!}
                     {!! Form::select('role_id', $roles, old('role_id'), ['class' => 'form-control']) !!}
-                    <p class="help-block"></p>
+                    <small class="form-text text-muted"></small>
                     @if($errors->has('role_id'))
-                        <p class="help-block">
+                        <small class="form-text text-muted">
                             {{ $errors->first('role_id') }}
-                        </p>
+                        </small>
                     @endif
                 </div>
-                {!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
-                <a href="{{ route('users.index') }}" class="btn btn-info">Back to list</a>
+                {!! Form::submit('Save', ['class' => 'btn btn-success btn-sm']) !!}
+                <a href="{{ route('users.index') }}" class="btn btn-default btn-sm">Back to list</a>
             </div>
         </div>
         {!! Form::close() !!}

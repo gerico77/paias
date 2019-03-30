@@ -5,7 +5,7 @@
         <h3 class="page-title">Questions</h3>
     
         <p>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#selectQuestionType">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#selectQuestionType">
                 <i class="fas fa-plus"></i>
                 Add New
             </button>              
@@ -98,8 +98,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" id="btnProceed" class="btn btn-primary">Proceed</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                    <button type="button" id="btnProceed" class="btn btn-primary btn-sm">Proceed</button>
                 </div>
             </div>
         </div>

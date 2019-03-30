@@ -25,7 +25,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Roles
     Route::resource('roles', 'RolesController');
-    Route::post('roles_mass_destroy', ['uses' => 'RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
 
     // Enrolls
     Route::resource('enrolls', 'EnrollsController');

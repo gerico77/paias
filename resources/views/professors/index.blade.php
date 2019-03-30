@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <h3 class="page-title">Professors</h3>
             <p>
-                <a href="{{ route('professors.create') }}" class="btn btn-primary">
+                <a href="{{ route('professors.create') }}" class="btn btn-primary btn-sm">
                     <i class="fas fa-plus"></i>
                     Add New
                 </a>
@@ -20,12 +20,10 @@
                 <form action="{{ url('import') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="file" name="import_file"/>
-                    <input type="submit" value="Import" class="btn btn-info" /> &nbsp; &nbsp;
+                    <input type="submit" value="Import" class="btn btn-info btn-sm" /> &nbsp; &nbsp;
                     {{-- <i class="fas fa-file-upload"></i> --}}
-                    <a href="{{ url('export') }}" class="btn btn-primary"><i class="fas fa-file-download"></i> Export</a>
+                    <a href="{{ url('export') }}" class="btn btn-primary btn-sm"><i class="fas fa-file-download"></i> Export</a>
                 </form>
-
-                <hr />
                 <table class="table table-bordered table-striped {{ count($users) > 0 ? 'datatable' : '' }} dt-select">
                     <thead>
                         <tr>

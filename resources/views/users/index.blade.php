@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <h3 class="page-title">Users</h3>
             <p>
-                <a href="{{ route('users.create') }}" class="btn btn-primary">
+                <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm">
                     <i class="fas fa-plus"></i>
                     Add New
                 </a>
@@ -20,9 +20,9 @@
                 <form action="{{ url('import') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="file" name="import_file"/>
-                    <input type="submit" value="Import" class="btn btn-info" /> &nbsp; &nbsp;
+                    <input type="submit" value="Import" class="btn btn-info btn-sm" /> &nbsp; &nbsp;
                     {{-- <i class="fas fa-file-upload"></i> --}}
-                    <a href="{{ route('users.export') }}" class="btn btn-primary"><i class="fas fa-file-download"></i> Export</a>
+                    <a href="{{ route('users.export') }}" class="btn btn-primary btn-sm"><i class="fas fa-file-download"></i> Export</a>
                 </form>
 
                 <hr />
@@ -48,7 +48,7 @@
                                     <td>{{ $user->lname }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->role->title }}</td>
-                                    <td>
+                                    <td class="text-center">
                                         <a href="{{ route('users.show',[$user->id]) }}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i> View</a>
                                         <a href="{{ route('users.edit',[$user->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i> Edit</a>
                                         {!! Form::open(array(

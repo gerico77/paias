@@ -5,7 +5,7 @@
         <h3 class="page-title">Questions Options</h3>
 
         <p>
-            <a href="{{ route('questions_options.create') }}" class="btn btn-primary">
+            <a href="{{ route('questions_options.create') }}" class="btn btn-primary btn-sm">
                 <i class="fas fa-plus"></i>
                 Add New
             </a>

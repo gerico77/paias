@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <h3 class="page-title">Enrolls</h3>
             <p>
-                <a href="{{ route('enrolls.create') }}" class="btn btn-primary">
+                <a href="{{ route('enrolls.create') }}" class="btn btn-primary btn-sm">
                     <i class="fas fa-plus"></i>
                     Add New
                 </a>
@@ -34,7 +34,7 @@
                                     <td>{{ $enroll->user->fname . ' ' . $enroll->user->lname }}</td>
                                     <td>{{ $enroll->subject->title }}</td>
                                     <td>{{ $enroll->user->role->title }}</td>
-                                    <td>
+                                    <td class="text-center">
                                         <a href="{{ route('enrolls.show',[$enroll->id]) }}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i> View</a>
                                         <a href="{{ route('enrolls.edit',[$enroll->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i> Edit</a>
                                         {!! Form::open(array(

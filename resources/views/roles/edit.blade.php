@@ -21,7 +21,7 @@
                         </p>
                     @endif
                 </div>
-                {!! Form::submit(trans('Update'), ['class' => 'btn btn-success']) !!}
+                {!! Form::submit(trans('Update'), ['class' => 'btn btn-success btn-sm']) !!}
             </div>
         </div>
 

@@ -5,7 +5,7 @@
         <h3 class="page-title">Courses</h3>
     
         <p>
-            <a href="{{ route('courses.create') }}" class="btn btn-primary">
+            <a href="{{ route('courses.create') }}" class="btn btn-primary btn-sm">
                 <i class="fas fa-plus"></i>
                 Add new
             </a>
@@ -17,10 +17,9 @@
                 List
             </div>
             <div class="card-body">
-                <a href="{{ route('courses.export') }}" class="btn btn-primary"><i class="fas fa-file-download"></i> Export</a>
+                <a href="{{ route('courses.export') }}" class="btn btn-primary btn-sm"><i class="fas fa-file-download"></i> Export</a>
                 <br /> <br />
 
-                <hr />
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped {{ count($courses) > 0 ? 'datatable' : '' }} dt-select">
                         <thead>
@@ -39,7 +38,7 @@
                                         <td>{{ $course->department->name}}</td>
                                         <td>{{ $course->title}}</td>
                                         <td>{{ $course->code}}</td>
-                                        <td>
+                                        <td class="text-center">
                                             <a href="{{ route('courses.show',[$course->id]) }}" class="btn btn-sm btn-success">
                                                 <i class="fas fa-eye"></i>
                                                 View

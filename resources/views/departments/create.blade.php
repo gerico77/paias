@@ -33,7 +33,7 @@
                 @endif
             </div>
             <div class="form-group">
-                {!! Form::label('details', 'Details*', ['class' => 'control-label']) !!}
+                {!! Form::label('details', 'Details', ['class' => 'control-label']) !!}
                 {!! Form::text('details', old('details'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                 <small class="form-text text-muted"></small>
                 @if($errors->has('details'))
@@ -43,8 +43,8 @@
                 @endif
             </div>
 
-            {!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
-            <a href="{{ route('departments.index') }}" class="btn btn-info">Back to list</a>
+            {!! Form::submit('Save', ['class' => 'btn btn-success btn-sm']) !!}
+            <a href="{{ route('departments.index') }}" class="btn btn-default btn-sm">Back to list</a>
         </div>
     </div>
 

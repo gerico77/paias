@@ -79,12 +79,12 @@
         @endif
 
         @if(Auth::user()->isProfessor() || Auth::user()->isAdmin() || Auth::user()->isDepartmentHead())
-        <li class="nav-item {{ $request->segment(1) == 'tasks' ? 'active' : '' }}">
+        {{-- <li class="nav-item {{ $request->segment(1) == 'tasks' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('tasks.index') }}">
                     <i class="fas fa-tasks"></i>
                     <span>Tasks</span></a>
             </a>
-        </li>
+        </li> --}}
         {{-- <li class="nav-item {{ $request->segment(1) == 'download' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('download.viewfile') }}">
                     <i class="fas fa-tasks"></i>
@@ -114,6 +114,6 @@
                 <i class="fas fa-question"></i>
                 <span>Questions Options</span></a>
             </a>
-        </li>
+        </li> --}}
         @endif
 </ul>

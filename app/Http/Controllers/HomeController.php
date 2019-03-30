@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $enrolls = Enroll::all()->load('user');
+        $enrolls = Enroll::distinct()->select('subject_id')->get();
 
         if (!Auth::user()->isAdmin()) {
             $enrolls = $enrolls->where('user_id', '=', Auth::user()->id);

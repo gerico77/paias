@@ -38,7 +38,7 @@
                 </div>
             <?php $i++; ?>
             @endforeach
-            {!! Form::submit(trans('Submit Quiz'), ['class' => 'btn btn-success']) !!}
+            {!! Form::submit(trans('Submit Quiz'), ['class' => 'btn btn-success btn-sm']) !!}
 
         @endif
 

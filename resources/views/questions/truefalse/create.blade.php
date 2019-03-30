@@ -55,8 +55,8 @@
                 @endif
             </div>
 
-            {!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
-            <a href="{{ route('questions.index') }}" class="btn btn-info">Back to list</a>
+            {!! Form::submit('Save', ['class' => 'btn btn-success btn-sm']) !!}
+            <a href="{{ route('questions.index') }}" class="btn btn-default btn-sm">Back to list</a>
         </div>
     </div>
     {!! Form::close() !!}

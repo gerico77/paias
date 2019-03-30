@@ -5,7 +5,7 @@
         <h3 class="page-title">Subjects</h3>
     
         <p>
-            <a href="{{ route('subjects.create') }}" class="btn btn-primary">
+            <a href="{{ route('subjects.create') }}" class="btn btn-primary btn-sm">
                 <i class="fas fa-plus"></i>
                 Add new
             </a>

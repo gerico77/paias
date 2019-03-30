@@ -5,7 +5,7 @@
         <h3 class="page-title">Departments</h3>
     
         <p>
-            <a href="{{ route('departments.create') }}" class="btn btn-primary">
+            <a href="{{ route('departments.create') }}" class="btn btn-primary btn-sm">
                 <i class="fas fa-plus"></i>
                 Add new
             </a>
@@ -33,7 +33,7 @@
                                         <td></td>
                                         <td>{{ $department->name}}</td>
                                         <td>{{ $department->user->fname . ' ' . $department->user->lname }}</td>
-                                        <td>
+                                        <td class="text-center">
                                             <a href="{{ route('departments.show',[$department->id]) }}" class="btn btn-sm btn-success">
                                                 <i class="fas fa-eye"></i>
                                                 View

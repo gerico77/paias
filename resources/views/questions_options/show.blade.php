@@ -21,7 +21,7 @@
                 </div>
             </div>
             <br />  
-            <a href="{{ route('questions_options.index') }}" class="btn btn-info btn-sm">Back to list</a>
+            <a href="{{ route('questions_options.index') }}" class="btn btn-default btn-sm">Back to list</a>
         </div>
     </div>
     </div>

@@ -71,8 +71,8 @@
                     @endif
                 </div>
 
-                {!! Form::submit('Update', ['class' => 'btn btn-success']) !!}
-                <a href="{{ route('students.index') }}" class="btn btn-info">Back to list</a>
+                {!! Form::submit('Update', ['class' => 'btn btn-success btn-sm']) !!}
+                <a href="{{ route('students.index') }}" class="btn btn-default btn-sm">Back to list</a>
             </div>
         </div>
         {!! Form::close() !!}

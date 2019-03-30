@@ -85,7 +85,7 @@
                     </div>
                 </div>
                 
-                {!! Form::submit('Update', ['class' => 'btn btn-danger']) !!}
+                {!! Form::submit('Update', ['class' => 'btn btn-danger btn-sm']) !!}
             </div>
         </div>  
         {!! Form::close() !!}
