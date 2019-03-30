@@ -54,9 +54,9 @@
                         <a class="d-block small mt-3" href="{{ route('password.request') }}">
                             {{ __('Forgot Your Password?') }}
                         </a>
-                        <a class="d-block small mt-3" href="{{ route('register') }}">
+                        {{-- <a class="d-block small mt-3" href="{{ route('register') }}">
                             {{ __('Register') }}
-                        </a>
+                        </a> --}}
                     @endif
                 </div>
                     

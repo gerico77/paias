@@ -55,10 +55,30 @@
                     <span>Departments</span></a>
             </a>
         </li>
-
         @endif
 
-        @if(Auth::user()->isProfessor() || Auth::user()->isAdmin())
+        @if(Auth::user()->isDepartmentHead() || Auth::user()->isAdmin())
+        <li class="nav-item {{ $request->segment(1) == 'courses' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('courses.index') }}">
+                    <i class="fas fa-book-open"></i>
+                    <span>Courses</span></a>
+            </a>
+        </li>
+        <li class="nav-item {{ $request->segment(1) == 'professors' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('professors.index') }}">
+                    <i class="fa fa-users"></i>
+                    <span>Professors</span></a>
+            </a>
+        </li>
+        <li class="nav-item {{ $request->segment(1) == 'students' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('students.index') }}">
+                    <i class="fa fa-users"></i>
+                    <span>Students</span></a>
+            </a>
+        </li>
+        @endif
+
+        @if(Auth::user()->isProfessor() || Auth::user()->isAdmin() || Auth::user()->isDepartmentHead())
         <li class="nav-item {{ $request->segment(1) == 'tasks' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('tasks.index') }}">
                     <i class="fas fa-tasks"></i>
@@ -75,12 +95,6 @@
             <a class="nav-link" href="{{ route('enrolls.index') }}">
                     <i class="fas fa-user-plus"></i>
                     <span>Enroll</span></a>
-            </a>
-        </li>
-        <li class="nav-item {{ $request->segment(1) == 'courses' ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('courses.index') }}">
-                    <i class="fas fa-book-open"></i>
-                    <span>Courses</span></a>
             </a>
         </li>
         <li class="nav-item {{ $request->segment(1) == 'subjects' ? 'active' : '' }}">

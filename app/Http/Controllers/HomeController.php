@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Course;
 use Illuminate\Http\Request;
+use App\Enroll;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -25,6 +27,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $enrolls = Enroll::all()->load('user');
+
+        if (!Auth::user()->isAdmin()) {
+            $enrolls = $enrolls->where('user_id', '=', Auth::user()->id);
+        }
+
+        return view('home', compact('enrolls'));
     }
 }
