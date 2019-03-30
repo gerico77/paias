@@ -34,6 +34,16 @@ class Subject extends Model
         return $this->hasMany(Question::class, 'subject_id')->withTrashed();
     }
 
+    public function setUserIdAttribute($input)
+    {
+        $this->attributes['user_id'] = $input ? $input : null;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id')->withTrashed();
+    }
+
     public function tests()
     {
         return $this->hasMany(Test::class, 'subject_id')->withTrashed();

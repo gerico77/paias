@@ -11,7 +11,7 @@ class SubjectsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin');
+        $this->middleware('admin' or 'professor');
     }
     /**
      * Display a listing of the resource.
