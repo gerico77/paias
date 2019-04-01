@@ -1,9 +1,4 @@
-<p>
-    <a href="{{ route('questions.index') }}" class="btn btn-default btn-sm">
-        Go to Question Bank
-    </a>
-</p>
-<div class="table-responsive mt-n5">
+<div class="table-responsive">
     <table class="table table-bordered table-striped {{ count($questions) > 0 ? 'datatable' : '' }} dt-select">
         <thead>
             <th style="text-align:center; width:5%"><input type="checkbox" id="select-all" /></th>

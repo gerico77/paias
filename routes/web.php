@@ -55,6 +55,9 @@ Route::group(['middleware' => 'auth'], function () {
     // Results
     Route::get('results_export', ['uses' => 'ResultsController@export', 'as' => 'results.export']);
 
+    // Item Analysis
+    Route::resource('item_analysis', 'ItemAnalysisController');
+
     // Departments
     Route::resource('departments', 'DepartmentsController');
     Route::post('departments_mass_destroy', ['uses' => 'DepartmentsController@massDestroy', 'as' => 'departments.mass_destroy']);

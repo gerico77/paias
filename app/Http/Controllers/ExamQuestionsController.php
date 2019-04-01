@@ -99,7 +99,7 @@ class ExamQuestionsController extends Controller
             $questions = Question::whereIn('id', $request->input('ids'))->get();
 
             foreach ($questions as $question) {
-                if (!ExamQuestion::where('question_id', '=', $question->id)->exists()) {
+                if (!ExamQuestion::where('question_id', $question->id)->where('exam_id', $request->input('exam_id'))->exists()) {
                     ExamQuestion::create([
                         'exam_id' => $request->input('exam_id'),
                         'question_id' => $question->id

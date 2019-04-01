@@ -1,4 +1,4 @@
-@extends('layouts.webview')
+@extends('layouts.app')
 
 @section('content')
     <div class="container-fluid">
@@ -14,12 +14,7 @@
                         Add new
                     </a>
                 </div>
-                @endif
-                <div class="card-header">
-                    <a href="{{ route('logout') }}" class="btn btn-primary btn-sm">
-                        Log-out
-                    </a>
-                </div>
+            @endif
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped {{ !Auth::user()->isStudent() ? (count($exams) > 0 ? 'datatable' : '') : '' }} dt-select">
@@ -28,11 +23,8 @@
                                 <th style="text-align:center"><input type="checkbox" id="select-all" /></th>
                             @endif
                             <th>Exam Title</th>
-                            @if(!Auth::user()->isStudent())
-                                <th>Subject</th>
-                                <th>Professor</th>
-                                <th>Start of Exam</th>
-                            @endif
+                            <th>Subject</th>
+                            <th>Start of Exam</th>
                             <th>&nbsp;</th>
                         </thead>
                         
@@ -45,17 +37,20 @@
                                                 <td></td>
                                             @endif
                                             <td>{!! $exam->title !!}</td>
-                                            @if(!Auth::user()->isStudent())
-                                                <td>{{ $exam->subject->title }}</td>
-                                                <td>{{ $exam->user->fname . ' ' . $exam->user->lname }}</td>
-                                                <td>{{ $exam->start_datetime }}</td>
-                                            @endif
+                                            <td>{{ $exam->subject->title }}</td>
+                                            <td>{{ $exam->start_datetime }}</td>
                                             <td style="text-align:center">
                                                 @if(!Auth::user()->isStudent())
                                                     @if (count($exam_questions->where('exam_id', $exam->id)) > 0)
                                                         <a href="{{ route('tests.index', ['exam_id' => $exam->id, 'user_id' => Auth::id() ]) }}" class="btn btn-sm btn-secondary">
                                                             <i class="fas fa-search"></i>
                                                             Preview
+                                                        </a>
+                                                    @endif
+                                                    @if (count($exam->tests))
+                                                        <a href="{{ route('item_analysis.show', ['id' => $exam->id]) }}" class="btn btn-sm btn-warning">
+                                                            <i class="fas fa-file-alt"></i>
+                                                            Item Analysis
                                                         </a>
                                                     @endif
                                                     <a href="{{ route('exams.show', ['id' => $exam->id]) }}" class="btn btn-sm btn-success">

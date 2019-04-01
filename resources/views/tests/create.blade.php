@@ -9,21 +9,27 @@
         {!! Form::hidden('user_id', $request->segment(3)) !!}
 
         @if(count($exam_questions) > 0)
-            <?php $i = 1; ?>
+            @php
+                $question_no = 1;
+            @endphp
             @foreach($exam_questions as $exam_question)
                 <div class="card mb-3">
                     <div class="form-group">
                         <div class="form-group">
                             <div class="card-header">
-                                <strong>Question {{ $i }}</strong>
+                                <strong>Question {{ $question_no }}</strong>
                             </div>
                             <div class="card-body">
                                 <p>
                                     <strong>{!! nl2br($exam_question->question->question_text) !!}</strong>
                                 </p>
 
-                                <input type="hidden" name="questions[{{ $i }}]" value="{{ $exam_question->question->id }}">
+                                <input type="hidden" name="questions[{{ $question_no }}]" value="{{ $exam_question->question->id }}">
                                 
+                                @php
+                                    $i = 0;
+                                    $options = array('A. ', 'B. ', 'C. ', 'D. ', 'E. ');
+                                @endphp
                                 @foreach($exam_question->question->options as $option)
                                     <br>
                                     <label class="radio-inline">
@@ -31,14 +37,19 @@
                                             type="radio"
                                             name="answers[{{ $exam_question->question->id }}]"
                                             value="{{ $option->id }}">
-                                        {{ $option->option }}
+                                        {{ $options[$i] }} {{ $option->option }}
                                     </label>
+                                    @php
+                                        $i++;
+                                    @endphp
                                 @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php $i++; ?>
+                @php
+                    $question_no++;
+                @endphp
             @endforeach
             {!! Form::submit(trans('Submit Quiz'), ['class' => 'btn btn-success']) !!}
 
