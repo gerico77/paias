@@ -18,7 +18,7 @@ class ResultsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin')->except('index', 'show');
+        $this->middleware('admin' or 'department_head' or 'professor')->except('index', 'show');
     }
 
     /**

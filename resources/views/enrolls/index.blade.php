@@ -36,14 +36,16 @@
                                     <td>{{ $enroll->user->role->title }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('enrolls.show',[$enroll->id]) }}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i> View</a>
-                                        <a href="{{ route('enrolls.edit',[$enroll->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i> Edit</a>
-                                        {!! Form::open(array(
-                                            'style' => 'display: inline-block;',
-                                            'method' => 'DELETE',
-                                            'onsubmit' => "return confirm('".trans("Are you sure?")."');",
-                                            'route' => ['enrolls.destroy', $enroll->id])) !!}
-                                        {!! Form::button('<i class="fas fa-trash-alt"></i> Delete', array('type' => 'submit', 'class' => 'btn btn-sm btn-danger')) !!}
-                                        {!! Form::close() !!}
+                                        @if(!Auth::user()->isDepartmentHead() && !Auth::user()->isProfessor())
+                                            <a href="{{ route('enrolls.edit',[$enroll->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i> Edit</a>
+                                            {!! Form::open(array(
+                                                'style' => 'display: inline-block;',
+                                                'method' => 'DELETE',
+                                                'onsubmit' => "return confirm('".trans("Are you sure?")."');",
+                                                'route' => ['enrolls.destroy', $enroll->id])) !!}
+                                            {!! Form::button('<i class="fas fa-trash-alt"></i> Delete', array('type' => 'submit', 'class' => 'btn btn-sm btn-danger')) !!}
+                                            {!! Form::close() !!}
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -60,7 +62,9 @@
 @stop
 
 @section('javascript')
-    <script>
-        window.route_mass_crud_entries_destroy = '{{ route('enrolls.mass_destroy') }}';
-    </script>
+    @if(!Auth::user()->isProfessor())
+        <script>
+            window.route_mass_crud_entries_destroy = '{{ route('enrolls.mass_destroy') }}';
+        </script>
+    @endif
 @endsection

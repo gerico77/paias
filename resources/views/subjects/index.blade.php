@@ -33,11 +33,12 @@
                                         <td></td>
                                         <td>{{ $subject->course->code}}</td>
                                         <td>{{ $subject->title}}</td>
-                                        <td>
+                                        <td class="text-center">
                                             <a href="{{ route('subjects.show',[$subject->id]) }}" class="btn btn-sm btn-success">
                                                 <i class="fas fa-eye"></i>
                                                 View
                                             </a>
+                                            @if(!Auth::user()->isProfessor())
                                             <a href="{{ route('subjects.edit',[$subject->id]) }}" class="btn btn-sm btn-info">
                                                 <i class="fas fa-edit"></i>
                                                 Edit
@@ -49,6 +50,7 @@
                                                 'route' => ['subjects.destroy', $subject->id])) !!}
                                             {!! Form::button('<i class="fas fa-trash-alt"></i> Delete', array('type' => 'submit', 'class' => 'btn btn-sm btn-danger')) !!}
                                             {!! Form::close() !!}
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
@@ -66,7 +68,9 @@
 @stop
 
 @section('javascript')
-    <script>
-        window.route_mass_crud_entries_destroy = '{{ route('subjects.mass_destroy') }}';
-    </script>
+    @if(!Auth::user()->isProfessor())
+        <script>
+            window.route_mass_crud_entries_destroy = '{{ route('subjects.mass_destroy') }}';
+        </script>
+    @endif
 @endsection

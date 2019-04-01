@@ -11,11 +11,12 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
 use App\Imports\UsersImport;
 
+
 class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin' or 'professor');
+        $this->middleware('admin' or 'professor' or 'department_head');
     }
 
     /**

@@ -19,7 +19,6 @@ class UsersImport implements ToModel
             'fname' => $row[2],
             'lname' => $row[3],
             'email' => $row[4],
-            'password' => '',
         ]);
     }
 }

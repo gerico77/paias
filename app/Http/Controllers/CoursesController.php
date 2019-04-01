@@ -14,7 +14,7 @@ class CoursesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin' or 'professor');
+        $this->middleware('admin' or 'professor' or 'department_head');
     }
     /**
      * Display a listing of the resource.

@@ -11,7 +11,7 @@ class UserActionsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin' or 'professor');
+        $this->middleware('admin');
     }
 
     /**

@@ -13,7 +13,7 @@ class EnrollsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin' or 'professor');
+        $this->middleware('admin' or 'professor' or 'department_head');
     }
 
     /**
@@ -28,6 +28,15 @@ class EnrollsController extends Controller
         if (!Auth::user()->isAdmin()) {
             $enrolls = $enrolls->whereIn('subject_id', Auth::user()->enrolls->pluck('subject_id'));
         }
+
+        // if (!Auth::user()->isAdmin()) {
+        //     $course = Course::distinct()->select('subject_id')->where('department_id', Auth::id());
+        //     $enrolls = $enrolls->whereIn('id', Auth::user()->enrolls->pluck('subject_id'));
+        // } elseif (Auth::user()->isProfessor()) {
+        //     $course = Course::distinct()->select('id')->where('department_id', Auth::id());
+        //     $subjects = Subject::distinct()->select('id')->whereIn('course_id', $departments->pluck('id'))->get();
+        //     $enrolls = $enrolls->whereIn('subject_id', $subjects->pluck('id'));
+        // }
 
         return view('enrolls.index', compact('enrolls'));
     }
@@ -61,7 +70,6 @@ class EnrollsController extends Controller
 
         return redirect()->route('enrolls.index');
     }
-
 
     /**
      * Show the form for editing Enroll.

@@ -8,12 +8,14 @@ use App\Http\Requests\UpdateSubjectsRequest;
 use App\Subject;
 use Illuminate\Support\Facades\Auth;
 use App\Enroll;
+use App\Course;
+use App\Department;
 
 class SubjectsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin' or 'professor');
+        $this->middleware('admin' or 'professor' or 'department_head');
     }
     /**
      * Display a listing of the resource.
@@ -22,12 +24,15 @@ class SubjectsController extends Controller
      */
     public function index()
     {   
-        $enrolls = Enroll::distinct()->select('subject_id')->where('user_id', Auth::id())->get();
-
         $subjects = Subject::all();
 
-        if (!Auth::user()->isAdmin()) {
+        if (Auth::user()->isProfessor()) {
+            $enrolls = Enroll::distinct()->select('subject_id')->where('user_id', Auth::id())->get();
             $subjects = $subjects->whereIn('id', $enrolls->pluck('subject_id'));
+        } elseif (Auth::user()->isDepartmentHead()) {
+            $departments = Department::distinct()->select('id')->where('user_id', Auth::id());
+            $courses = Course::distinct()->select('id')->whereIn('department_id', $departments->pluck('id'))->get();
+            $subjects = $subjects->whereIn('course_id', $courses->pluck('id'));
         }
 
         return view('subjects.index', compact('subjects'));
