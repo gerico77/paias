@@ -3,12 +3,18 @@
 @section('content')
 
     <div class="container-fluid">
-        <h3 class="page-title">{{ $exam->subject->title . ' - ' . $exam->title }}</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('exams.index') }}">Exams</a>
+            </li>
+            <li class="breadcrumb-item active">View</li>
+        </ol>
 
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fas fa-eye"></i>
-                View
+                <h4>
+                    {{ $exam->subject->title . ' - ' . $exam->title }}
+                </h4>
             </div>
 
             <div class="card-body">    
@@ -40,11 +46,11 @@
 
                 <br />
                 @if (count($exam_questions) > 0)
-                    <table class="table table-hover">
+                    <table class="table table-bordered table-hover">
                         @foreach ($exam_questions as $exam_question)
                             <tbody>
                                 <tr>
-                                    <td class="text-center">{{ $exam_question->question->question_text }}</td>
+                                    <td>{{ $exam_question->question->question_text }}</td>
                                     <td class="text-center">
                                         {!! Form::open(array(
                                             'style' => 'display: inline-block;',
@@ -68,7 +74,7 @@
                 @endif
     
                 <br />
-                <a href="{{ route('exams.index') }}" class="btn btn-default btn-sm">Back to list</a>
+                <a href="{{ route('exams.index') }}" class="btn btn-default">Back to list</a>
             </div>
         </div>  
     </div>

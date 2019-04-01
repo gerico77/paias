@@ -38,6 +38,25 @@ class User extends Authenticatable
             $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
         }
     }
+
+    public function getFullNameAttribute() {
+        return $this->fname . ' ' . $this->lname;
+    }
+
+    /**
+     * Set to null if empty
+     * @param $input
+     */
+    public function setEnrollIdAttribute($input)
+    {
+        $this->attributes['enroll_id'] = $input ? $input : null;
+    }
+
+    public function enrolls()
+    {
+        return $this->hasMany(Enroll::class, 'user_id');
+    }
+
     /**
      * Set to null if empty
      * @param $input
@@ -45,10 +64,6 @@ class User extends Authenticatable
     public function setRoleIdAttribute($input)
     {
         $this->attributes['role_id'] = $input ? $input : null;
-    }
-
-    public function getFullNameAttribute() {
-        return $this->fname . ' ' . $this->lname;
     }
 
     public function role()
@@ -59,7 +74,7 @@ class User extends Authenticatable
     public function isStudent()
     {
         foreach ($this->role()->get() as $role) {
-            if ($role->id == 3) {
+            if ($role->id == 4) {
                 return true;
             }
         }

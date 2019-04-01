@@ -31,17 +31,12 @@ class Subject extends Model
 
     public function questions()
     {
-        return $this->hasMany(Question::class, 'question_id')->withTrashed();
+        return $this->hasMany(Question::class, 'subject_id')->withTrashed();
     }
 
-    public function setUserIdAttribute($input)
+    public function enroll()
     {
-        $this->attributes['user_id'] = $input ? $input : null;
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id')->withTrashed();
+        return $this->hasMany(Enroll::class, 'subject_id')->withTrashed();
     }
 
     public function tests()

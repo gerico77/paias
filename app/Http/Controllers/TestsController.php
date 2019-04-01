@@ -21,6 +21,11 @@ class TestsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function __construct()
+    // {
+    //     $this->middleware('test')->except('index');
+    // }
+
     public function index($exam_id, $user_id)
     {
         $exam_questions = ExamQuestion::inRandomOrder()->get()->where('exam_id', $exam_id);

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Enroll;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreEnrollsRequest;
 use App\Http\Requests\UpdateEnrollsRequest;
+use Illuminate\Foundation\Auth\User;
 
 class EnrollsController extends Controller
 {
@@ -23,6 +25,10 @@ class EnrollsController extends Controller
     {
         $enrolls = Enroll::all();
 
+        if (!Auth::user()->isAdmin()) {
+            $enrolls = $enrolls->whereIn('subject_id', Auth::user()->enrolls->pluck('subject_id'));
+        }
+
         return view('enrolls.index', compact('enrolls'));
     }
 
@@ -33,8 +39,10 @@ class EnrollsController extends Controller
      */
     public function create()
     {
+        $enrolls = Enroll::distinct()->select('subject_id')->where('user_id', Auth::id())->get();
+        
         $relations = [
-            'users' => \App\User::get()->pluck('full_name', 'id')->prepend('Please select', ''),
+            'users' => \App\User::get()->sortBy('full_name')->pluck('full_name', 'id')->prepend('Please select', ''),
             'subjects' => \App\Subject::get()->pluck('title', 'id')->prepend('Please select', ''),
         ];
 
@@ -63,9 +71,11 @@ class EnrollsController extends Controller
      */
     public function edit($id)
     {
+        $enrolls = Enroll::distinct()->select('subject_id')->where('user_id', Auth::id())->get();
+
         $relations = [
-            'users' => \App\User::get()->pluck('username', 'fname', 'lname', 'id')->prepend('Please select', ''),
-            'subjects' => \App\Subject::get()->pluck('title', 'id')->prepend('Please select', ''),
+            'users' => \App\User::get()->sortBy('full_name')->pluck('full_name', 'id')->prepend('Please select', ''),
+            'subjects' => \App\Subject::get()->whereIn('id', $enrolls->pluck('subject_id'))->pluck('title', 'id')->prepend('Please select', ''),
         ];
 
         $enroll = Enroll::findOrFail($id);
@@ -99,7 +109,7 @@ class EnrollsController extends Controller
     {
         $relations = [
             'users' => \App\User::get()->pluck('fname' . ' ' . 'lname', 'id')->prepend('Please select', ''),
-            'subjects' => \App\Subject::get()->pluck('title', 'id')->prepend('Please select', ''),
+            'subjects' => \App\Subject::get(),
         ];
 
         $enroll = Enroll::findOrFail($id);

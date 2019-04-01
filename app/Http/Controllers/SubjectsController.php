@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreSubjectsRequest;
 use App\Http\Requests\UpdateSubjectsRequest;
 use App\Subject;
+use Illuminate\Support\Facades\Auth;
+use App\Enroll;
 
 class SubjectsController extends Controller
 {
@@ -19,8 +21,14 @@ class SubjectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $enrolls = Enroll::distinct()->select('subject_id')->where('user_id', Auth::id())->get();
+
         $subjects = Subject::all();
+
+        if (!Auth::user()->isAdmin()) {
+            $subjects = $subjects->whereIn('id', $enrolls->pluck('subject_id'));
+        }
 
         return view('subjects.index', compact('subjects'));
     }

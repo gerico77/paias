@@ -1,68 +1,93 @@
-@extends('layouts.app')
+@extends('layouts.webview')
 
 @section('content')
     <div class="container-fluid">
-        <h3 class="page-title">Exams</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">Exams</li>
+        </ol>
  
         <div class="card mb-3">
-            <div class="card-header">
-                <i class="fas fa-table"></i>
-                List
-            </div>
-            <div class="card-body">
-                <p>
+            @if(!Auth::user()->isStudent())
+                <div class="card-header">
                     <a href="{{ route('exams.create') }}" class="btn btn-primary btn-sm">
                         <i class="fas fa-plus"></i>
                         Add new
                     </a>
-                </p>
+                </div>
+                @endif
+                <div class="card-header">
+                    <a href="{{ route('logout') }}" class="btn btn-primary btn-sm">
+                        Log-out
+                    </a>
+                </div>
+                
+            <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped {{ count($exams) > 0 ? 'datatable' : '' }} dt-select">
+                    <table class="table table-bordered table-striped {{ !Auth::user()->isStudent() ? (count($exams) > 0 ? 'datatable' : '') : '' }} dt-select">
                         <thead>
-                            <th style="text-align:center"><input type="checkbox" id="select-all" /></th>
+                            @if(!Auth::user()->isStudent())
+                                <th style="text-align:center"><input type="checkbox" id="select-all" /></th>
+                            @endif
                             <th>Exam Title</th>
-                            <th>Subject</th>
-                            <th>Created by</th>
+                            @if(!Auth::user()->isStudent())
+                                <th>Subject</th>
+                                <th>Professor</th>
+                                <th>Start of Exam</th>
+                            @endif
                             <th>&nbsp;</th>
                         </thead>
                         
                         <tbody>
                             @if (count($exams) > 0)
                                 @foreach ($exams as $exam)
-                                    <tr data-entry-id="{{ $exam->id }}">
-                                        <td></td>
-                                        <td>{!! $exam->title !!}</td>
-                                        <td>{{ $exam->subject->title }}</td>
-                                        <td>{{ $exam->user->fname . ' ' . $exam->user->lname }}</td>
-                                        <td style="text-align:center">
-                                            @if (count($exam_questions->where('exam_id', $exam->id)) > 0)
-                                                <a href="{{ route('tests.index', ['exam_id' => $exam->id, 'user_id' => Auth::id() ]) }}" class="btn btn-sm btn-secondary">
-                                                    <i class="fas fa-search"></i>
-                                                    Preview
-                                                </a>
+                                    @if (!count($tests->where('user_id', Auth::id())->where('exam_id', $exam->id)) > 0)
+                                        <tr data-entry-id="{{ $exam->id }}">
+                                            @if(!Auth::user()->isStudent())
+                                                <td></td>
                                             @endif
-                                            <a href="{{ route('exams.show', ['id' => $exam->id]) }}" class="btn btn-sm btn-success">
-                                                <i class="fas fa-eye"></i>
-                                                View
-                                            </a>
-                                            <a href="{{ route('exams.edit', ['id' => $exam->id]) }}" class="btn btn-sm btn-info">
-                                                <i class="fas fa-edit"></i>
-                                                Edit
-                                            </a>
-                                            {!! Form::open(array(
-                                                'style' => 'display: inline-block;',
-                                                'method' => 'DELETE',
-                                                'onsubmit' => "return confirm('Are you sure?');",
-                                                'route' => ['exams.destroy', $exam->id])) !!}
-                                            {!! Form::button('<i class="fas fa-trash-alt"></i> Delete', array('type' => 'submit', 'class' => 'btn btn-sm btn-danger')) !!}
-                                            {!! Form::close() !!}
-                                        </td>
-                                    </tr>
-                                    
+                                            <td>{!! $exam->title !!}</td>
+                                            @if(!Auth::user()->isStudent())
+                                                <td>{{ $exam->subject->title }}</td>
+                                                <td>{{ $exam->user->fname . ' ' . $exam->user->lname }}</td>
+                                                <td>{{ $exam->start_datetime }}</td>
+                                            @endif
+                                            <td style="text-align:center">
+                                                @if(!Auth::user()->isStudent())
+                                                    @if (count($exam_questions->where('exam_id', $exam->id)) > 0)
+                                                        <a href="{{ route('tests.index', ['exam_id' => $exam->id, 'user_id' => Auth::id() ]) }}" class="btn btn-sm btn-secondary">
+                                                            <i class="fas fa-search"></i>
+                                                            Preview
+                                                        </a>
+                                                    @endif
+                                                    <a href="{{ route('exams.show', ['id' => $exam->id]) }}" class="btn btn-sm btn-success">
+                                                        <i class="fas fa-eye"></i>
+                                                        View
+                                                    </a>
+                                                    <a href="{{ route('exams.edit', ['id' => $exam->id]) }}" class="btn btn-sm btn-info">
+                                                        <i class="fas fa-edit"></i>
+                                                        Edit
+                                                    </a>
+                                                    {!! Form::open(array(
+                                                        'style' => 'display: inline-block;',
+                                                        'method' => 'DELETE',
+                                                        'onsubmit' => "return confirm('Are you sure?');",
+                                                        'route' => ['exams.destroy', $exam->id])) !!}
+                                                    {!! Form::button('<i class="fas fa-trash-alt"></i> Delete', array('type' => 'submit', 'class' => 'btn btn-sm btn-danger')) !!}
+                                                    {!! Form::close() !!}
+
+                                                @else
+                                                    <a href="{{ route('tests.index', ['exam_id' => $exam->id, 'user_id' => Auth::id() ]) }}" class="btn btn-sm btn-secondary {{ $exam->isOpen() ? '' : 'disabled' }}">
+                                                        <i class="fas fa-pen"></i>
+                                                        Take Exam
+                                                    </a>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="5">No entries in table</td>
+                                    <td colspan="6">No entries in table</td>
                                 </tr>
                             @endif
                         </tbody>

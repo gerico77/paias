@@ -25,8 +25,7 @@ class Enroll extends Model
 
     public function user()
     {
-        // return $this->belongsTo(User::class, 'user_id')->withTrashed();
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id')->withTrashed();
     }
 
     public function setSubjectIdAttribute($input)
@@ -36,8 +35,7 @@ class Enroll extends Model
 
     public function subject()
     {
-        // return $this->belongsTo(User::class, 'subject_id')->withTrashed();
-        return $this->belongsTo(Subject::class, 'subject_id');
+        return $this->belongsTo(Subject::class, 'subject_id')->withTrashed();
     }
 
     public function isAdmin()

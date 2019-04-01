@@ -1,13 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.webview')
 
 @section('content')
     <div class="container-fluid">
-        <h3 class="page-title">Results</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('results.index') }}">Results</a>
+            </li>
+            <li class="breadcrumb-item active">View</li>
+        </ol>
 
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fas fa-eye"></i>
-                View
+                <h4>
+                    {{ $test->exam->subject->title . ' - ' . $test->exam->title }}
+                </h4>
             </div>
             <div class="card-body">
 
@@ -26,7 +32,7 @@
                         </tr>
                         <tr>
                             <th>Result</th>
-                            <td>{{ $test->result }}/10</td>
+                            <td>{{ $test->result }}/{{ count($test->exam->exam_questions) }}</td>
                         </tr>
                     </table>
                     <?php $i = 1 ?>

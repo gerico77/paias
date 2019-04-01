@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.webview')
 
 @section('content')
 @inject('request', 'Illuminate\Http\Request')
-    <div class="container-fluid">
-        <h3 class="page-title">{{ $exam_questions->first()->exam->subject->title . ' - ' . $exam_questions->first()->exam->title }}</h3>
-        {!! Form::open(['method' => 'POST', 'route' => ['tests.store']]) !!}
+    <div class="container">
+        <h3 class="page-title mb-3">{{ $exam_questions->first()->exam->subject->title . ' - ' . $exam_questions->first()->exam->title }}</h3>
+        {!! Form::open(['method' => 'POST', 'route' => ['tests.store'], 'onsubmit' => "return confirm('Are you sure you want to Submit?');"]) !!}
         {!! Form::hidden('exam_id', $request->segment(2)) !!}
         {!! Form::hidden('user_id', $request->segment(3)) !!}
 
@@ -17,9 +17,11 @@
                             <div class="card-header">
                                 <strong>Question {{ $i }}</strong>
                             </div>
-                            <div class="card-body">       
-                                <strong>{!! nl2br($exam_question->question->question_text) !!}</strong>
-                            
+                            <div class="card-body">
+                                <p>
+                                    <strong>{!! nl2br($exam_question->question->question_text) !!}</strong>
+                                </p>
+
                                 <input type="hidden" name="questions[{{ $i }}]" value="{{ $exam_question->question->id }}">
                                 
                                 @foreach($exam_question->question->options as $option)
@@ -38,7 +40,7 @@
                 </div>
             <?php $i++; ?>
             @endforeach
-            {!! Form::submit(trans('Submit Quiz'), ['class' => 'btn btn-success btn-sm']) !!}
+            {!! Form::submit(trans('Submit Quiz'), ['class' => 'btn btn-success']) !!}
 
         @endif
 

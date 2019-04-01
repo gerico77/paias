@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Question;
 use App\QuestionsOption;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreQuestionsRequest;
 use App\Http\Requests\UpdateQuestionsRequest;
+use App\Enroll;
 
 class QuestionsController extends Controller
 {
@@ -34,8 +36,10 @@ class QuestionsController extends Controller
      */
     public function create($qtype)
     {
+        $enrolls = Enroll::distinct()->select('subject_id')->where('user_id', Auth::id())->get();
+
         $relations = [
-            'subjects' => \App\Subject::get()->pluck('title', 'id')->prepend('Please select', ''),
+            'subjects' => \App\Subject::get()->whereIn('id', $enrolls->pluck('subject_id'))->pluck('title', 'id')->prepend('Please select', ''),
         ];
 
         switch ($qtype) {
@@ -124,9 +128,10 @@ class QuestionsController extends Controller
      */
     public function edit($qtype, $id)
     {
+        $enrolls = Enroll::distinct()->select('subject_id')->where('user_id', Auth::id())->get();
         
         $relations = [
-            'subjects' => \App\Subject::get()->pluck('title', 'id'),
+            'subjects' => \App\Subject::get()->whereIn('id', $enrolls->pluck('subject_id'))->pluck('title', 'id')->prepend('Please select', ''),
             'questions_options' => \App\QuestionsOption::get()->where('question_id', $id),
         ];
 
@@ -179,7 +184,7 @@ class QuestionsController extends Controller
     public function show($qtype, $id)
     {
         $relations = [
-            'subjects' => \App\Subject::get()->pluck('title', 'id'),
+            'subjects' => \App\Subject::get(),
         ];
 
         $question = Question::findOrFail($id);

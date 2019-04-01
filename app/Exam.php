@@ -16,6 +16,10 @@ class Exam extends Model
         parent::boot();
 
         Exam::observe(new \App\Observers\UserActionsObserver);
+
+        static::deleting(function($exam) { // before delete() method call this
+            $exam->exam_questions()->delete();
+       });
     }
 
 
@@ -52,7 +56,7 @@ class Exam extends Model
     }
 
 
-    public function examQuestions()
+    public function exam_questions()
     {
         return $this->hasMany(ExamQuestion::class)->withTrashed();
     }
@@ -60,5 +64,29 @@ class Exam extends Model
     public function tests()
     {
         return $this->hasMany(Test::class)->withTrashed();
+    }
+
+    /**
+     * Get attribute from date format
+     * @param $input
+     *
+     * @return string
+     */
+    public function getStartDatetimeAttribute() {
+        $combinedDT = date('Y-m-d H:i:s', strtotime("$this->start_date $this->start_time"));
+        return $combinedDT;
+    }
+
+    public function isOpen()
+    {
+        date_default_timezone_set('Asia/Manila');
+        $today = date("Y-m-d H:i:s");
+        $date = $this->start_datetime;
+
+        if($date <= $today) {
+           return true;
+        }
+
+        return false;
     }
 }

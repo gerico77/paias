@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group">
                     {!! Form::label('subject_id', 'Subjects*', ['class' => 'control-label']) !!}
-                    {!! Form::select('subject_id', $users, old('subject_id'), ['class' => 'form-control']) !!}
+                    {!! Form::select('subject_id', $subjects, old('subject_id'), ['class' => 'form-control']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('subject_id'))
                         <p class="help-block">

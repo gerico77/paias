@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Exam;
 use App\Http\Requests\StoreExamsRequest;
 use App\Http\Requests\UpdateExamsRequest;
+use App\Enroll;
+use Illuminate\Support\Facades\Auth;
 
 class ExamsController extends Controller
 {
@@ -14,13 +16,21 @@ class ExamsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
         $relations = [
             'exam_questions' => \App\ExamQuestion::get(),
+            'tests' => \App\Test::get(),
         ];
 
         $exams =  Exam::all();
+
+        if (!Auth::user()->isAdmin() || !Auth::user()->isDepartmentHead()) {
+            $enrolls = Enroll::distinct()->select('subject_id')->where('user_id', Auth::id())->get();
+            $exams = $exams->whereIn('subject_id', $enrolls->pluck('subject_id'));
+        }
 
         return view('exams.index', compact('exams') + $relations);
     }
@@ -32,9 +42,11 @@ class ExamsController extends Controller
      */
     public function create()
     {
+        $enrolls = Enroll::distinct()->select('subject_id')->where('user_id', Auth::id())->get();
+
         $relations = [
             'categories' => \App\Category::get()->pluck('title', 'id')->prepend('Please select', ''),
-            'subjects' => \App\Subject::get()->pluck('title', 'id')->prepend('Please select', ''),
+            'subjects' => \App\Subject::get()->whereIn('id', $enrolls->pluck('subject_id'))->pluck('title', 'id')->prepend('Please select', ''),
         ];
 
         return view('exams.create', $relations);
@@ -79,9 +91,11 @@ class ExamsController extends Controller
      */
     public function edit($id)
     {
+        $enrolls = Enroll::distinct()->select('subject_id')->where('user_id', Auth::id())->get();
+
         $relations = [
             'categories' => \App\Category::get()->pluck('title', 'id')->prepend('Please select', ''),
-            'subjects' => \App\Subject::get()->pluck('title', 'id')->prepend('Please select', ''),
+            'subjects' => \App\Subject::get()->whereIn('id', $enrolls->pluck('subject_id'))->pluck('title', 'id')->prepend('Please select', ''),
         ];
 
         $exam = Exam::findOrFail($id);

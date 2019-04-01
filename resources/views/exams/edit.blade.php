@@ -2,17 +2,17 @@
 
 @section('content')
     <div class="container-fluid">
-        <h3 class="page-title">Exam</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('exams.index') }}">Exams</a>
+            </li>
+            <li class="breadcrumb-item active">Edit</li>
+        </ol>
 
         {!! Form::model($exam, ['method' => 'PUT', 'route' => ['exams.update', $exam->id]]) !!}
         {!! Form::hidden('user_id', Auth::id()) !!}
     
         <div class="card mb-3">
-            <div class="card-header">
-                <i class="fas fa-edit"></i>
-                Edit
-            </div>
-
             <div class="card-body">
                 <div class="form-group">
                     {!! Form::label('subject_id', 'Subject*') !!}

@@ -3,12 +3,12 @@
 
     <li class="nav-item {{ $request->segment(1) == 'home' || $request->segment(1) == '' ? 'active' : '' }}">
         <a class="nav-link" href="{{ url('/home') }}">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span>
-      </a>
+            <i class="fas fa-fw fa-home"></i>
+            <span>Home</span>
+        </a>
     </li>
 
-     <li class="nav-item {{ $request->segment(1) == 'tests' ? 'active' : '' }}">
+    <li class="nav-item {{ $request->segment(1) == 'exams' ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('exams.index') }}">
             <i class="fas fa-file-alt"></i>
             <span>Exam</span>
@@ -20,21 +20,6 @@
             <span>Results</span></a>
         </a>
     </li>
-
-    {{-- <li class="nav-item dropdown {{ $request->segment(1) == 'subject' ? 'active' : '' }}">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-            <i class="fa fa-book"></i>
-            <span>My subjects</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            @if (count($subjects) > 0)
-                @foreach ($subjects as $subject)
-                    <a class="dropdown-item" href="{{ route('subjects.show',[$subject->id]) }}">{{ $subject->title }}</a>
-                @endforeach
-            @endif
-        </div>
-    </li> --}}
 
     @if(Auth::user()->isAdmin())
         <li class="nav-item dropdown {{ $request->segment(1) == 'roles' || $request->segment(1) == 'users' || $request->segment(1) == 'user_actions' ? 'active' : '' }}">
@@ -76,9 +61,9 @@
                     <span>Students</span></a>
             </a>
         </li>
-        @endif
+    @endif
 
-        @if(Auth::user()->isProfessor() || Auth::user()->isAdmin() || Auth::user()->isDepartmentHead())
+    @if(!Auth::user()->isStudent())
         {{-- <li class="nav-item {{ $request->segment(1) == 'tasks' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('tasks.index') }}">
                     <i class="fas fa-tasks"></i>
@@ -115,5 +100,5 @@
                 <span>Questions Options</span></a>
             </a>
         </li> --}}
-        @endif
+    @endif
 </ul>

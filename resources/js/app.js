@@ -6,10 +6,9 @@
  */
 
 require('./bootstrap');
-require('./sb-admin');
-require('jquery.easing');
 require('datatables.net-bs4');
 require('datatables.net-select-bs4');
+require('./sb-admin');
 require('./main');
 
 window.Vue = require('vue');

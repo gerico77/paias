@@ -7,6 +7,7 @@ use App\Course;
 use Illuminate\Http\Request;
 use App\Enroll;
 use Auth;
+use App\Subject;
 
 class HomeController extends Controller
 {
@@ -27,12 +28,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $enrolls = Enroll::distinct()->select('subject_id')->get();
+        $subjects = Subject::all();
 
         if (!Auth::user()->isAdmin()) {
-            $enrolls = $enrolls->where('user_id', '=', Auth::user()->id);
+            $enrolls = Enroll::distinct()->select('subject_id')->where('user_id', Auth::id())->get();
+            $subjects = $subjects->whereIn('id', $enrolls->pluck('subject_id'));
         }
 
-        return view('home', compact('enrolls'));
+        return view('home', compact('subjects'));
     }
 }

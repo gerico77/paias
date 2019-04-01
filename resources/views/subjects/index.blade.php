@@ -31,7 +31,7 @@
                                 @foreach ($subjects as $subject)
                                     <tr data-entry-id="{{ $subject->id }}">
                                         <td></td>
-                                        <td>{{ $subject->course->title}}</td>
+                                        <td>{{ $subject->course->code}}</td>
                                         <td>{{ $subject->title}}</td>
                                         <td>
                                             <a href="{{ route('subjects.show',[$subject->id]) }}" class="btn btn-sm btn-success">
