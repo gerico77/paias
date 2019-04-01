@@ -85,6 +85,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel">Question Bank - {{ $exam->subject->title }}</h4>
+                    <a href="{{ route('questions.index') }}" class="btn btn-default btn-sm">
+                        Go to Question Bank
+                    </a>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">

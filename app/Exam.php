@@ -83,7 +83,7 @@ class Exam extends Model
         $today = date("Y-m-d H:i:s");
         $date = $this->start_datetime;
 
-        if($date <= $today) {
+        if ($date <= $today) {
            return true;
         }
 

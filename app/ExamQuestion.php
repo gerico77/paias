@@ -44,4 +44,46 @@ class ExamQuestion extends Model
     {
         return $this->belongsTo(Question::class, 'question_id')->withTrashed();
     }
+
+    
+    public function getDifficultyAttribute() {
+        $tests = Test::distinct()->select('id')->where('exam_id', $this->exam->id)->get();
+        $test_answers = TestAnswer::all()->whereIn('test_id', $tests->pluck('id'));
+
+        $students_answered = $test_answers->where('question_id', $this->question->id);
+        $students_correct = $students_answered->where('correct', 1);
+
+        $item_difficulty = count($students_correct) / count($students_answered);
+
+        return round($item_difficulty, 2);
+    }
+
+    public function getDifficultyIdentifierAttribute() {
+        $difficulty = $this->difficulty;
+        $identifier = "";
+        
+        if ($difficulty <= .3) {
+            $identifier = "DI";
+        } elseif ($difficulty >= .75) {
+            $identifier = "EI";
+        } elseif ($difficulty > .3 && $difficulty < .75) {
+            $identifier = "AI";
+        }   
+
+        return $identifier;
+    }
+
+    public function getStudentsAnsweredAttribute() {
+        $tests = Test::distinct()->select('id')->where('exam_id', $this->exam->id)->get();
+        $test_answers = TestAnswer::all()->whereIn('test_id', $tests->pluck('id'));
+
+        // $students_answered = array();
+        // foreach ($this->options as $option) {
+        //     array_push($students_answered, $test_answers->where('question_id', $this->question->id)->whereIn('option_id', $option-id));
+        // }
+
+        $students_answered = $test_answers->where('question_id', $this->question->id);
+
+        return $students_answered;
+    }
 }

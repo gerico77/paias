@@ -17,15 +17,10 @@
                                         <div class="card-body-icon">
                                             <i class="fas fa-fw fa-book"></i>
                                         </div>
-                                    <h4 class="mr-5">{{ $subject->title }}</h4>
-                                    <small class="mr-5">{{ $subject->course->code }}</small>
+                                        
+                                        <h4 class="mr-5">{{ $subject->title }}</h4>
+                                        <small class="mr-5">{{ $subject->course->code }}</small>
                                     </div>
-                                    <a class="card-footer text-white clearfix small z-1" href="#">
-                                        <span class="float-left">Manage subject</span>
-                                        <span class="float-right">
-                                            <i class="fas fa-angle-right"></i>
-                                        </span>
-                                    </a>
                                 </div>
                             </div>
                         @endforeach
