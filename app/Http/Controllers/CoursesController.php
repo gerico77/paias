@@ -23,7 +23,7 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        $courses =  Course::all();
+        $courses =  Course::all()->sortByDesc('id');
 
         return view('courses.index', compact('courses'));
     }

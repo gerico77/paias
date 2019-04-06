@@ -57,6 +57,12 @@ class TestsController extends Controller
 
             if ($request->input('answers.' . $question) != null
                 && QuestionsOption::find($request->input('answers.' . $question))->correct) {
+                    
+                $status = 1;
+                $result++;
+            } elseif ($request->input('qtype') == 'identification'
+                && $request->input('answer_identification') == Question::find($question)->options->first()->option) {
+
                 $status = 1;
                 $result++;
             }
@@ -71,7 +77,7 @@ class TestsController extends Controller
 
         $test->update(['result' => $result]);
 
-        return redirect()->route('results.show', [$test->id]);
+        return redirect()->route('results.index');
     }
 
     /**

@@ -24,7 +24,17 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        $questions = Question::all();
+        $questions = Question::all()->sortByDesc('id');
+
+        if (Auth::user()->isProfessor()) {
+            $enrolls = Enroll::distinct()->select('subject_id')->where('user_id', Auth::id())->get();
+            $questions = $questions->whereIn('subject_id', $enrolls->pluck('subject_id'));
+        } elseif (Auth::user()->isDepartmentHead()) {
+            $departments = Department::distinct()->select('id')->where('user_id', Auth::id())->get();
+            $courses = Course::distinct()->select('id')->whereIn('department_id', $departments->pluck('id'))->get();
+            $subjects = Subject::distinct()->select('id')->whereIn('course_id', $courses->pluck('id'))->get();
+            $questions = $questions->whereIn('subject_id', $courses->pluck('subject_id'));
+        }
 
         return view('questions.index', compact('questions'));
     }
@@ -56,9 +66,9 @@ class QuestionsController extends Controller
                 break;
 
             case "identification":
-                // $correct_text = [
-                //     'answerhere' => 'Answer here'
-                // ];
+                $correct_text = [
+                    'option1' => 'Answer here'
+                ];
 
                 return view( 'questions.identification.create', $relations);
                 break;
@@ -73,8 +83,8 @@ class QuestionsController extends Controller
                 
             case "truefalse":
                 $correct_options = [
-                    'true' => 'True',
-                    'false' => 'False'
+                    'option1' => 'True',
+                    'option2' => 'False'
                 ];
 
                 return view( 'questions.truefalse.create', compact('correct_options') + $relations);

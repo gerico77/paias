@@ -3,14 +3,16 @@
 @section('content')
     <div class="container-fluid">
         <h3 class="page-title">Subjects</h3>
-    
-        <p>
-            <a href="{{ route('subjects.create') }}" class="btn btn-primary btn-sm">
-                <i class="fas fa-plus"></i>
-                Add new
-            </a>
-        </p>
-    
+        
+        @if (!Auth::user()->isProfessor())
+            <p>
+                <a href="{{ route('subjects.create') }}" class="btn btn-primary btn-sm">
+                    <i class="fas fa-plus"></i>
+                    Add new
+                </a>
+            </p>
+        @endif
+
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fas fa-table"></i>

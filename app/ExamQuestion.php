@@ -77,11 +77,6 @@ class ExamQuestion extends Model
         $tests = Test::distinct()->select('id')->where('exam_id', $this->exam->id)->get();
         $test_answers = TestAnswer::all()->whereIn('test_id', $tests->pluck('id'));
 
-        // $students_answered = array();
-        // foreach ($this->options as $option) {
-        //     array_push($students_answered, $test_answers->where('question_id', $this->question->id)->whereIn('option_id', $option-id));
-        // }
-
         $students_answered = $test_answers->where('question_id', $this->question->id);
 
         return $students_answered;

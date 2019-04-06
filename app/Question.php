@@ -17,6 +17,11 @@ class Question extends Model
         parent::boot();
 
         Question::observe(new \App\Observers\UserActionsObserver);
+
+        static::deleting(function($question) { // before delete() method call this
+            $question->options()->delete();
+            $question->examQuestions()->delete();
+        });
     }
 
     /**

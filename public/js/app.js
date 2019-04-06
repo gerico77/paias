@@ -64827,7 +64827,7 @@ $(document).ready(function () {
 
   $(document).on('click', '.js-create-selected', function () {
     var ids = [];
-    var url = $(location).attr('href').split("/").splice(0, 5).join("/");
+    var url = $(location).attr('href').split("/").splice(0, 5);
     var exam_id = url[url.length - 1];
     $(this).closest('.actions').siblings('.datatable').find('tbody tr.selected').each(function () {
       ids.push($(this).data('entry-id'));

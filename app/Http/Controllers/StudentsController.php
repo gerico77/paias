@@ -18,7 +18,7 @@ class StudentsController extends Controller
 {
     public function index()
     {
-        $users = User::all()->where('role_id', 4);
+        $users = User::all()->where('role_id', 4)->sortByDesc('id');
 
         return view('students.index', compact('users'));
     }

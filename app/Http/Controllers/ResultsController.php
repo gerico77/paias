@@ -18,7 +18,7 @@ class ResultsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin' or 'department_head' or 'professor')->except('index', 'show');
+        $this->middleware('admin' or 'department_head' or 'professor')->except('index');
     }
 
     /**
@@ -28,7 +28,7 @@ class ResultsController extends Controller
      */
     public function index()
     {
-        $results = Test::all()->load('user');
+        $results = Test::all()->load('user')->sortByDesc('id');
 
         if (Auth::user()->isStudent()) {
             $results = $results->where('user_id', '=', Auth::id());

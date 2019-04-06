@@ -19,30 +19,34 @@
                 <table class="table table-bordered table-striped {{ count($results) > 0 ? 'datatable' : '' }}">
                     <thead>
                         <tr>
-                        @if(!Auth::user()->isStudent())
-                            <th>User</th>
-                        @endif
-                            <th>Subject</th>
-                            <th>Exam title</th>
-                            <th>Date</th>
-                            <th>Result</th>
-                            <th style="width: 8%">&nbsp;</th>
+                            @if (!Auth::user()->isStudent())
+                                <th>User</th>
+                            @endif
+                                <th>Subject</th>
+                                <th>Exam title</th>
+                                <th>Date</th>
+                                <th>Result</th>
+                            @if (!Auth::user()->isStudent())
+                                <th style="width: 8%">&nbsp;</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
                         @if (count($results) > 0)
                             @foreach ($results as $result)
                                 <tr>
-                                @if(!Auth::user()->isStudent())
-                                    <td>{{ $result->user->fname }} {{ $result->user->lname }}</td>
-                                @endif
-                                    <td>{{ $result->exam->subject->title }}</td>
-                                    <td>{{ $result->exam->title }} ({{ $result->exam->category->title }})</td>
-                                    <td>{{ $result->created_at }}</td>
-                                    <td>{{ $result->result }}/{{ count($result->exam->exam_questions) }}</td>
-                                    <td style="text-align:center">
-                                        <a href="{{ route('results.show',[$result->id]) }}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i> View</a>
-                                    </td>
+                                    @if (!Auth::user()->isStudent())
+                                        <td>{{ $result->user->fname }} {{ $result->user->lname }}</td>
+                                    @endif
+                                        <td>{{ $result->exam->subject->title }}</td>
+                                        <td>{{ $result->exam->title }} ({{ $result->exam->category->title }})</td>
+                                        <td>{{ $result->created_at }}</td>
+                                        <td>{{ $result->result }}/{{ count($result->exam->exam_questions) }}</td>
+                                    @if (!Auth::user()->isStudent())
+                                        <td style="text-align:center">
+                                            <a href="{{ route('results.show',[$result->id]) }}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i> View</a>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         @else

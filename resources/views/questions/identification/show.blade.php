@@ -15,17 +15,7 @@
                         <table class="table table-bordered table-striped">
                             <tr><th>Subject</th><td>{{ $question->subject->title }}</td></tr>
                             <tr><th>Question Text</th><td>{!! $question->question_text !!}</td></tr>
-                            <tr>
-                                <td>Options</td>
-                                <td>
-                                    <ul>
-                                    @foreach($question->options as $option)
-                                        <li style="@if ($option->correct == 1) font-weight: bold; @endif">{{ $option->option }}
-                                            @if ($option->correct == 1) <em>(correct answer)</em> @endif
-                                        </li>
-                                    @endforeach
-                                    </ul>
-                                </td>
+                            <tr><th>Correct Answer</th><td>{{ $question->options->first()->option }}</td>
                             </tr>
                             <tr><th>Answer Explanation</th><td>{!! $question->answer_explanation !!}</td></tr>
                         </table>

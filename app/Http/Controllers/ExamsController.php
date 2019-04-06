@@ -25,7 +25,7 @@ class ExamsController extends Controller
             'tests' => \App\Test::get(),
         ];
 
-        $exams =  Exam::all();
+        $exams =  Exam::all()->sortByDesc('id');
 
         if (!Auth::user()->isAdmin() || !Auth::user()->isDepartmentHead()) {
             $enrolls = Enroll::distinct()->select('subject_id')->where('user_id', Auth::id())->get();

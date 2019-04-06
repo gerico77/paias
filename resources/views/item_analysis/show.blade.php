@@ -73,7 +73,11 @@
                         @foreach ($exam_questions as $exam_question)
                             <tr>
                                 {{-- ITEMS --}}
-                                <td>{{ $question_no }}. </td>
+                                <td>
+                                    <a href="{{ route('questions.show', ['qtype' => $exam_question->question->qtype, 'id' => $exam_question->question->id]) }}">
+                                        {{ $question_no }}. 
+                                    </a>
+                                </td>
 
                                 {{-- KEY --}}
                                 @php

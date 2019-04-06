@@ -19,6 +19,7 @@ Route::post('refresh', 'Api\Auth\LoginController@refresh');
 
 Route::middleware('auth:api')->group(function () {
     Route::get('results', 'Api\ResultsController@index');
+    Route::get('exams', 'Api\ExamsController@index');
     Route::get('students', 'Api\StudentsController@index');
     Route::post('logout', 'Api\Auth\LoginController@logout');
 });

@@ -20,7 +20,7 @@ class DepartmentsController extends Controller
      */
     public function index()
     {
-        $departments = Department::all();
+        $departments = Department::all()->sortByDesc('id');
 
         return view('departments.index', compact('departments'));
     }

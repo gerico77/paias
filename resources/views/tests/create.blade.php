@@ -4,7 +4,7 @@
 @inject('request', 'Illuminate\Http\Request')
     <div class="container">
         <h3 class="page-title mb-3">{{ $exam_questions->first()->exam->subject->title . ' - ' . $exam_questions->first()->exam->title }}</h3>
-        {!! Form::open(['method' => 'POST', 'route' => ['tests.store'], 'onsubmit' => "return confirm('Are you sure you want to Submit?');"]) !!}
+        {!! Form::open(['method' => 'POST', 'route' => ['tests.store'], 'onsubmit' => "return confirm('Are you sure you want to submit?');"]) !!}
         {!! Form::hidden('exam_id', $request->segment(2)) !!}
         {!! Form::hidden('user_id', $request->segment(3)) !!}
 
@@ -30,19 +30,26 @@
                                     $i = 0;
                                     $options = array('A. ', 'B. ', 'C. ', 'D. ', 'E. ');
                                 @endphp
-                                @foreach($exam_question->question->options as $option)
+                                @if ($exam_question->question->qtype != 'identification')
+                                    @foreach($exam_question->question->options as $option)
+                                        <br>
+                                        <label class="radio-inline">
+                                            <input
+                                                type="radio"
+                                                name="answers[{{ $exam_question->question->id }}]"
+                                                value="{{ $option->id }}">
+                                            {{ $options[$i] }} {{ $option->option }}
+                                        </label>
+                                        @php
+                                            $i++;
+                                        @endphp
+                                    @endforeach
+                                @else
                                     <br>
-                                    <label class="radio-inline">
-                                        <input
-                                            type="radio"
-                                            name="answers[{{ $exam_question->question->id }}]"
-                                            value="{{ $option->id }}">
-                                        {{ $options[$i] }} {{ $option->option }}
-                                    </label>
-                                    @php
-                                        $i++;
-                                    @endphp
-                                @endforeach
+                                    {!! Form::hidden('qtype', 'identification') !!}
+                                    {!! Form::text('answer_identification', "", ['class' => 'form-control ']) !!}
+                                    {{-- <input type="text" name="answers[{{ $exam_question->question->id }}]" value=""> --}}
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -51,7 +58,10 @@
                     $question_no++;
                 @endphp
             @endforeach
-            {!! Form::submit(trans('Submit Quiz'), ['class' => 'btn btn-success']) !!}
+
+            @if(Auth::user()->isStudent())
+                {!! Form::submit(trans('Submit Quiz'), ['class' => 'btn btn-success']) !!}
+            @endif
 
         @endif
 

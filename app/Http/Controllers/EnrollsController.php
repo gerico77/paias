@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreEnrollsRequest;
 use App\Http\Requests\UpdateEnrollsRequest;
 use Illuminate\Foundation\Auth\User;
+use App\Department;
+use App\Course;
+use App\Subject;
 
 class EnrollsController extends Controller
 {
@@ -23,20 +26,16 @@ class EnrollsController extends Controller
      */
     public function index()
     {
-        $enrolls = Enroll::all();
+        $enrolls = Enroll::all()->sortByDesc('id');
 
-        if (!Auth::user()->isAdmin()) {
-            $enrolls = $enrolls->whereIn('subject_id', Auth::user()->enrolls->pluck('subject_id'));
+        if (Auth::user()->isProfessor()) {
+            $subject_id = Enroll::distinct()->where('user_id', Auth::id())->get();
+            $enrolls = $enrolls->whereIn('subject_id', $subject_id->pluck('subject_id'));
+        } elseif (Auth::user()->isDepartmentHead()) {
+            $departments = Department::distinct()->select('id')->where('user_id', Auth::id());
+            $courses = Course::distinct()->select('id')->whereIn('department_id', $departments->pluck('id'))->get();
+            $subjects = Subject::whereIn('course_id', $courses->pluck('id'));
         }
-
-        // if (!Auth::user()->isAdmin()) {
-        //     $course = Course::distinct()->select('subject_id')->where('department_id', Auth::id());
-        //     $enrolls = $enrolls->whereIn('id', Auth::user()->enrolls->pluck('subject_id'));
-        // } elseif (Auth::user()->isProfessor()) {
-        //     $course = Course::distinct()->select('id')->where('department_id', Auth::id());
-        //     $subjects = Subject::distinct()->select('id')->whereIn('course_id', $departments->pluck('id'))->get();
-        //     $enrolls = $enrolls->whereIn('subject_id', $subjects->pluck('id'));
-        // }
 
         return view('enrolls.index', compact('enrolls'));
     }

@@ -24,7 +24,7 @@ class SubjectsController extends Controller
      */
     public function index()
     {   
-        $subjects = Subject::all();
+        $subjects = Subject::all()->sortByDesc('id');
 
         if (Auth::user()->isProfessor()) {
             $enrolls = Enroll::distinct()->select('subject_id')->where('user_id', Auth::id())->get();

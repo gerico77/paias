@@ -33,15 +33,16 @@
                 @endif
             </div>
             <div class="form-group">
-                {!! Form::label('answerhere', 'Answer here*', ['class' => 'control-label']) !!}
-                {!! Form::text('answerhere', old('answerhere'), ['class' => 'form-control ']) !!}
+                {!! Form::label('option1', 'Answer here*', ['class' => 'control-label']) !!}
+                {!! Form::text('option1', old('option1'), ['class' => 'form-control ']) !!}
                 <small class="form-text text-muted"></small>
-                @if($errors->has('answerhere'))
+                @if($errors->has('option1'))
                     <small class="form-text text-muted">
-                        {{ $errors->first('answerhere') }}
+                        {{ $errors->first('option1') }}
                     </small>
                 @endif
             </div>
+            {!! Form::hidden('correct', 'option1') !!}
             <div class="form-group">
                 {!! Form::label('answer_explanation', 'Answer explanation*', ['class' => 'control-label']) !!}
                 {!! Form::textarea('answer_explanation', old('answer_explanation'), ['class' => 'form-control ', 'placeholder' => '']) !!}
