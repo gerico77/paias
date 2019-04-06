@@ -53,8 +53,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('questions_options_mass_destroy', ['uses' => 'QuestionsOptionsController@massDestroy', 'as' => 'questions_options.mass_destroy']);
 
     // Results
-    Route::get('results_export', ['uses' => 'ResultsController@export', 'as' => 'results.export']);
-
+    Route::get('results_export', ['uses' => 'TestsController@export', 'as' => 'results.export']);
+    
     // Item Analysis
     Route::resource('item_analysis', 'ItemAnalysisController');
 

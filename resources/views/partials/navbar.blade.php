@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-laravel static-top">
+<nav class="navbar navbar-expand-md navbar-dark bg-danger navbar-laravel static-top">
     <a class="navbar-brand mr-1" href="{{ url('/') }}">
         {{ config('app.name', 'Laravel') }}
     </a>
