@@ -49,6 +49,11 @@
                                     {!! Form::hidden('qtype', 'identification') !!}
                                     {!! Form::text('answer_identification', "", ['class' => 'form-control ']) !!}
                                     {{-- <input type="text" name="answers[{{ $exam_question->question->id }}]" value=""> --}}
+                                @else
+                                    <br>
+                                    {!! Form::hidden('qtype', 'rubrics') !!}
+                                    {!! Form::text('answer_identification', "", ['class' => 'form-control ']) !!}
+                                    {{-- <input type="text" name="answers[{{ $exam_question->question->id }}]" value=""> --}}
                                 @endif
                             </div>
                         </div>

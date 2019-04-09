@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreTestRequest;
 use App\Exam;
 use App\ExamQuestion;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ResultsExport;
 
 class TestsController extends Controller
 {   
@@ -34,6 +36,11 @@ class TestsController extends Controller
         }
 
         return view('tests.create', compact('exam_questions'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new ResultsExport(), 'results.xlsx');
     }
 
     /**

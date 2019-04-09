@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreResultsRequest;
 use App\Http\Requests\UpdateResultsRequest;
 
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\ResultsExport;
 use App\Enroll;
 use App\Exam;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ResultsExport;
 
 class ResultsController extends Controller
 {

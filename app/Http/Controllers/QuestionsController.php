@@ -70,15 +70,15 @@ class QuestionsController extends Controller
                     'option1' => 'Answer here'
                 ];
 
-                return view( 'questions.identification.create', $relations);
+                return view('questions.identification.create', $relations);
                 break;
 
             case "enumeration":
-                // $correct_text = [
-                //     'answerhere' => 'Answer here'
-                // ];
+                $correct_text = [
+                    'option1' => 'Answer here'
+                ];
 
-                return view( 'questions.enumeration.create', $relations);
+                return view('questions.enumeration.create', $relations);
                 break;
                 
             case "truefalse":
@@ -87,7 +87,7 @@ class QuestionsController extends Controller
                     'option2' => 'False'
                 ];
 
-                return view( 'questions.truefalse.create', compact('correct_options') + $relations);
+                return view('questions.truefalse.create', compact('correct_options') + $relations);
                 break;
 
             case "tier":
@@ -99,7 +99,14 @@ class QuestionsController extends Controller
                     'option5' => 'Option #5'
                 ];
 
-                return view( 'questions.tier.create', compact('correct_options') + $relations);
+                return view('questions.tier.create', compact('correct_options') + $relations);
+                break;
+             case "rubrics":
+                $correct_text = [
+                    'option1' => 'Answer here'
+                ];
+
+                return view('questions.rubrics.create', $relations);
                 break;
         }
     }
@@ -153,18 +160,21 @@ class QuestionsController extends Controller
                 break;
 
             case "identification":
-                return view( 'questions.identification.edit', compact('question') + $relations);
+                return view('questions.identification.edit', compact('question') + $relations);
                 break;
 
             case "enumeration":
-                return view( 'questions.enumeration.edit', compact('question') + $relations);
+                return view('questions.enumeration.edit', compact('question') + $relations);
                 break;
 
             case "truefalse":
-                return view( 'questions.truefalse.edit', compact('question') + $relations);
+                return view('questions.truefalse.edit', compact('question') + $relations);
                 break;
             case "tier":
-                return view( 'questions.tier.edit', compact('question') + $relations);
+                return view('questions.tier.edit', compact('question') + $relations);
+                break;
+            case "rubrics":
+                return view('questions.rubrics.edit', compact('question') + $relations);
                 break;
         }
     }
@@ -201,23 +211,26 @@ class QuestionsController extends Controller
          
         switch ($qtype) {
             case "multichoice":
-                return view( 'questions.multichoice.show', compact('question') + $relations);
+                return view('questions.multichoice.show', compact('question') + $relations);
                 break;
 
             case "identification":
-                return view( 'questions.identification.show', compact('question') + $relations);
+                return view('questions.identification.show', compact('question') + $relations);
                 break;
 
             case "enumeration":
-                return view( 'questions.enumeration.show', compact('question') + $relations);
+                return view('questions.enumeration.show', compact('question') + $relations);
                 break;
 
             case "truefalse":
-                return view( 'questions.truefalse.show', compact('question') + $relations);
+                return view('questions.truefalse.show', compact('question') + $relations);
                 break;
 
             case "tier":
-                return view( 'questions.tier.show', compact('question') + $relations);
+                return view('questions.tier.show', compact('question') + $relations);
+                break;
+             case "rubrics":
+                return view('questions.rubrics.show', compact('question') + $relations);
                 break;
         }     
     }
