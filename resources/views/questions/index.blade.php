@@ -96,6 +96,10 @@
                         {!! Form::radio('questionTypes', 'tier', false, array('class' => 'form-check-input', 'id' => 'tier')); !!}
                         {!! Form::label('tier', '3 Tier', ['class' => 'form-check-label']) !!}
                     </div>
+                     <div class="form-check">
+                        {!! Form::radio('questionTypes', 'rubrics', false, array('class' => 'form-check-input', 'id' => 'rubrics')); !!}
+                        {!! Form::label('rubrics', 'Rubrics', ['class' => 'form-check-label']) !!}
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
@@ -133,6 +137,10 @@
                         break;
                     case "tier":
                         document.location.href = "{{ route('questions.create', 'tier') }}";
+
+                        break;
+                    case "rubrics":
+                        document.location.href = "{{ route('questions.create', 'rubrics') }}";
 
                         break;
                 }

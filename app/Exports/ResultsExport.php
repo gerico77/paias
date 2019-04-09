@@ -8,7 +8,6 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
-use App\Result;
 
 class ResultsExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
@@ -17,7 +16,7 @@ class ResultsExport implements FromCollection, WithHeadings, ShouldAutoSize, Wit
     */
     public function collection()
     {
-        return Result::select('id', 'user_id', 'result', 'exam_id')->get();
+        return Test::select('id', 'user_id', 'result', 'exam_id')->get();
     }
 
     public function headings(): array
