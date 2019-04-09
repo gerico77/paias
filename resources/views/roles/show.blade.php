@@ -2,27 +2,27 @@
 
 @section('content')
     <div class="container-fluid">
-        <h3 class="page-title">Roles</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('roles.index') }}">Roles</a>
+            </li>
+            <li class="breadcrumb-item active">View</li>
+        </ol>
 
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fas fa-eye"></i>
-                View
+                <a href="{{ route('roles.index') }}" class="btn btn-default btn-sm m-n2"><i class="fa fa-arrow-left"></i> Back to list</a>
             </div>
             <div class="card-body">
-
-            <div class="row">
-                <div class="col-md-6">
-                    <table class="table table-bordered table-striped">
-                        <tr><th>@lang('Role')</th>
-                        <td>{{ $role->title }}</td>
-                        </tr>
-                    </table>
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table table-bordered table-striped">
+                            <tr><th>@lang('Role')</th>
+                            <td>{{ $role->title }}</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-            </div>
-
-                <br />
-                <a href="{{ route('roles.index') }}" class="btn btn-default btn-sm">Back to list</a>
             </div>
         </div>
     </div>

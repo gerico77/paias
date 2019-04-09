@@ -33,7 +33,7 @@ $(document).ready(function () {
     });
 
     if (typeof window.route_mass_crud_entries_destroy != 'undefined') {
-        $('.datatable').siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="btn btn-sm btn-danger js-delete-selected mt-n5" onclick="return confirm(\'Are you sure you want to delete the selected item/s?\');">Delete Selected</a>');
+        $('.datatable').siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="btn btn-sm btn-danger js-delete-selected mt-n5" onclick="return confirm(\'Are you sure you want to delete the selected item/s?\');"><i class="fas fa-trash-alt"></i> Delete Selected</a>');
     }
 
     $(document).on('click', '.js-delete-selected', function() {

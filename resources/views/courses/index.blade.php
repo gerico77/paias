@@ -2,24 +2,25 @@
 
 @section('content')
     <div class="container-fluid">
-        <h3 class="page-title">Courses</h3>
-    
-        <p>
-            <a href="{{ route('courses.create') }}" class="btn btn-primary btn-sm">
-                <i class="fas fa-plus"></i>
-                Add new
-            </a>
-        </p>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">Courses</li>
+        </ol>
 
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fas fa-table"></i>
-                List
+                <div class="d-flex justify-content-between">
+                    <a href="{{ route('courses.create') }}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus"></i>
+                        Add new
+                    </a>
+                    
+                <a href="{{ route('courses.export') }}" class="btn btn-primary btn-sm">
+                    <i class="fas fa-file-download"></i>
+                    Export
+                </a>
+                </div>
             </div>
             <div class="card-body">
-                <a href="{{ route('courses.export') }}" class="btn btn-primary btn-sm"><i class="fas fa-file-download"></i> Export</a>
-                <br /> <br />
-
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped {{ count($courses) > 0 ? 'datatable' : '' }} dt-select">
                         <thead>
@@ -27,7 +28,7 @@
                             <th>Department</th>
                             <th>Name</th>
                             <th>Code</th>
-                            <th style="width:20%">&nbsp;</th>
+                            <th>&nbsp;</th>
                         </thead>
                         
                         <tbody>

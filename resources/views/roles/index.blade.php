@@ -2,15 +2,10 @@
 
 @section('content')
     <div class="container-fluid">
-        <h3 class="page-title">Roles</h3>
-            <p>
-                {{-- <a href="{{ route('roles.create') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Add New</a> --}}
-            </p>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">Roles</li>
+        </ol>
         <div class="card mb-3">
-            <div class="card-header">
-                <i class="fas fa-table"></i>
-                List
-            </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped">
                     <thead>

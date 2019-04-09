@@ -13,6 +13,9 @@
         {!! Form::hidden('user_id', Auth::id()) !!}
 
         <div class="card mb-3">
+            <div class="card-header">
+                <a href="{{ route('exams.index') }}" class="btn btn-default btn-sm m-n2"><i class="fa fa-arrow-left"></i> Back to list</a>
+            </div>
             <div class="card-body">
                 <div class="form-group">
                     {!! Form::label('subject_id', 'Subject*') !!}

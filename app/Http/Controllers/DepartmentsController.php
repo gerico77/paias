@@ -77,7 +77,7 @@ class DepartmentsController extends Controller
     public function edit($id)
     {
         $relations = [
-            'users' => \App\User::get()->pluck('username', 'fname', 'lname', 'id')->prepend('Please select', ''),
+            'users' => \App\User::get()->where('role_id', 2)->pluck('full_name', 'id')->prepend('Please select', ''),
         ];
 
         $department = Department::findOrFail($id);

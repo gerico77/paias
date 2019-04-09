@@ -2,19 +2,16 @@
 
 @section('content')
     <div class="container-fluid">
-        <h3 class="page-title">Departments</h3>
-    
-        <p>
-            <a href="{{ route('departments.create') }}" class="btn btn-primary btn-sm">
-                <i class="fas fa-plus"></i>
-                Add new
-            </a>
-        </p>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">Departments</li>
+        </ol>
     
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fas fa-table"></i>
-                List
+                <a href="{{ route('departments.create') }}" class="btn btn-primary btn-sm">
+                    <i class="fas fa-plus"></i>
+                    Add new
+                </a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -23,7 +20,7 @@
                             <th style="text-align:center; width:5%"><input type="checkbox" id="select-all" /></th>
                             <th>Name</th>
                             <th>Dept. Head</th>
-                            <th style="width:20%">&nbsp;</th>
+                            <th>&nbsp;</th>
                         </thead>
                         
                         <tbody>

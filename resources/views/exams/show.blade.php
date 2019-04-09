@@ -11,17 +11,15 @@
         </ol>
 
         <div class="card mb-3">
-            <div class="card-header">
-                <h4>
-                    {{ $exam->subject->title . ' - ' . $exam->title }}
-                </h4>
+            <div class="card-header">   
+                <small>{{ $exam->subject->title }}</small>
+                <h4>{{ $exam->title }}</h4>
             </div>
 
             <div class="card-body">    
                 <div class="row">
                     <div class="col-md-6">
                         <table class="table table-sm table-bordered">
-                            <tr><th>Title</th><td>{{ $exam->title }}</td></tr>
                             <tr><th>Category</th><td>{{ $exam->category->title }}</td></tr>
                             <tr><th>Start Date</th><td>{{ $exam->start_date }}</td></tr>
                             <tr><th>Start Time</th><td>{{ $exam->start_time }}</td></tr>
@@ -30,7 +28,6 @@
                     <div class="col-md-6">
                         <table class="table table-sm table-bordered">
                             <tr><th>No. of Questions</th><td>{{ count($exam_questions) }}</td></tr>
-                            <tr><th>Subject</th><td>{{ $exam->subject->title }}</td></tr>
                             <tr><th>Created By</th><td>{{ $exam->user->fname . ' ' . $exam->user->lname }}</td></tr>
                             <tr><th>Created At</th><td>{{ $exam->created_at }}</td></tr>
                         </table>

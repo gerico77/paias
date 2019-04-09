@@ -9,10 +9,12 @@
         <div class="card mb-3">
             @if(!Auth::user()->isStudent())
                 <div class="card-header">
-                    <a href="{{ route('results.export') }}" class="btn btn-sm btn-primary">
-                        <i class="fas fa-file-download"></i>
-                        Export Data
-                    </a>
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ route('results.export') }}" class="btn btn-sm btn-primary">
+                            <i class="fas fa-file-download"></i>
+                            Export Data
+                        </a>
+                    </div>
                 </div>
             @endif
             <div class="card-body">

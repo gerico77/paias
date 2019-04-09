@@ -21,7 +21,7 @@ class UserActionsController extends Controller
      */
     public function index()
     {
-        $user_actions = UserAction::all();
+        $user_actions = UserAction::all()->sortByDesc('action_id');
 
         return view('user_actions.index', compact('user_actions'));
     }

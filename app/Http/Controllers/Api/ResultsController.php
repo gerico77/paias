@@ -12,10 +12,9 @@ class ResultsController extends Controller
 {
     public function index()
     {
-
         $results = Test::all()->load('user')->load(['exam', 'exam.subject', 'exam.exam_questions']);
 
-        $results = $results->where('user_id', '=', Auth::id());
+        $results = $results->where('user_id', '=', Auth::id())->sortByDesc('id');
 
         return ResultResource::collection($results);
     }

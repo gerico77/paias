@@ -1,14 +1,19 @@
 @extends('layouts.app') 
 @section('content')
     <div class="container-fluid">
-        <h3 class="page-title">Users</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('users.index') }}">Users</a>
+            </li>
+            <li class="breadcrumb-item active">Add new</li>
+        </ol>
+
         {!! Form::open(['method' => 'POST', 'route' => ['users.store']]) !!}
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fas fa-plus"></i>
-                Create
+                <a href="{{ route('users.index') }}" class="btn btn-default btn-sm m-n2"><i class="fa fa-arrow-left"></i> Back to list</a>
             </div>
-
+            
             <div class="card-body">
                 <div class="form-group">
                     {!! Form::label('username', 'Username*', ['class' => 'control-label']) !!}
@@ -70,8 +75,7 @@
                         </small>
                     @endif
                 </div>
-                {!! Form::submit('Save', ['class' => 'btn btn-success btn-sm']) !!}
-                <a href="{{ route('users.index') }}" class="btn btn-default btn-sm">Back to list</a>
+                {!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
             </div>
         </div>
         {!! Form::close() !!}

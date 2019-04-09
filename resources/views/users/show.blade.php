@@ -2,11 +2,16 @@
 
 @section('content')
     <div class="container-fluid">
-        <h3 class="page-title">Users</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('users.index') }}">Users</a>
+            </li>
+            <li class="breadcrumb-item active">View</li>
+        </ol>
+        
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fas fa-eye"></i>
-                View
+                <a href="{{ route('users.index') }}" class="btn btn-default btn-sm m-n2"><i class="fa fa-arrow-left"></i> Back to list</a>
             </div>
 
             <div class="card-body">
@@ -40,9 +45,6 @@
                         </table>
                     </div>
                 </div>
-
-                <br />
-                <a href="{{ route('users.index') }}" class="btn btn-default btn-sm">Back to list</a>
             </div>
         </div>
     </div>

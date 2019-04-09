@@ -16,13 +16,21 @@
                             <tr><th>Subject</th><td>{{ $question->subject->title }}</td></tr>
                             <tr><th>Question Text</th><td>{!! $question->question_text !!}</td></tr>
                             <tr>
-                                <td>Options</td>
+                                <th>Options</th>
                                 <td>
                                     <ul>
+                                    @php
+                                        $i = 0;
+                                        $options = array('A. ', 'B. ', 'C. ', 'D. ', 'E. ');
+                                    @endphp
                                     @foreach($question->options as $option)
-                                        <li style="@if ($option->correct == 1) font-weight: bold; @endif">{{ $option->option }}
+                                        <li style="@if ($option->correct == 1) font-weight: bold; @endif">
+                                            {{ $options[$i] }}{{ $option->option }}
                                             @if ($option->correct == 1) <em>(correct answer)</em> @endif
                                         </li>
+                                        @php
+                                            $i++;
+                                        @endphp
                                     @endforeach
                                     </ul>
                                 </td>

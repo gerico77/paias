@@ -47,21 +47,25 @@
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>
                         <th colspan="2">&nbsp;</th>
-                        <th colspan="2">A</th>
-                        <th colspan="2">B</th>
-                        <th colspan="2">C</th>
-                        <th colspan="2">D</th>
-                        <th colspan="2">E</th>
+                        <th colspan="2">&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th colspan="3">A</th>
+                        <th colspan="3">B</th>
+                        <th colspan="3">C</th>
+                        <th colspan="3">D</th>
+                        <th colspan="3">E</th>
                     </tr>
                     <tr>
                         <th>ITEM</th>
                         <th>KEY</th>
                         <th colspan="2">DIFFICULTY</th>
-                        <th>St</th><th>OK</th>
-                        <th>St</th><th>OK</th>
-                        <th>St</th><th>OK</th>
-                        <th>St</th><th>OK</th>
-                        <th>St</th><th>OK</th>
+                        <th colspan="2">DISCRIMINATORY</th>
+                        <th>REMARKS</th>
+                        <th>Hi</th><th>Lo</th><th>OK</th>
+                        <th>Hi</th><th>Lo</th><th>OK</th>
+                        <th>Hi</th><th>Lo</th><th>OK</th>
+                        <th>Hi</th><th>Lo</th><th>OK</th>
+                        <th>Hi</th><th>Lo</th><th>OK</th>
                     </tr>
                 </thead>
                 
@@ -96,15 +100,24 @@
                                 {{-- DIFFICULTY --}}
                                 <td>{{ $exam_question->difficulty }}</td>
                                 <td>{{ $exam_question->difficulty_identifier }}</td>
+
+                                {{-- DISCRIMINATORY --}}
+                                <td>{{ $exam_question->index_of_discrimination }}</td>
+                                <td>{{ $exam_question->discrimination_identifier }}</td>
+
+                                {{-- REMARKS --}}
+                                <td>{{ $exam_question->remarks }}</td>
                                 
                                 {{-- ITEMS --}}
                                 @foreach ($exam_question->question->options as $option)
-                                    <td>{{ count($exam_question->students_answered->whereIn('option_id', $option->id)) }}</td>
+                                    <td>{{ count($exam_question->hi_students_answered->whereIn('option_id', $option->id)) }}</td>
+                                    <td>{{ count($exam_question->low_students_answered->whereIn('option_id', $option->id)) }}</td>
                                     <td>{{ $option->correct == 1 ? 'Y' : 'N' }}</td>
                                 @endforeach
                                 @for ($i = 0; $i < (5 - count($exam_question->question->options)); $i++)
-                                    <td></td>
-                                    <td></td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>N</td>
                                 @endfor
                             </tr>
                             @php

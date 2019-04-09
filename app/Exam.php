@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\QueriesRelationships;
 
 class Exam extends Model
 {
@@ -87,6 +88,17 @@ class Exam extends Model
            return true;
         }
 
+        return false;
+    }
+
+    public function getIsMultichoiceOnlyAttribute() {
+        $exam_questions = ExamQuestion::select('question_id')->where('exam_id', $this->id)->get();
+        $qtype = Question::distinct()->select('qtype')->where('id', $exam_questions->pluck('question_id'))->get();
+
+        if (count($qtype) == 1 && $qtype->first()->qtype == 'multichoice') {
+            return true;
+        }
+        
         return false;
     }
 }

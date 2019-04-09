@@ -2,14 +2,18 @@
 
 @section('content')
     <div class="container-fluid">
-        <h3 class="page-title">Departments</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('departments.index') }}">Departments</a>
+            </li>
+            <li class="breadcrumb-item active">Edit</li>
+        </ol>
 
         {!! Form::model($department, ['method' => 'PUT', 'route' => ['departments.update', $department->id]]) !!}
     
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fas fa-edit"></i>
-                Edit
+                <a href="{{ route('departments.index') }}" class="btn btn-default btn-sm m-n2"><i class="fa fa-arrow-left"></i> Back to list</a>
             </div>
             <div class="card-body">
                     <div class="form-group">
@@ -34,7 +38,7 @@
                     </div>
                     <div class="form-group">
                         {!! Form::label('details', 'Details', ['class' => 'control-label']) !!}
-                        {!! Form::text('details', old('details'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                        {!! Form::textarea('details', old('details'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                         <small class="form-text text-muted"></small>
                         @if($errors->has('details'))
                             <small class="form-text text-muted">
@@ -43,8 +47,7 @@
                         @endif
                     </div>
                 
-                {!! Form::submit('Update', ['class' => 'btn btn-danger btn-sm']) !!}
-                <a href="{{ route('departments.index') }}" class="btn btn-default btn-sm">Back to list</a>
+                {!! Form::submit('Update', ['class' => 'btn btn-success']) !!}
             </div>
         </div>  
         {!! Form::close() !!}

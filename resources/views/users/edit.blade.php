@@ -2,13 +2,19 @@
 
 @section('content')
     <div class="container-fluid">
-        <h3 class="page-title">@lang('Users')</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('users.index') }}">Users</a>
+            </li>
+            <li class="breadcrumb-item active">Edit</li>
+        </ol>
+        
         {!! Form::model($user, ['method' => 'PUT', 'route' => ['users.update', $user->id]]) !!}
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fas fa-edit"></i>
-                Edit
+                <a href="{{ route('users.index') }}" class="btn btn-default btn-sm m-n2"><i class="fa fa-arrow-left"></i> Back to list</a>
             </div>
+            
             <div class="card-body">
                 <div class="form-group">
                     {!! Form::label('username', 'Username*', ['class' => 'control-label']) !!}
@@ -32,7 +38,7 @@
                 </div>
                 <div class="form-group">
                     {!! Form::label('lname', 'Last Name*', ['class' => 'control-label']) !!}
-                    {!! Form::text('lname', old('lname'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    {!! Form::text('lname', old('lname'), ['class' => 'form-control', 'place    holder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('lname'))
                         <p class="help-block">
@@ -71,8 +77,7 @@
                     @endif
                 </div>
 
-                {!! Form::submit('Update', ['class' => 'btn btn-success btn-sm']) !!}
-                <a href="{{ route('users.index') }}" class="btn btn-default btn-sm">Back to list</a>
+                {!! Form::submit('Update', ['class' => 'btn btn-success']) !!}
             </div>
         </div>
         {!! Form::close() !!}

@@ -31,6 +31,7 @@
                         <tbody>
                             @if (count($exams) > 0)
                                 @foreach ($exams as $exam)
+                                {{ $exam->students_answered }}
                                     @if (!count($tests->where('user_id', Auth::id())->where('exam_id', $exam->id)) > 0)
                                         <tr data-entry-id="{{ $exam->id }}">
                                             @if(!Auth::user()->isStudent())
@@ -41,18 +42,16 @@
                                             <td>{{ $exam->start_datetime }}</td>
                                             <td style="text-align:center">
                                                 @if(!Auth::user()->isStudent())
-                                                    @if (count($exam_questions->where('exam_id', $exam->id)) > 0)
-                                                        <a href="{{ route('tests.index', ['exam_id' => $exam->id, 'user_id' => Auth::id() ]) }}" class="btn btn-sm btn-secondary">
-                                                            <i class="fas fa-search"></i>
-                                                            Preview
-                                                        </a>
-                                                    @endif
-                                                    @if (count($exam->tests))
-                                                        <a href="{{ route('item_analysis.show', ['id' => $exam->id]) }}" class="btn btn-sm btn-warning">
-                                                            <i class="fas fa-file-alt"></i>
-                                                            Item Analysis
-                                                        </a>
-                                                    @endif
+                                                    <a href="{{ route('tests.index', ['exam_id' => $exam->id, 'user_id' => Auth::id() ]) }}" 
+                                                       class="btn btn-sm btn-secondary {{ count($exam_questions->where('exam_id', $exam->id)) > 0 ? '' : 'disabled' }}">
+                                                        <i class="fas fa-search"></i>
+                                                        Preview
+                                                    </a>
+                                                    <a href="{{ route('item_analysis.show', ['id' => $exam->id]) }}" 
+                                                       class="btn btn-sm btn-warning {{ count($exam->tests) > 0 && $exam->is_multichoice_only ? '' : 'disabled' }}">
+                                                        <i class="fas fa-file-alt"></i>
+                                                        Item Analysis
+                                                    </a>
                                                     <a href="{{ route('exams.show', ['id' => $exam->id]) }}" class="btn btn-sm btn-success">
                                                         <i class="fas fa-eye"></i>
                                                         View
