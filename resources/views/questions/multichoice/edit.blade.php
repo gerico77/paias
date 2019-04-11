@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <h3 class="page-title">Questions</h3>
 
-        {!! Form::model($question, ['method' => 'PUT', 'route' => ['questions.update', $question->id]]) !!}
+        {!! Form::model($question, ['method' => 'PUT', 'enctype' => 'multipart/form-data', 'route' => ['questions.update', $question->id]]) !!}
     
         <div class="card mb-3">
             <div class="card-header">
@@ -31,6 +31,9 @@
                             {{ $errors->first('question_text') }}
                         </small>
                     @endif
+                </div>
+                <div class="form-group">
+                    {{Form::file('question_image')}}
                 </div>
                 <div class="form-group">
                     {!! Form::label('answer_explanation', 'Answer explanation*') !!}
@@ -62,7 +65,7 @@
                             @if (count($questions_options) > 0)
                                 @foreach ($questions_options as $questions_option)
                                     <tr>
-                                        <td>{{ $questions_option->option }}</td>
+                                        <td>{!! $questions_option->option !!}</td>
                                         <td>{{ $questions_option->correct == 1 ? 'Yes' : 'No' }}</td>
                                         <td class="text-center">
                                             {!! Form::button('<i class="fas fa-edit"></i> Edit', ['class' => 'btn btn-sm btn-info', 'data-option' => $questions_option->option, 'data-correct' => $questions_option->correct, 'data-optionid' => $questions_option->id, 'data-toggle' => 'modal', 'data-target' => '#edit']) !!}

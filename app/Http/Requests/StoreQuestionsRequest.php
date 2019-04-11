@@ -26,6 +26,7 @@ class StoreQuestionsRequest extends FormRequest
             'subject_id'         => 'required',
             'question_text'      => 'required',
             'answer_explanation' => 'required',
+            'test_image'         => 'image|nullable|max:1999',
         ];
     }
 }

@@ -16,6 +16,14 @@
                             <tr><th>Subject</th><td>{{ $question->subject->title }}</td></tr>
                             <tr><th>Question Text</th><td>{!! $question->question_text !!}</td></tr>
                             <tr>
+                                <th>Image</th>
+                                <td>
+                                    <div>
+                                    <img src="{{ asset('/storage/test_images/' . $question->test_image) }}">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>Options</th>
                                 <td>
                                     <ul>
@@ -25,7 +33,7 @@
                                     @endphp
                                     @foreach($question->options as $option)
                                         <li style="@if ($option->correct == 1) font-weight: bold; @endif">
-                                            {{ $options[$i] }}{{ $option->option }}
+                                            {{ $options[$i] }}{!! $option->option !!}
                                             @if ($option->correct == 1) <em>(correct answer)</em> @endif
                                         </li>
                                         @php

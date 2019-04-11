@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
     <h3 class="page-title">Questions</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['questions.store']]) !!}
+    {!! Form::open(['method' => 'POST', 'enctype' => 'multipart/form-data', 'route' => ['questions.store']]) !!}
     {!! Form::hidden('qtype', 'multichoice') !!}
     <div class="card mb-3">
         <div class="card-header">
@@ -31,6 +31,9 @@
                         {{ $errors->first('question_text') }}
                     </small>
                 @endif
+            </div>
+            <div class="form-group">
+                {{Form::file('question_image')}}
             </div>
             <div class="form-group">
                 {!! Form::label('option1', 'Option #1', ['class' => 'control-label']) !!}

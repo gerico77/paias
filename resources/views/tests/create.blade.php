@@ -22,6 +22,10 @@
                             <div class="card-body">
                                 <p>
                                     <strong>{!! nl2br($exam_question->question->question_text) !!}</strong>
+                                    <br>
+                                    @if($exam_question->question->test_image != 'noimage.jpg' )
+                                        <img style="width:100%" src="{{ asset('/storage/test_images/' . $exam_question->question->test_image) }}">
+                                    @endif
                                 </p>
 
                                 <input type="hidden" name="questions[{{ $question_no }}]" value="{{ $exam_question->question->id }}">
@@ -49,11 +53,11 @@
                                     {!! Form::hidden('qtype', 'identification') !!}
                                     {!! Form::text('answer_identification', "", ['class' => 'form-control ']) !!}
                                     {{-- <input type="text" name="answers[{{ $exam_question->question->id }}]" value=""> --}}
-                                @else
+                                {{-- @else
                                     <br>
                                     {!! Form::hidden('qtype', 'rubrics') !!}
                                     {!! Form::text('answer_identification', "", ['class' => 'form-control ']) !!}
-                                    {{-- <input type="text" name="answers[{{ $exam_question->question->id }}]" value=""> --}}
+                                    <input type="text" name="answers[{{ $exam_question->question->id }}]" value=""> --}}
                                 @endif
                             </div>
                         </div>

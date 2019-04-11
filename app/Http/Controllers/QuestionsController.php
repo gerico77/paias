@@ -119,8 +119,34 @@ class QuestionsController extends Controller
      */
     public function store(StoreQuestionsRequest $request)
     {
+        // Handel File Upload
+        if($request->hasFile('question_image')){
+            // Get Filename with the extension
+            $filenameWithExt = $request->file('question_image')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('question_image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore= $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('question_image')->storeAs('public/test_images', $fileNameToStore);
+        } else {
+            $fileNameToStore = 'noimage.jpg';
+        }
 
-        $question = Question::create($request->all());
+        $request->test_image = $fileNameToStore;
+
+
+        $question = Question::create([
+            'qtype' => $request->qtype,
+            'subject_id' => $request->subject_id,
+            'question_text' => $request->question_text,
+            'answer_explanation' => $request->answer_explanation,
+            'updated_at' => $request->updated_at,
+            'created_at' => $request->created_at,
+            'test_image' => $fileNameToStore,
+        ]);
 
         foreach ($request->input() as $key => $value) {
             if (strpos($key, 'option') !== false && $value != '') {
@@ -188,10 +214,33 @@ class QuestionsController extends Controller
      */
     public function update(UpdateQuestionsRequest $request, $id)
     {
-        $question = Question::findOrFail($id);
-        $question->update($request->all());
+        // Handel File Upload
+        if($request->hasFile('question_image')){
+            // Get Filename with the extension
+            $filenameWithExt = $request->file('question_image')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('question_image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore= $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('question_image')->storeAs('public/test_images', $fileNameToStore);
+        }
 
-        return redirect()->route('questions.index')->with('message', 'Question successfully updated')->prepend('Please select', '');
+        $question = Question::find($id);
+        $question->subject_id = $request->input('subject_id');
+        $question->question_text = $request->input('question_text');
+        $question->answer_explanation = $request->input('answer_explanation');
+        $question->updated_at = $request->input('updated_at');
+        $question->created_at = $request->input('created_at');
+        
+        if($request->hasFile('test_image')){
+            $question->test_image = $fileNameToStore;
+        }
+        $question->save();
+
+        return redirect()->route('questions.index')->with('message', 'Question successfully updated');
     }
 
 
